@@ -61,13 +61,13 @@ const Navbar: React.FC = () => {
 						</a>
 					</nav>
 
-					<div className='hidden md:flex  gap-4'>
-						<button
+					<div className='hidden md:flex gap-6'>
+						<a
 							className={`hover:opacity-70 transition-opacity cursor-pointer ${
 								isScrolled ? 'text-black' : 'text-white'
 							}`}>
 							<Search size={20} />
-						</button>
+						</a>
 						<a
 							href='/'
 							className={`hover:opacity-70 transition-opacity ${
@@ -90,38 +90,40 @@ const Navbar: React.FC = () => {
 				{/* Mobile Menu */}
 				{isMenuOpen && (
 					<div className='md:hidden absolute top-full left-0 right-0 bg-white shadow-md py-4 px-4 animate-fadeIn'>
-						<nav className='flex flex-col space-y-4'>
+						<nav className='flex flex-col space-y-4 text-black font-medium'>
+							<div className='flex flex-col gap-4 pb-4 border-b border-gray-200'>
+								<a
+									href='/'
+									className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
+									<User size={18} />
+									<span>Se connecter</span>
+								</a>
+
+								<a className='flex items-center gap-2 text-black'>
+									<Search size={18} />
+									<span>Rechercher</span>
+								</a>
+							</div>
 							<a
 								href='/mode'
-								className='text-black font-medium hover:text-gray-700 transition-colors'>
+								className='hover:text-gray-700 transition-colors'>
 								Mode
 							</a>
 							<a
 								href='/soins'
-								className='text-black font-medium hover:text-gray-700 transition-colors'>
+								className='hover:text-gray-700 transition-colors'>
 								Soins
 							</a>
 							<a
 								href='/lifestyle'
-								className='text-black font-medium hover:text-gray-700 transition-colors'>
+								className='hover:text-gray-700 transition-colors'>
 								Lifestyle
 							</a>
 							<a
 								href='/culture'
-								className='text-black font-medium hover:text-gray-700 transition-colors'>
+								className='hover:text-gray-700 transition-colors'>
 								Culture
 							</a>
-							<div className='pt-2 flex items-center border-t border-gray-200'>
-								<Search
-									size={18}
-									className='text-gray-500 mr-2'
-								/>
-								<input
-									type='text'
-									placeholder='Rechercher...'
-									className='w-full bg-transparent focus:outline-none text-black'
-								/>
-							</div>
 						</nav>
 					</div>
 				)}

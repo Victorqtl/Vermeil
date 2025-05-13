@@ -29,12 +29,12 @@ const Hero: React.FC = () => {
 
 			{/* Content */}
 			<div className='container mx-auto px-4 md:px-6 relative z-10 text-center'>
-				<div className='max-w-2xl mx-auto'>
-					<h1 className='font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight'>
-						L'élégance au masculin
+				<div className='max-w-3xl mx-auto'>
+					<h1 className='font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight'>
+						L’excellence n’est pas un hasard.
 					</h1>
 					<p className='text-xl md:text-2xl text-white/90 mb-8 leading-relaxed'>
-						Explorez l'art de vivre moderne à travers mode, soins et culture.
+						Vermeil vous accompagne dans votre quête de raffinement et de distinction au quotidien.
 					</p>
 					<a
 						href='/articles'

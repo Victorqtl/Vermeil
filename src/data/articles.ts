@@ -72,7 +72,7 @@ export const categories: Category[] = [
 		name: 'Mode',
 		description: 'Tendances, conseils et inspirations pour affirmer votre style',
 		imageUrl:
-			'https://images.pexels.com/photos/1300550/pexels-photo-1300550.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+			'https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		slug: 'mode',
 	},
 	{
@@ -80,7 +80,7 @@ export const categories: Category[] = [
 		name: 'Soins',
 		description: 'Produits et rituels pour prendre soin de vous au quotidien',
 		imageUrl:
-			'https://images.pexels.com/photos/1662159/pexels-photo-1662159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+			'https://images.pexels.com/photos/7433339/pexels-photo-7433339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		slug: 'soins',
 	},
 	{
@@ -88,7 +88,7 @@ export const categories: Category[] = [
 		name: 'Lifestyle',
 		description: 'Art de vivre, déco et bien-être pour un quotidien raffiné',
 		imageUrl:
-			'https://images.pexels.com/photos/5212700/pexels-photo-5212700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+			'https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		slug: 'lifestyle',
 	},
 	{
@@ -96,7 +96,7 @@ export const categories: Category[] = [
 		name: 'Culture',
 		description: 'Livres, films, musique et événements qui façonnent notre époque',
 		imageUrl:
-			'https://images.pexels.com/photos/7034646/pexels-photo-7034646.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+			'https://images.pexels.com/photos/922100/pexels-photo-922100.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		slug: 'culture',
 	},
 ];

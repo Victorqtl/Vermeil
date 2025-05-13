@@ -1,5 +1,5 @@
 import React from 'react';
-import { Category } from '../types/types';
+import { Category } from '../../../types/types';
 import { ArrowRight } from 'lucide-react';
 
 interface CategoriesProps {
@@ -20,11 +20,11 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
 						<a
 							key={category.id}
 							href={`/${category.slug}`}
-							className={`relative overflow-hidden group h-64 md:h-80 ${
-								index % 2 === 0 ? 'md:h-96' : 'md:h-80'
-							}`}>
+							className='relative overflow-hidden group h-64 md:h-80'>
 							<div
-								className='absolute inset-0 bg-cover bg-center transform transition-transform duration-700 group-hover:scale-105'
+								className={`absolute inset-0 bg-cover ${
+									index === 3 ? 'bg-bottom' : 'bg-center'
+								}  transform transition-transform duration-700 group-hover:scale-105`}
 								style={{ backgroundImage: `url(${category.imageUrl})` }}
 							/>
 							<div className='absolute inset-0 bg-black opacity-40 group-hover:opacity-50 transition-opacity duration-300'></div>

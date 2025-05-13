@@ -149,7 +149,7 @@ const Footer: React.FC = () => {
 					<button
 						onClick={scrollToTop}
 						className='flex items-center text-gray-400 hover:text-white transition-colors group'>
-						<span className='mr-2'>Retour en haut</span>
+						<span className='mr-2 cursor-pointer'>Retour en haut</span>
 						<ArrowUp
 							size={16}
 							className='transition-transform group-hover:-translate-y-1'

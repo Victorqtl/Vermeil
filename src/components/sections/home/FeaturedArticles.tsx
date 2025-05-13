@@ -1,5 +1,5 @@
 import React from 'react';
-import { Article } from '../types/types';
+import { Article } from '../../../types/types';
 import { Clock } from 'lucide-react';
 
 interface FeaturedArticlesProps {
@@ -18,11 +18,11 @@ const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({ articles }) => {
 				<h2 className='text-3xl md:text-4xl font-serif font-bold mb-12 text-center'>Articles à la une</h2>
 
 				{/* Featured Grid - 3 articles in varied sizes */}
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16'>
+				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-6 mb-16'>
 					{featuredArticles.map((article, index) => (
 						<div
 							key={article.id}
-							className={`group ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}>
+							className={`group ${index === 0 ? 'md:col-span-2 lg:col-span-2 lg:row-span-2' : ''}`}>
 							<a
 								href={`/article/${article.id}`}
 								className='block relative'>
@@ -43,7 +43,7 @@ const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({ articles }) => {
 												? 'Lifestyle'
 												: 'Culture'}
 										</span>
-										<h3 className='text-xl md:text-2xl font-serif font-bold text-white mb-2'>
+										<h3 className='text-xl md:text-2xl lg:text-xl xl:text-2xl font-serif font-bold text-white mb-2'>
 											{article.title}
 										</h3>
 										<div className='flex items-center text-white/80 text-sm'>

@@ -7,7 +7,7 @@ import Navbar from '../components/layout/Navbar';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Vermeil | Inspirer l &apos élégance masculine',
+	title: "Vermeil | Inspirer l'élégance masculine",
 	description:
 		'Vermeil propose aux hommes des conseils raffinés en mode, soins, lifestyle et culture. Articles experts pour cultiver un art de vivre exigeant.',
 };
