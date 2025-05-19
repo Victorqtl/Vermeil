@@ -5,7 +5,6 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-// Define a schema for validation with Zod
 const ArticleSchema = z.object({
 	title: z.string().min(1, 'Le titre est requis'),
 	slug: z.string().min(1, 'Le slug est requis'),
@@ -33,7 +32,7 @@ export type CreateArticleFormState = {
 };
 
 export async function createArticleAction(
-	prevState: CreateArticleFormState,
+	_prevState: CreateArticleFormState,
 	formData: FormData
 ): Promise<CreateArticleFormState> {
 	const rawFormData = {
@@ -44,7 +43,7 @@ export async function createArticleAction(
 		heroImage: formData.get('heroImage'),
 		readTime: formData.get('readTime'),
 		category: formData.get('category'),
-		featured: formData.get('featured') === 'on', // HTML forms send 'on' for true, or null if not checked
+		featured: formData.get('featured') === 'on',
 		categoryId: formData.get('categoryId'),
 	};
 
@@ -95,11 +94,6 @@ export async function createArticleAction(
 	}
 
 	revalidatePath('/admin/articles');
-	revalidatePath('/article', 'layout'); // Revalidate all article pages
-	// Instead of returning a success message and then redirecting on client,
-	// we can redirect directly from the server action.
+	revalidatePath('/article', 'layout');
 	redirect('/admin/articles');
-
-	// Unreachable code due to redirect, but kept for alternative pattern if redirect is handled client-side
-	// return { message: 'Article créé avec succès !', success: true };
 }

@@ -1,16 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { useFormState } from 'react-dom';
 import { useFormStatus } from 'react-dom';
 import { createArticleAction, type CreateArticleFormState } from './actions';
-
-// interface Category {
-// 	id: string;
-// 	name: string;
-// }
 
 const initialState: CreateArticleFormState = {
 	message: null,
@@ -31,9 +25,6 @@ function SubmitButton() {
 }
 
 export default function NewArticlePage() {
-	const router = useRouter();
-	// const [categories, setCategories] = useState<Category[]>([]);
-	// const [loadingCategories, setLoadingCategories] = useState(true);
 	const [formData, setFormData] = useState({
 		title: '',
 		slug: '',
@@ -45,40 +36,7 @@ export default function NewArticlePage() {
 		category: '',
 	});
 
-	const [state, formAction] = useActionState(createArticleAction, initialState);
-
-	// Charger les catégories
-	// useEffect(() => {
-	// 	const fetchCategories = async () => {
-	// 		try {
-	// 			const response = await fetch('/api/categories');
-	// 			if (!response.ok) {
-	// 				throw new Error('Failed to fetch categories');
-	// 			}
-	// 			const data = await response.json();
-	// 			setCategories(data);
-	// 		} catch (error) {
-	// 			console.error('Error fetching categories:', error);
-	// 		} finally {
-	// 			setLoadingCategories(false);
-	// 		}
-	// 	};
-
-	// 	fetchCategories();
-	// }, []);
-
-	// Effect to handle messages or redirection based on server action state
-	useEffect(() => {
-		if (state.message && !state.success) {
-			alert(state.message); // Simple alert for errors for now, can be improved
-		}
-		// Redirection is now handled by the server action itself upon success.
-		// If we wanted to handle success message/redirect here:
-		// if (state.success && state.message) {
-		//   alert(state.message); // Or a toast notification
-		//   router.push('/admin/articles');
-		// }
-	}, [state, router]);
+	const [state, formAction] = useFormState(createArticleAction, initialState);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
 		const { name, value, type } = e.target;

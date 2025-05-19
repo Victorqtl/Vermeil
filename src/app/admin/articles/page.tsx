@@ -1,44 +1,11 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { getArticles } from '../../../lib/articles/get-articles';
 
-interface Article {
-	id: string;
-	title: string;
-	slug: string;
-	createdAt: string;
-	featured: boolean;
-	category: {
-		name: string;
-	};
-}
+export default async function ArticlesListPage() {
+	const articles = await getArticles();
 
-export default function ArticlesListPage() {
-	const [articles, setArticles] = useState<Article[]>([]);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		const fetchArticles = async () => {
-			try {
-				const response = await fetch('/api/articles');
-				if (!response.ok) {
-					throw new Error('Failed to fetch articles');
-				}
-				const data = await response.json();
-				setArticles(data);
-			} catch (error) {
-				console.error('Error fetching articles:', error);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		fetchArticles();
-	}, []);
-
-	const formatDate = (dateString: string) => {
-		const date = new Date(dateString);
+	const formatDate = (dateInput: string | Date) => {
+		const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
 		return new Intl.DateTimeFormat('fr-FR', {
 			day: '2-digit',
 			month: '2-digit',
@@ -52,16 +19,16 @@ export default function ArticlesListPage() {
 				<h1 className='text-3xl font-bold'>Articles</h1>
 				<Link
 					href='/admin/articles/new'
-					className='bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90'>
+					className='bg-white text-gray-500 border border-gray-200 px-4 py-2 rounded-md cursor-pointer hover:bg-amber-200'>
 					Nouvel article
 				</Link>
 			</div>
 
-			{loading ? (
-				<div className='text-center py-10'>
+			{/*Mettre Suspense  */}
+			{/* <div className='text-center py-10'>
 					<p className='text-gray-600'>Chargement des articles...</p>
-				</div>
-			) : articles.length === 0 ? (
+				</div> */}
+			{articles.length === 0 ? (
 				<div className='text-center py-10 bg-gray-50 rounded-lg'>
 					<p className='text-gray-600 mb-4'>Aucun article trouvé</p>
 					<Link
@@ -112,7 +79,7 @@ export default function ArticlesListPage() {
 										<div className='text-sm text-gray-500'>{article.slug}</div>
 									</td>
 									<td className='px-6 py-4 whitespace-nowrap'>
-										<div className='text-sm text-gray-900'>{article.category.name}</div>
+										<div className='text-sm text-gray-900'>{article.category}</div>
 									</td>
 									<td className='px-6 py-4 whitespace-nowrap'>
 										<div className='text-sm text-gray-900'>{formatDate(article.createdAt)}</div>

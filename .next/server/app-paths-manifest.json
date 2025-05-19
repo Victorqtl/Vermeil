@@ -1,7 +1,7 @@
 {
-  "/api/articles/route": "app/api/articles/route.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/admin/page": "app/admin/page.js",
   "/admin/articles/page": "app/admin/articles/page.js",
-  "/article/[slug]/page": "app/article/[slug]/page.js",
+  "/(main)/page": "app/(main)/page.js",
   "/admin/articles/new/page": "app/admin/articles/new/page.js"
 }
