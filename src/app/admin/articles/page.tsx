@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ArrowLinkButton from '../../../components/ui/arrow-link-button';
 import { getArticles } from '../../../lib/articles/get-articles';
 
 export default async function ArticlesListPage() {
@@ -17,11 +18,11 @@ export default async function ArticlesListPage() {
 		<div className='max-w-6xl mx-auto p-6'>
 			<div className='flex items-center justify-between mb-6'>
 				<h1 className='text-3xl font-bold'>Articles</h1>
-				<Link
+				<ArrowLinkButton
+					variant='bordered'
 					href='/admin/articles/new'
-					className='bg-white text-gray-500 border border-gray-200 px-4 py-2 rounded-md cursor-pointer hover:bg-amber-200'>
-					Nouvel article
-				</Link>
+					text='Nouvel article'
+				/>
 			</div>
 
 			{/*Mettre Suspense  */}
@@ -29,16 +30,16 @@ export default async function ArticlesListPage() {
 					<p className='text-gray-600'>Chargement des articles...</p>
 				</div> */}
 			{articles.length === 0 ? (
-				<div className='text-center py-10 bg-gray-50 rounded-lg'>
+				<div className='text-center py-10 bg-gray-50'>
 					<p className='text-gray-600 mb-4'>Aucun article trouvé</p>
 					<Link
 						href='/admin/articles/new'
-						className='bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90'>
+						className='bg-gray-200 px-4 py-2 hover:bg-gray-200/90'>
 						Créer votre premier article
 					</Link>
 				</div>
 			) : (
-				<div className='bg-white rounded-lg border border-gray-200 overflow-hidden'>
+				<div className='bg-white border border-gray-200 overflow-hidden'>
 					<table className='min-w-full divide-y divide-gray-200'>
 						<thead className='bg-gray-50'>
 							<tr>
@@ -71,9 +72,7 @@ export default async function ArticlesListPage() {
 						</thead>
 						<tbody className='bg-white divide-y divide-gray-200'>
 							{articles.map(article => (
-								<tr
-									key={article.id}
-									className='hover:bg-gray-50'>
+								<tr key={article.id}>
 									<td className='px-6 py-4 whitespace-nowrap'>
 										<div className='text-sm font-medium text-gray-900'>{article.title}</div>
 										<div className='text-sm text-gray-500'>{article.slug}</div>

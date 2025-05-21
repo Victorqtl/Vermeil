@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/app/generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -12,10 +12,62 @@ model User {
   id               String         @id @default(cuid())
   email            String         @unique
   name             String         @unique
-  password         String
-  profileImage     String?
+  emailVerified    Boolean
+  isAdmin          Boolean        @default(false)
   comments         Comment[]
   favoriteArticles UserFavorite[]
+  image            String?
+  createdAt        DateTime
+  updatedAt        DateTime
+  sessions         Session[]
+  accounts         Account[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
 }
 
 model Article {
@@ -33,6 +85,8 @@ model Article {
   comments        Comment[]
   products        Product[]
   favoriteByUsers UserFavorite[]
+
+  @@map("article")
 }
 
 model Product {
@@ -43,6 +97,8 @@ model Product {
   link        String
   article     Article @relation(fields: [articleId], references: [id])
   articleId   String
+
+  @@map("product")
 }
 
 model Comment {
@@ -54,6 +110,8 @@ model Comment {
   userId    String
   article   Article  @relation(fields: [articleId], references: [id])
   articleId String
+
+  @@map("comment")
 }
 
 model UserFavorite {
@@ -64,4 +122,5 @@ model UserFavorite {
   articleId String
 
   @@unique([userId, articleId])
+  @@map("user_favorite")
 }

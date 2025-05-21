@@ -1,9 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { useFormState } from 'react-dom';
-import { useFormStatus } from 'react-dom';
+import { useActionState, useState } from 'react';
+// import { useFormState, useFormStatus } from 'react-dom';
 import { createArticleAction, type CreateArticleFormState } from './actions';
 
 const initialState: CreateArticleFormState = {
@@ -11,18 +10,6 @@ const initialState: CreateArticleFormState = {
 	errors: {},
 	success: false,
 };
-
-function SubmitButton() {
-	const { pending } = useFormStatus();
-	return (
-		<button
-			type='submit'
-			disabled={pending}
-			className='bg-zinc-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-zinc-500/90 disabled:opacity-50 disabled:cursor-not-allowed'>
-			{pending ? 'Enregistrement...' : 'Enregistrer'}
-		</button>
-	);
-}
 
 export default function NewArticlePage() {
 	const [formData, setFormData] = useState({
@@ -36,7 +23,7 @@ export default function NewArticlePage() {
 		category: '',
 	});
 
-	const [state, formAction] = useFormState(createArticleAction, initialState);
+	const [state, formAction, pending] = useActionState(createArticleAction, initialState);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
 		const { name, value, type } = e.target;
@@ -67,26 +54,26 @@ export default function NewArticlePage() {
 				<h1 className='text-3xl font-bold'>Nouvel article</h1>
 				<Link
 					href='/admin/articles'
-					className='bg-gray-100 px-4 py-2 rounded-md hover:bg-gray-200'>
+					className='bg-gray-100 px-4 py-2 hover:bg-gray-200'>
 					Retour
 				</Link>
 			</div>
 
 			{/* Display general errors from server action */}
 			{state.message && !state.success && state.errors?.general && (
-				<div className='mb-4 p-3 text-red-700 bg-red-100 border border-red-400 rounded'>
+				<div className='mb-4 p-3 text-red-700 bg-red-100 border border-red-400'>
 					<p>{state.errors.general.join(', ')}</p>
 				</div>
 			)}
 			{state.message && !state.success && !state.errors?.general && (
-				<div className='mb-4 p-3 text-red-700 bg-red-100 border border-red-400 rounded'>
+				<div className='mb-4 p-3 text-red-700 bg-red-100 border border-red-400'>
 					<p>{state.message}</p>
 				</div>
 			)}
 
 			<form
 				action={formAction}
-				className='space-y-6 bg-white p-6 rounded-lg border border-gray-200'>
+				className='space-y-6 bg-white p-6 border border-gray-200'>
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 					{/* Titre */}
 					<div className='col-span-2'>
@@ -102,7 +89,7 @@ export default function NewArticlePage() {
 							value={formData.title}
 							onChange={handleChange}
 							required
-							className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
 						/>
 						{state.errors?.title && (
 							<p className='mt-1 text-xs text-red-500'>{state.errors.title.join(', ')}</p>
@@ -123,7 +110,7 @@ export default function NewArticlePage() {
 							value={formData.slug}
 							onChange={handleChange}
 							required
-							className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
 						/>
 						<p className='mt-1 text-xs text-gray-500'>URL de l'article (auto-généré à partir du titre)</p>
 						{state.errors?.slug && (
@@ -146,7 +133,7 @@ export default function NewArticlePage() {
 							onChange={handleChange}
 							min='1'
 							required
-							className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
 						/>
 						{state.errors?.readTime && (
 							<p className='mt-1 text-xs text-red-500'>{state.errors.readTime.join(', ')}</p>
@@ -166,7 +153,7 @@ export default function NewArticlePage() {
 							value={formData.excerpt}
 							onChange={handleChange}
 							rows={3}
-							className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
 						/>
 						{state.errors?.excerpt && (
 							<p className='mt-1 text-xs text-red-500'>{state.errors.excerpt.join(', ')}</p>
@@ -187,7 +174,7 @@ export default function NewArticlePage() {
 							onChange={handleChange}
 							rows={5}
 							required
-							className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
 						/>
 						{state.errors?.description && (
 							<p className='mt-1 text-xs text-red-500'>{state.errors.description.join(', ')}</p>
@@ -208,7 +195,7 @@ export default function NewArticlePage() {
 							value={formData.heroImage}
 							onChange={handleChange}
 							required
-							className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
 						/>
 						<p className='mt-1 text-xs text-gray-500'>URL de l'image principale de l'article</p>
 						{state.errors?.heroImage && (
@@ -230,7 +217,7 @@ export default function NewArticlePage() {
 							onChange={handleChange}
 							required
 							// disabled={loadingCategories}
-							className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed'>
+							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed'>
 							<option
 								value=''
 								disabled>
@@ -251,7 +238,7 @@ export default function NewArticlePage() {
 							name='featured'
 							checked={formData.featured}
 							onChange={handleChange}
-							className='h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded'
+							className='h-4 w-4 text-primary focus:ring-primary border-gray-300'
 						/>
 						<label
 							htmlFor='featured'
@@ -265,10 +252,15 @@ export default function NewArticlePage() {
 				<div className='flex justify-end space-x-3'>
 					<Link
 						href='/admin/articles'
-						className='px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50'>
+						className='px-4 py-2 border border-gray-300 hover:bg-gray-50'>
 						Annuler
 					</Link>
-					<SubmitButton />
+					<button
+						type='submit'
+						disabled={pending}
+						className='bg-zinc-500 text-white px-4 py-2 cursor-pointer hover:bg-zinc-500/90 disabled:opacity-50 disabled:cursor-not-allowed'>
+						{pending ? 'Enregistrement...' : 'Enregistrer'}
+					</button>
 				</div>
 			</form>
 		</div>

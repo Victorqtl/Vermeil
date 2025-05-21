@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Menu, X, Search, User } from 'lucide-react';
+import { Menu, Search, User, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -26,7 +26,7 @@ export default function Header() {
 					<a
 						href='/'
 						className='text-2xl md:text-3xl font-serif font-bold tracking-tight'>
-						<span className={isScrolled ? 'text-black' : 'text-white'}>VERMEIL</span>
+						<span className={isScrolled ? 'text-gray-900' : 'text-white'}>VERMEIL</span>
 					</a>
 
 					{/* Desktop Navigation */}

@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
-
+import React, { useEffect, useState } from 'react';
+import ArrowLinkButton from '../../ui/arrow-link-button';
 const Hero: React.FC = () => {
 	const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
@@ -36,15 +35,10 @@ const Hero: React.FC = () => {
 					<p className='text-xl md:text-2xl text-white/90 mb-8 leading-relaxed'>
 						Vermeil vous accompagne dans votre quête de raffinement et de distinction au quotidien.
 					</p>
-					<a
+					<ArrowLinkButton
 						href='/articles'
-						className='inline-flex items-center bg-white text-black px-6 py-3 rounded-none font-medium hover:bg-gray-100 transition-colors group'>
-						Découvrir nos articles
-						<ArrowRight
-							size={18}
-							className='ml-2 transition-transform duration-300 group-hover:translate-x-1'
-						/>
-					</a>
+						text='Découvrir nos articles'
+					/>
 				</div>
 			</div>
 
