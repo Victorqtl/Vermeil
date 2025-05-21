@@ -3,7 +3,11 @@
 import { Menu, Search, User, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-export default function Header() {
+interface HeaderProps {
+	darkMode?: boolean;
+}
+
+export default function Header({ darkMode = false }: HeaderProps) {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -20,13 +24,13 @@ export default function Header() {
 		<header
 			className={`fixed w-full z-50 transition-all duration-300 ${
 				isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-			}`}>
+			} ${darkMode ? 'border-b border-gray-200 shadow-md shadow-gray-200' : ''}`}>
 			<div className='container mx-auto px-4 md:px-6'>
 				<div className='flex items-center justify-between'>
 					<a
 						href='/'
 						className='text-2xl md:text-3xl font-serif font-bold tracking-tight'>
-						<span className={isScrolled ? 'text-gray-900' : 'text-white'}>VERMEIL</span>
+						<span className={isScrolled || darkMode ? 'text-gray-900' : 'text-white'}>VERMEIL</span>
 					</a>
 
 					{/* Desktop Navigation */}
@@ -34,28 +38,28 @@ export default function Header() {
 						<a
 							href='/mode'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled ? 'text-black' : 'text-white'
+								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Mode
 						</a>
 						<a
 							href='/soins'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled ? 'text-black' : 'text-white'
+								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Soins
 						</a>
 						<a
 							href='/lifestyle'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled ? 'text-black' : 'text-white'
+								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Lifestyle
 						</a>
 						<a
 							href='/culture'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled ? 'text-black' : 'text-white'
+								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Culture
 						</a>
@@ -64,14 +68,14 @@ export default function Header() {
 					<div className='hidden md:flex gap-6'>
 						<a
 							className={`hover:opacity-70 transition-opacity cursor-pointer ${
-								isScrolled ? 'text-black' : 'text-white'
+								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							<Search size={20} />
 						</a>
 						<a
 							href='/'
 							className={`hover:opacity-70 transition-opacity ${
-								isScrolled ? 'text-black' : 'text-white'
+								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							<User size={20} />
 						</a>
@@ -81,7 +85,7 @@ export default function Header() {
 					<div className='md:hidden flex items-center'>
 						<button
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
-							className={`p-1 ${isScrolled ? 'text-black' : 'text-white'}`}>
+							className={`p-1 ${isScrolled || darkMode ? 'text-gray-900' : 'text-white'}`}>
 							{isMenuOpen ? <X size={24} /> : <Menu size={24} />}
 						</button>
 					</div>
