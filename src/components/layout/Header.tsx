@@ -2,7 +2,7 @@
 
 import { Menu, Search, User, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-
+import Link from 'next/link';
 interface HeaderProps {
 	darkMode?: boolean;
 }
@@ -35,50 +35,51 @@ export default function Header({ darkMode = false }: HeaderProps) {
 
 					{/* Desktop Navigation */}
 					<nav className='hidden md:flex items-center space-x-8'>
-						<a
+						<Link
 							href='/mode'
 							className={`font-medium hover:opacity-70 transition-opacity ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Mode
-						</a>
-						<a
+						</Link>
+						<Link
 							href='/soins'
 							className={`font-medium hover:opacity-70 transition-opacity ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Soins
-						</a>
-						<a
+						</Link>
+						<Link
 							href='/lifestyle'
 							className={`font-medium hover:opacity-70 transition-opacity ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Lifestyle
-						</a>
-						<a
+						</Link>
+						<Link
 							href='/culture'
 							className={`font-medium hover:opacity-70 transition-opacity ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							Culture
-						</a>
+						</Link>
 					</nav>
 
 					<div className='hidden md:flex gap-6'>
-						<a
+						<Link
+							href='/search'
 							className={`hover:opacity-70 transition-opacity cursor-pointer ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							<Search size={20} />
-						</a>
-						<a
-							href='/'
+						</Link>
+						<Link
+							href='/auth/sign-in'
 							className={`hover:opacity-70 transition-opacity ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							<User size={20} />
-						</a>
+						</Link>
 					</div>
 
 					{/* Mobile Menu Button */}

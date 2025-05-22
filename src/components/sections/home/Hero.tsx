@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import ArrowLinkButton from '../../ui/arrow-link-button';
+
 const Hero: React.FC = () => {
 	const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
@@ -16,7 +17,6 @@ const Hero: React.FC = () => {
 
 	return (
 		<section className='relative h-screen flex items-center justify-center overflow-hidden'>
-			{/* Background image with overlay */}
 			<div
 				className='absolute inset-0 bg-cover'
 				style={{
@@ -42,7 +42,6 @@ const Hero: React.FC = () => {
 				</div>
 			</div>
 
-			{/* Scroll indicator */}
 			{showScrollIndicator && (
 				<div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce transition-opacity duration-300'>
 					<div className='w-10 h-14 border-2 border-white rounded-full flex items-start justify-center p-1'>
