@@ -5,7 +5,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<>
 			<Header darkMode={true} />
-			<main className='flex-grow font-sans mt-[69px] bg-gray-100 text-gray-900'>{children}</main>
+			<main className='flex-grow font-sans mt-[69px] text-gray-900'>{children}</main>
 			<Footer />
 		</>
 	);

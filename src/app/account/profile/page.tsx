@@ -2,16 +2,24 @@ import { getUser } from '@/lib/auth-session';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 export default async function page() {
 	const user = await getUser();
 	return (
-		<div>
-			<div>
-				<h1>Mon compte</h1>
-				<p>Vous êtes connecté en tant que {user?.email}</p>
+		<div className='flex justify-center mt-14'>
+			<div className='flex flex-col gap-4 w-full max-w-sm'>
+				<h1 className='text-3xl font-bold'>Mon compte</h1>
+				<p>
+					Bonjour <span className='font-bold'>{user?.name}</span>
+				</p>
+				<p>
+					Votre adresse email est <span className='font-bold'>{user?.email}</span>
+				</p>
 				<form>
-					<button
+					<Button
+						variant='auth'
+						size='xl'
 						formAction={async () => {
 							'use server';
 							await auth.api.signOut({
@@ -20,7 +28,7 @@ export default async function page() {
 							redirect('/auth/sign-in');
 						}}>
 						Déconnexion
-					</button>
+					</Button>
 				</form>
 			</div>
 		</div>

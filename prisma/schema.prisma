@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -13,14 +14,18 @@ model User {
   email            String         @unique
   name             String
   emailVerified    Boolean
-  isAdmin          Boolean        @default(false)
-  comments         Comment[]
   favoriteArticles UserFavorite[]
   image            String?
-  createdAt        DateTime
-  updatedAt        DateTime
+  comments         Comment[]
   sessions         Session[]
   accounts         Account[]
+  createdAt        DateTime
+  updatedAt        DateTime
+
+  role       String?
+  banned     Boolean?
+  banReason  String?
+  banExpires DateTime?
 
   @@map("user")
 }
@@ -35,6 +40,8 @@ model Session {
   userAgent String?
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  impersonatedBy String?
 
   @@unique([token])
   @@map("session")

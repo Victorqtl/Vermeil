@@ -2,7 +2,7 @@
 
 import { signUp } from '@/lib/auth-client';
 import Image from 'next/image';
-import { Loader2, ArrowRight } from 'lucide-react';
+import { LoaderCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -55,9 +55,6 @@ export default function SignUpPage() {
 			name: `${data.firstName} ${data.lastName}`,
 			callbackURL: '/account/profile',
 			fetchOptions: {
-				onResponse: () => {
-					setLoading(false);
-				},
 				onRequest: () => {
 					setLoading(true);
 				},
@@ -65,12 +62,13 @@ export default function SignUpPage() {
 					if (ctx.error.status === 422) {
 						setApiError("L'email existe déjà.");
 					} else {
-						setApiError(ctx.error.message);
+						setApiError(ctx.error.message || "Une erreur s'est produite. Veuillez réessayer.");
 					}
 					setLoading(false);
 				},
 				onSuccess: async () => {
 					router.push('/account/profile');
+					setLoading(false);
 				},
 			},
 		});
@@ -135,7 +133,7 @@ export default function SignUpPage() {
 							<label
 								htmlFor='email'
 								className='block text-sm font-medium text-gray-700'>
-								Adresse email
+								Email
 							</label>
 							<input
 								id='email'
@@ -193,7 +191,7 @@ export default function SignUpPage() {
 								size='xl'
 								disabled={loading}>
 								{loading ? (
-									<Loader2
+									<LoaderCircle
 										color='white'
 										size={20}
 										className='animate-spin'

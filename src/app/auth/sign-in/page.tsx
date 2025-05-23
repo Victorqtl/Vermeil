@@ -21,7 +21,7 @@ type SignInFormValues = z.infer<typeof signInSchema>;
 
 export default function SignInPage() {
 	const [loading, setLoading] = useState(false);
-	// const [apiError, setApiError] = useState('');
+	const [apiError, setApiError] = useState('');
 	const router = useRouter();
 
 	const {
@@ -33,7 +33,7 @@ export default function SignInPage() {
 	});
 
 	const onSubmit: SubmitHandler<SignInFormValues> = async data => {
-		// setApiError('');
+		setApiError('');
 		await signIn.email(
 			{
 				email: data.email,
@@ -46,10 +46,10 @@ export default function SignInPage() {
 				onResponse: () => {
 					setLoading(false);
 				},
-				// onError: ctx => {
-				// 	setApiError(ctx.error.message);
-				// 	setLoading(false);
-				// },
+				onError: ctx => {
+					setApiError('Email ou mot de passe incorrect');
+					setLoading(false);
+				},
 				onSuccess: () => {
 					router.push('/account/profile');
 				},
@@ -74,18 +74,19 @@ export default function SignInPage() {
 					<form
 						onSubmit={handleSubmit(onSubmit)}
 						className='space-y-6'>
+						{/* {apiError && <p className='text-center text-sm text-red-600'>{apiError}</p>} */}
 						<div>
 							<label
 								htmlFor='email'
 								className='block text-sm font-medium text-gray-700'>
-								Adresse email
+								Email
 							</label>
 							<input
 								id='email'
 								type='email'
 								{...register('email')}
 								className={`mt-1 block w-full p-3 border-b ${
-									errors.email ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
+									errors.email || apiError ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
 								} focus:outline-none focus:border-gray-900 sm:text-sm`}
 							/>
 							{errors.email && <p className='mt-2 text-sm text-red-600'>{errors.email.message}</p>}
@@ -104,18 +105,22 @@ export default function SignInPage() {
 								{...register('password')}
 								autoComplete='current-password'
 								className={`mt-1 block w-full px-3 py-2 border-b ${
-									errors.password ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
+									errors.password || apiError
+										? 'focus:border-red-500 border-red-500'
+										: 'border-gray-300'
 								} focus:outline-none focus:border-gray-900 sm:text-sm`}
 							/>
 
 							{errors.password && <p className='mt-2 text-sm text-red-600'>{errors.password.message}</p>}
 						</div>
-						<Link
-							href='/auth/forget-password'
-							className='block text-sm text-gray-700 hover:text-gray-900 text-right'>
-							Mot de passe oublié ?
-						</Link>
-						{/* {apiError && <p className='text-sm text-red-600'>{apiError}</p>} */}
+						<div className='flex flex-col gap-2'>
+							{apiError && <p className='text-sm text-red-600'>{apiError}</p>}
+							<Link
+								href='/auth/forget-password'
+								className='block text-sm text-gray-700 hover:text-gray-900'>
+								Mot de passe oublié ?
+							</Link>
+						</div>
 						<div>
 							<Button
 								type='submit'
@@ -153,7 +158,7 @@ export default function SignInPage() {
 							<Button
 								type='button'
 								onClick={async () => {
-									// setApiError('');
+									setApiError('');
 									await signIn.social(
 										{
 											provider: 'google',
@@ -166,10 +171,10 @@ export default function SignInPage() {
 											onResponse: () => {
 												setLoading(false);
 											},
-											// onError: ctx => {
-											// 	setApiError(ctx.error.message);
-											// 	setLoading(false);
-											// },
+											onError: ctx => {
+												setApiError("Une erreur s'est produite. Veuillez réessayer.");
+												setLoading(false);
+											},
 										}
 									);
 								}}
