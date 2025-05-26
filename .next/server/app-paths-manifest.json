@@ -1,6 +1,5 @@
 {
+  "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/articles/page": "app/admin/articles/page.js",
-  "/admin/articles/new/page": "app/admin/articles/new/page.js"
+  "/account/profile/page": "app/account/profile/page.js"
 }

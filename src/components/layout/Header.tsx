@@ -3,11 +3,14 @@
 import { Menu, Search, User, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
+
 interface HeaderProps {
 	darkMode?: boolean;
 }
 
 export default function Header({ darkMode = false }: HeaderProps) {
+	const { data: session } = authClient.useSession();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -74,7 +77,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 							<Search size={20} />
 						</Link>
 						<Link
-							href='/auth/sign-in'
+							href={session?.user ? '/account/profile' : '/auth/sign-in'}
 							className={`hover:opacity-70 transition-opacity ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>

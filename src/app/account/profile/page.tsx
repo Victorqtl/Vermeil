@@ -1,36 +1,37 @@
 import { getUser } from '@/lib/auth-session';
+import { getUserSavedArticles } from '@/lib/data-access/articles';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { Button } from '@/components/ui/button';
+import { LogOut } from 'lucide-react';
+import UserProfile from './components/UserProfile';
 
 export default async function page() {
 	const user = await getUser();
+	const savedArticles = user ? await getUserSavedArticles(user.id) : [];
+
 	return (
-		<div className='flex justify-center mt-14'>
-			<div className='flex flex-col gap-4 w-full max-w-sm'>
-				<h1 className='text-3xl font-bold'>Mon compte</h1>
-				<p>
-					Bonjour <span className='font-bold'>{user?.name}</span>
-				</p>
-				<p>
-					Votre adresse email est <span className='font-bold'>{user?.email}</span>
-				</p>
-				<form>
-					<Button
-						variant='auth'
-						size='xl'
-						formAction={async () => {
-							'use server';
-							await auth.api.signOut({
-								headers: await headers(),
-							});
-							redirect('/auth/sign-in');
-						}}>
-						Déconnexion
-					</Button>
-				</form>
+		<div className='w-full h-fit max-w-4xl mt-18 p-8 bg-white border border-gray-200'>
+			<div className='flex flex-col gap-4'>
+				<UserProfile
+					initialSavedArticles={savedArticles}
+					user={user}
+				/>
 			</div>
+			<form>
+				<button
+					formAction={async () => {
+						'use server';
+						await auth.api.signOut({
+							headers: await headers(),
+						});
+						redirect('/auth/sign-in');
+					}}
+					className='flex items-center gap-2 cursor-pointer'>
+					<LogOut size={18} />
+					Déconnexion
+				</button>
+			</form>
 		</div>
 	);
 }
