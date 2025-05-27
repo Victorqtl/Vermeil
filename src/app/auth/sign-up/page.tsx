@@ -10,6 +10,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const formSchema = z
 	.object({
@@ -93,36 +95,23 @@ export default function SignUpPage() {
 						className='space-y-6'>
 						<div className='flex space-x-4'>
 							<div className='flex-1'>
-								<label
-									htmlFor='firstName'
-									className='block text-sm font-medium text-gray-700'>
-									Prénom
-								</label>
-								<input
+								<Label htmlFor='firstName'>Prénom</Label>
+								<Input
 									id='firstName'
 									type='text'
 									{...register('firstName')}
-									className={`mt-1 block w-full p-3 border-b ${
-										errors.firstName ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
-									} focus:outline-none focus:border-gray-900 sm:text-sm`}
 								/>
 								{errors.firstName && (
 									<p className='mt-2 text-sm text-red-600'>{errors.firstName.message}</p>
 								)}
 							</div>
 							<div className='flex-1'>
-								<label
-									htmlFor='lastName'
-									className='block text-sm font-medium text-gray-700'>
-									Nom
-								</label>
-								<input
+								<Label htmlFor='lastName'>Nom</Label>
+								<Input
 									id='lastName'
 									type='text'
 									{...register('lastName')}
-									className={`mt-1 block w-full p-3 border-b ${
-										errors.lastName ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
-									} focus:outline-none focus:border-gray-900 sm:text-sm`}
+									aria-invalid={!!errors.lastName}
 								/>
 								{errors.lastName && (
 									<p className='mt-2 text-sm text-red-600'>{errors.lastName.message}</p>
@@ -130,54 +119,35 @@ export default function SignUpPage() {
 							</div>
 						</div>
 						<div>
-							<label
-								htmlFor='email'
-								className='block text-sm font-medium text-gray-700'>
-								Email
-							</label>
-							<input
+							<Label htmlFor='email'>Email</Label>
+							<Input
 								id='email'
 								type='email'
 								{...register('email')}
-								className={`mt-1 block w-full p-3 border-b ${
-									errors.email ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
-								} focus:outline-none focus:border-gray-900 sm:text-sm`}
+								autoComplete='email'
+								aria-invalid={!!errors.email}
 							/>
 							{errors.email && <p className='mt-2 text-sm text-red-600'>{errors.email.message}</p>}
 						</div>
 						<div>
-							<label
-								htmlFor='password'
-								className='block text-sm font-medium text-gray-700'>
-								Mot de passe
-							</label>
-							<input
+							<Label htmlFor='password'>Mot de passe</Label>
+							<Input
 								id='password'
 								type='password'
 								{...register('password')}
 								autoComplete='new-password'
-								className={`mt-1 block w-full p-3 border-b ${
-									errors.password ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
-								} focus:outline-none focus:border-gray-900 sm:text-sm`}
+								aria-invalid={!!errors.password}
 							/>
 							{errors.password && <p className='mt-2 text-sm text-red-600'>{errors.password.message}</p>}
 						</div>
 						<div>
-							<label
-								htmlFor='passwordConfirmation'
-								className='block text-sm font-medium text-gray-700'>
-								Confirmer le mot de passe
-							</label>
-							<input
+							<Label htmlFor='passwordConfirmation'>Confirmer le mot de passe</Label>
+							<Input
 								id='passwordConfirmation'
 								type='password'
 								{...register('passwordConfirmation')}
 								autoComplete='new-password'
-								className={`mt-1 block w-full p-3 border-b ${
-									errors.passwordConfirmation
-										? 'focus:border-red-500 border-red-500'
-										: 'border-gray-300'
-								} focus:outline-none focus:border-gray-900 sm:text-sm`}
+								aria-invalid={!!errors.passwordConfirmation}
 							/>
 							{errors.passwordConfirmation && (
 								<p className='mt-2 text-sm text-red-600'>{errors.passwordConfirmation.message}</p>
@@ -187,8 +157,8 @@ export default function SignUpPage() {
 						<div>
 							<Button
 								type='submit'
-								variant='auth'
 								size='xl'
+								className='w-full'
 								disabled={loading}>
 								{loading ? (
 									<LoaderCircle

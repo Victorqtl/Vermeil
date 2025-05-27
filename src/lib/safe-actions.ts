@@ -1,3 +1,16 @@
 import { createSafeActionClient } from 'next-safe-action';
 
-export const actionClient = createSafeActionClient();
+export class SafeError extends Error {
+	constructor(error: string) {
+		super(error);
+	}
+}
+
+export const actionClient = createSafeActionClient({
+	handleServerError: error => {
+		if (error instanceof SafeError) {
+			return error.message;
+		}
+		return 'Une erreur est survenue';
+	},
+});

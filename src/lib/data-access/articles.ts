@@ -14,6 +14,7 @@ export async function getArticles() {
 				excerpt: true,
 				heroImage: true,
 				readTime: true,
+				featured: true,
 				category: true,
 				createdAt: true,
 				updatedAt: true,

@@ -9,8 +9,9 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import ArrowLinkButton from '@/components/ui/arrow-link-button';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const signInSchema = z.object({
 	email: z.string().email({ message: 'Adresse e-mail invalide' }),
@@ -43,15 +44,13 @@ export default function SignInPage() {
 				onRequest: () => {
 					setLoading(true);
 				},
-				onResponse: () => {
-					setLoading(false);
-				},
-				onError: ctx => {
+				onError: () => {
 					setApiError('Email ou mot de passe incorrect');
 					setLoading(false);
 				},
 				onSuccess: () => {
 					router.push('/account/profile');
+					setLoading(false);
 				},
 			}
 		);
@@ -74,41 +73,27 @@ export default function SignInPage() {
 					<form
 						onSubmit={handleSubmit(onSubmit)}
 						className='space-y-6'>
-						{/* {apiError && <p className='text-center text-sm text-red-600'>{apiError}</p>} */}
 						<div>
-							<label
-								htmlFor='email'
-								className='block text-sm font-medium text-gray-700'>
-								Email
-							</label>
-							<input
+							<Label htmlFor='email'>Email</Label>
+							<Input
 								id='email'
 								type='email'
+								variant='underline'
 								{...register('email')}
-								className={`mt-1 block w-full p-3 border-b ${
-									errors.email || apiError ? 'focus:border-red-500 border-red-500' : 'border-gray-300'
-								} focus:outline-none focus:border-gray-900 sm:text-sm`}
+								autoComplete='email'
+								aria-invalid={!!(errors.email || apiError)}
 							/>
 							{errors.email && <p className='mt-2 text-sm text-red-600'>{errors.email.message}</p>}
 						</div>
 						<div>
-							<div>
-								<label
-									htmlFor='password'
-									className='block text-sm font-medium text-gray-700'>
-									Mot de passe
-								</label>
-							</div>
-							<input
+							<Label htmlFor='password'>Mot de passe</Label>
+							<Input
 								id='password'
 								type='password'
+								variant='underline'
 								{...register('password')}
 								autoComplete='current-password'
-								className={`mt-1 block w-full px-3 py-2 border-b ${
-									errors.password || apiError
-										? 'focus:border-red-500 border-red-500'
-										: 'border-gray-300'
-								} focus:outline-none focus:border-gray-900 sm:text-sm`}
+								aria-invalid={!!(errors.password || apiError)}
 							/>
 
 							{errors.password && <p className='mt-2 text-sm text-red-600'>{errors.password.message}</p>}
@@ -124,8 +109,8 @@ export default function SignInPage() {
 						<div>
 							<Button
 								type='submit'
-								variant='auth'
 								size='xl'
+								className='w-full'
 								disabled={loading}>
 								{loading ? (
 									<Loader2
@@ -179,7 +164,8 @@ export default function SignInPage() {
 									);
 								}}
 								disabled={loading}
-								variant='auth-outlined'
+								variant='outlined'
+								className='w-full'
 								size='xl'>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useActionState, useState } from 'react';
 // import { useFormState, useFormStatus } from 'react-dom';
 import { createArticleAction, type CreateArticleFormState } from './actions';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 
 const initialState: CreateArticleFormState = {
 	message: null,
@@ -77,19 +79,21 @@ export default function NewArticlePage() {
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 					{/* Titre */}
 					<div className='col-span-2'>
-						<label
+						<Label
 							htmlFor='title'
-							className='block text-sm font-medium text-gray-700 mb-1'>
+							variant='admin'>
 							Titre *
-						</label>
-						<input
+						</Label>
+						<Input
 							type='text'
 							id='title'
 							name='title'
 							value={formData.title}
 							onChange={handleChange}
 							required
-							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							variant='admin'
+							className='w-full'
+							aria-invalid={!!state.errors?.title}
 						/>
 						{state.errors?.title && (
 							<p className='mt-1 text-xs text-red-500'>{state.errors.title.join(', ')}</p>
@@ -98,19 +102,21 @@ export default function NewArticlePage() {
 
 					{/* Slug */}
 					<div>
-						<label
+						<Label
 							htmlFor='slug'
-							className='block text-sm font-medium text-gray-700 mb-1'>
+							variant='admin'>
 							Slug *
-						</label>
-						<input
+						</Label>
+						<Input
 							type='text'
 							id='slug'
 							name='slug'
 							value={formData.slug}
 							onChange={handleChange}
 							required
-							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							variant='admin'
+							className='w-full'
+							aria-invalid={!!state.errors?.slug}
 						/>
 						<p className='mt-1 text-xs text-gray-500'>URL de l'article (auto-généré à partir du titre)</p>
 						{state.errors?.slug && (
@@ -120,12 +126,12 @@ export default function NewArticlePage() {
 
 					{/* Temps de lecture */}
 					<div>
-						<label
+						<Label
 							htmlFor='readTime'
-							className='block text-sm font-medium text-gray-700 mb-1'>
+							variant='admin'>
 							Temps de lecture (minutes) *
-						</label>
-						<input
+						</Label>
+						<Input
 							type='number'
 							id='readTime'
 							name='readTime'
@@ -133,7 +139,9 @@ export default function NewArticlePage() {
 							onChange={handleChange}
 							min='1'
 							required
-							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							variant='admin'
+							className='w-full'
+							aria-invalid={!!state.errors?.readTime}
 						/>
 						{state.errors?.readTime && (
 							<p className='mt-1 text-xs text-red-500'>{state.errors.readTime.join(', ')}</p>
@@ -142,11 +150,11 @@ export default function NewArticlePage() {
 
 					{/* Extrait */}
 					<div className='col-span-2'>
-						<label
+						<Label
 							htmlFor='excerpt'
-							className='block text-sm font-medium text-gray-700 mb-1'>
+							variant='admin'>
 							Extrait
-						</label>
+						</Label>
 						<textarea
 							id='excerpt'
 							name='excerpt'
@@ -162,11 +170,11 @@ export default function NewArticlePage() {
 
 					{/* Description */}
 					<div className='col-span-2'>
-						<label
+						<Label
 							htmlFor='description'
-							className='block text-sm font-medium text-gray-700 mb-1'>
+							variant='admin'>
 							Description *
-						</label>
+						</Label>
 						<textarea
 							id='description'
 							name='description'
@@ -183,19 +191,21 @@ export default function NewArticlePage() {
 
 					{/* Image héroïque */}
 					<div className='col-span-2'>
-						<label
+						<Label
 							htmlFor='heroImage'
-							className='block text-sm font-medium text-gray-700 mb-1'>
+							variant='admin'>
 							URL de l'image héroïque *
-						</label>
-						<input
+						</Label>
+						<Input
 							type='url'
 							id='heroImage'
 							name='heroImage'
 							value={formData.heroImage}
 							onChange={handleChange}
 							required
-							className='w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+							variant='admin'
+							className='w-full'
+							aria-invalid={!!state.errors?.heroImage}
 						/>
 						<p className='mt-1 text-xs text-gray-500'>URL de l'image principale de l'article</p>
 						{state.errors?.heroImage && (
@@ -205,11 +215,11 @@ export default function NewArticlePage() {
 
 					{/* Catégorie */}
 					<div>
-						<label
+						<Label
 							htmlFor='category'
-							className='block text-sm font-medium text-gray-700 mb-1'>
+							variant='admin'>
 							Catégorie *
-						</label>
+						</Label>
 						<select
 							id='category'
 							name='category'
@@ -232,7 +242,7 @@ export default function NewArticlePage() {
 
 					{/* Mise en avant */}
 					<div className='flex items-center'>
-						<input
+						<Input
 							type='checkbox'
 							id='featured'
 							name='featured'
@@ -240,11 +250,11 @@ export default function NewArticlePage() {
 							onChange={handleChange}
 							className='h-4 w-4 text-primary focus:ring-primary border-gray-300'
 						/>
-						<label
+						<Label
 							htmlFor='featured'
 							className='ml-2 block text-sm text-gray-700'>
 							Article mis en avant
-						</label>
+						</Label>
 					</div>
 				</div>
 

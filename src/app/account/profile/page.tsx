@@ -11,14 +11,8 @@ export default async function page() {
 	const savedArticles = user ? await getUserSavedArticles(user.id) : [];
 
 	return (
-		<div className='w-full h-fit max-w-4xl mt-18 p-8 bg-white border border-gray-200'>
-			<div className='flex flex-col gap-4'>
-				<UserProfile
-					initialSavedArticles={savedArticles}
-					user={user}
-				/>
-			</div>
-			<form>
+		<div className='relative w-full h-fit max-w-4xl mt-18 p-8 bg-white border border-gray-100 shadow-sm'>
+			<form className='absolute top-4 right-4'>
 				<button
 					formAction={async () => {
 						'use server';
@@ -27,11 +21,17 @@ export default async function page() {
 						});
 						redirect('/auth/sign-in');
 					}}
-					className='flex items-center gap-2 cursor-pointer'>
+					className='flex items-center gap-2 cursor-pointer text-gray-900 hover:opacity-70'>
 					<LogOut size={18} />
 					Déconnexion
 				</button>
 			</form>
+			<div className='flex flex-col gap-4'>
+				<UserProfile
+					initialSavedArticles={savedArticles}
+					user={user}
+				/>
+			</div>
 		</div>
 	);
 }

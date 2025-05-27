@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import ArrowLinkButton from '../../../components/ui/arrow-link-button';
-import { getArticles } from '@/lib/db/articles';
+import { getArticles } from '@/lib/data-access/articles';
 
 export default async function ArticlesListPage() {
 	const articles = await getArticles();
