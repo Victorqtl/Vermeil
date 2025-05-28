@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@aws-sdk/client-s3": "^3.817.0",
 		"@hookform/resolvers": "^5.0.1",
 		"@prisma/client": "^6.7.0",
 		"@radix-ui/react-label": "^2.1.6",
@@ -27,7 +28,8 @@
 		"resend": "^4.5.1",
 		"tailwind-merge": "^3.3.0",
 		"tailwindcss": "^4.1.4",
-		"zod": "^3.24.4"
+		"zod": "^3.24.4",
+		"zod-form-data": "^2.0.7"
 	},
 	"devDependencies": {
 		"@types/node": "^22.14.1",

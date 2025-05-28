@@ -25,9 +25,9 @@ export default function Header({ darkMode = false }: HeaderProps) {
 
 	return (
 		<header
-			className={`fixed w-full z-50 transition-all duration-300 ${
+			className={`fixed w-full h-[69px] z-50 transition-all duration-300 ${
 				isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-			} ${darkMode ? 'border-b border-gray-200 shadow-md shadow-gray-200' : ''}`}>
+			} ${darkMode ? 'border-b border-gray-100' : ''}`}>
 			<div className='container mx-auto px-4 md:px-6'>
 				<div className='flex items-center justify-between'>
 					<a

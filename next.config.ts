@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
 	images: {
 		domains: ['images.pexels.com', 'images.unsplash.com'],
 	},
+	experimental: {
+		serverActions: {
+			bodySizeLimit: '2mb',
+		},
+	},
 };
 
 export default nextConfig;

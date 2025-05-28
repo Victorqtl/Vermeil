@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { updateProfile } from '../updateProfile.action';
+import { updateProfile } from '../actions/updateProfile.action';
 import { useAction } from 'next-safe-action/hooks';
-import { useFormStatus } from 'react-dom';
+import { uploadAvatar } from '../actions/uploadAvatar.action';
+import { Loader2 } from 'lucide-react';
 import SavedArticles from './SavedArticles';
 import { Article } from '@/types/article';
 import { Label } from '@/components/ui/label';
@@ -24,14 +25,19 @@ interface UserProfileProps {
 }
 
 export const formSchema = z.object({
-	name: z.string().min(1, 'Le nom est requis').max(30, 'Le nom ne doit pas dépasser 30 caractères'),
+	name: z
+		.string()
+		.min(1, 'Le nom est requis')
+		.max(30, 'Le nom ne doit pas dépasser 30 caractères')
+		.regex(/^[a-zA-ZÀ-ÿ\s\-']+$/, 'Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes'),
 	email: z.string().email('Adresse e-mail invalide'),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 export default function UserProfile({ initialSavedArticles, user }: UserProfileProps) {
-	const { executeAsync, hasErrored, result } = useAction(updateProfile);
+	const { executeAsync, hasErrored, result, isExecuting } = useAction(updateProfile);
+	// const { hasErrored: avatarHasErrored, result: avatarResult } = useAction(uploadAvatar);
 
 	const [activeTab, setActiveTab] = useState('profile');
 
@@ -53,7 +59,8 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 
 	return (
 		<>
-			<div className='flex border-b border-gray-200'>
+			{/* {avatarHasErrored && <p className='text-red-500'>{avatarResult.serverError}</p>} */}
+			<div className='relative flex border-b border-gray-200'>
 				<button
 					onClick={() => setActiveTab('profile')}
 					className={`px-6 py-4 cursor-pointer font-medium text-gray-500 hover:text-gray-900 ${
@@ -81,6 +88,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 							{...register('name')}
 							aria-invalid={!!errors.name}
 						/>
+						{errors.name && <p className='text-red-500 text-sm mt-1'>{errors.name.message}</p>}
 					</div>
 					<div>
 						<Label htmlFor='email'>Email</Label>
@@ -90,13 +98,15 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 							{...register('email')}
 							aria-invalid={!!errors.email}
 						/>
+						{errors.email && <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>}
 					</div>
 					<div className='flex items-center justify-between w-full'>
 						{hasErrored && <p className='text-red-500'>{result.serverError}</p>}
 						<Button
 							type='submit'
-							className='ml-auto w-fit'>
-							Sauvegarder
+							className='ml-auto w-36 h-12'
+							disabled={isExecuting}>
+							{isExecuting ? <Loader2 className='animate-spin' /> : 'Sauvegarder'}
 						</Button>
 					</div>
 				</form>

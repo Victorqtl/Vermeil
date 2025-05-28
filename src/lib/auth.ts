@@ -27,4 +27,13 @@ export const auth = betterAuth({
 		},
 	},
 	plugins: [nextCookies(), admin()],
+	user: {
+		additionalFields: {
+			image: {
+				type: 'string',
+				defaultValue:
+					'https://media.istockphoto.com/id/1194657244/vector/business-man-icon-male-face-silhouette-with-office-suit-and-tie-user-avatar-profile-vector.jpg?s=612x612&w=0&k=20&c=D-8JhQ1SF0ju-3QPAEsnXzutbaJtWicunTGMCmFLFmg=',
+			},
+		},
+	},
 });
