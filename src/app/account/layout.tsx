@@ -1,12 +1,14 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { getUser } from '@/lib/auth-session';
-import { redirect } from 'next/navigation';
+import { unauthorized } from 'next/navigation';
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
-	const user = await getUser();
-	if (!user) {
-		redirect('/auth/sign-in');
+	const session = await getUser();
+	const admin = session?.role === 'admin';
+
+	if (!admin) {
+		unauthorized();
 	}
 	return (
 		<>

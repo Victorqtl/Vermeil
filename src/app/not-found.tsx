@@ -20,7 +20,7 @@ export default function NotFound() {
 						className='inline-flex items-center bg-black text-white px-6 py-3 font-medium hover:bg-gray-900 transition-colors group'>
 						<ArrowLeft
 							size={18}
-							className='mr-2 transition-transform group-hover:-translate-x-1'
+							className='mr-2 transition-transform duration-200 group-hover:-translate-x-1'
 						/>
 						Retour à l&apos;accueil
 					</Link>

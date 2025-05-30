@@ -1,5 +1,5 @@
 {
   "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
+  "/(main)/page": "app/(main)/page.js",
   "/account/profile/page": "app/account/profile/page.js"
 }

@@ -28,7 +28,7 @@ export default async function page() {
 						Déconnexion
 					</button>
 				</form>
-				<div className='absolute -bottom-16 left-8'>
+				<div className='absolute -bottom-22 left-8'>
 					<UserAvatarUploader user={user!} />
 				</div>
 			</div>

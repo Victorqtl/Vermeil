@@ -6,7 +6,6 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfile } from '../actions/updateProfile.action';
 import { useAction } from 'next-safe-action/hooks';
-import { uploadAvatar } from '../actions/uploadAvatar.action';
 import { Loader2 } from 'lucide-react';
 import SavedArticles from './SavedArticles';
 import { Article } from '@/types/article';
@@ -37,7 +36,6 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function UserProfile({ initialSavedArticles, user }: UserProfileProps) {
 	const { executeAsync, hasErrored, result, isExecuting } = useAction(updateProfile);
-	// const { hasErrored: avatarHasErrored, result: avatarResult } = useAction(uploadAvatar);
 
 	const [activeTab, setActiveTab] = useState('profile');
 
@@ -59,7 +57,6 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 
 	return (
 		<>
-			{/* {avatarHasErrored && <p className='text-red-500'>{avatarResult.serverError}</p>} */}
 			<div className='relative flex border-b border-gray-200'>
 				<button
 					onClick={() => setActiveTab('profile')}

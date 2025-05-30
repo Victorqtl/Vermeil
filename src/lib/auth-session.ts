@@ -9,14 +9,6 @@ export const getUser = async () => {
 	return session?.user;
 };
 
-export const isAdmin = async () => {
-	const user = await getUser();
-	if (!user) {
-		redirect('/auth/sign-in');
-	}
-	if (user.role !== 'admin') {
-		redirect('/unauthorized');
-	} else {
-		return user;
-	}
-};
+// export const isAdmin = async () => {
+
+// };
