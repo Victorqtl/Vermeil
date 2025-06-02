@@ -1,9 +1,10 @@
 'use client';
 
-import { Menu, Search, User, X } from 'lucide-react';
+import { Menu, Search, User, X, ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
+import { redirect } from 'next/navigation';
 
 interface HeaderProps {
 	darkMode?: boolean;
@@ -25,9 +26,9 @@ export default function Header({ darkMode = false }: HeaderProps) {
 
 	return (
 		<header
-			className={`fixed w-full h-[69px] z-50 transition-all duration-300 ${
+			className={`fixed w-full z-50 transition-all duration-300 ${
 				isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-			} ${darkMode ? 'border-b border-gray-100' : ''}`}>
+			} ${darkMode ? 'h-[69px] border-b border-gray-100' : ''}`}>
 			<div className='container mx-auto px-4 md:px-6'>
 				<div className='flex items-center justify-between'>
 					<a
@@ -68,7 +69,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 						</Link>
 					</nav>
 
-					<div className='hidden md:flex gap-6'>
+					<div className='hidden md:flex items-center gap-4'>
 						<Link
 							href='/search'
 							className={`hover:opacity-70 transition-opacity cursor-pointer ${
@@ -76,12 +77,19 @@ export default function Header({ darkMode = false }: HeaderProps) {
 							}`}>
 							<Search size={20} />
 						</Link>
+						<div className='w-px h-8 bg-gray-200'></div>
 						<Link
 							href={session?.user ? '/account/profile' : '/auth/sign-in'}
-							className={`hover:opacity-70 transition-opacity ${
+							className={`flex items-center hover:opacity-70 transition-opacity ${
 								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
 							}`}>
 							<User size={20} />
+							{session?.user ? (
+								<ChevronDown
+									size={26}
+									strokeWidth={1}
+								/>
+							) : null}
 						</Link>
 					</div>
 
@@ -97,41 +105,69 @@ export default function Header({ darkMode = false }: HeaderProps) {
 
 				{/* Mobile Menu */}
 				{isMenuOpen && (
-					<div className='md:hidden absolute top-full left-0 right-0 bg-white shadow-md py-4 px-4 animate-fadeIn'>
-						<nav className='flex flex-col space-y-4 text-black font-medium'>
+					<div
+						className={`md:hidden absolute top-full left-0 right-0 py-4 px-4 animate-fadeIn ${
+							isScrolled || darkMode ? 'bg-white shadow-md' : 'bg-transparent'
+						}`}>
+						<nav
+							className={`flex flex-col space-y-4 text-black font-medium ${
+								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
+							}`}>
 							<div className='flex flex-col gap-4 pb-4 border-b border-gray-200'>
 								<a
-									href='/'
-									className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
-									<User size={18} />
-									<span>Se connecter</span>
+									href='/mode'
+									className='hover:text-gray-700 transition-colors'>
+									Mode
 								</a>
-
-								<a className='flex items-center gap-2 text-black'>
+								<a
+									href='/soins'
+									className='hover:text-gray-700 transition-colors'>
+									Soins
+								</a>
+								<a
+									href='/lifestyle'
+									className='hover:text-gray-700 transition-colors'>
+									Lifestyle
+								</a>
+								<a
+									href='/culture'
+									className='hover:text-gray-700 transition-colors'>
+									Culture
+								</a>
+								<a
+									className={`flex items-center gap-2 ${
+										isScrolled || darkMode ? 'text-gray-900' : 'text-white'
+									}`}>
 									<Search size={18} />
 									<span>Rechercher</span>
 								</a>
 							</div>
-							<a
-								href='/mode'
-								className='hover:text-gray-700 transition-colors'>
-								Mode
-							</a>
-							<a
-								href='/soins'
-								className='hover:text-gray-700 transition-colors'>
-								Soins
-							</a>
-							<a
-								href='/lifestyle'
-								className='hover:text-gray-700 transition-colors'>
-								Lifestyle
-							</a>
-							<a
-								href='/culture'
-								className='hover:text-gray-700 transition-colors'>
-								Culture
-							</a>
+							<div className='flex flex-col gap-4'>
+								{session?.user ? (
+									<div className='flex items-center gap-2'>
+										<User size={18} />
+										<Link href='/account/profile'>Mon compte</Link>
+									</div>
+								) : null}
+								{session?.user ? (
+									<button
+										onClick={() => {
+											authClient.signOut();
+											setIsMenuOpen(false);
+											redirect('/');
+										}}
+										className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
+										<span>Se déconnecter</span>
+									</button>
+								) : (
+									<a
+										href='/auth/sign-in'
+										className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
+										<User size={18} />
+										<span>Se connecter</span>
+									</a>
+								)}
+							</div>
 						</nav>
 					</div>
 				)}

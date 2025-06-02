@@ -1,28 +1,61 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
-import { authActionClient } from '@/lib/safe-actions';
+import { authActionClient, SafeError } from '@/lib/safe-actions';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 const formSchema = z.object({
-	name: z.string().min(1, 'Le nom est requis').max(30, 'Le nom ne doit pas dépasser 30 caractères'),
-	email: z.string().email('Adresse e-mail invalide'),
+	name: z
+		.string()
+		.min(1, 'Le nom est requis')
+		.max(30, 'Le nom ne doit pas dépasser 30 caractères')
+		.regex(/^[a-zA-ZÀ-ÿ\s\-']+$/, 'Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes')
+		.trim(),
+	email: z.string().email('Adresse e-mail invalide').toLowerCase().trim(),
 });
 
 export const updateProfile = authActionClient.schema(formSchema).action(async ({ parsedInput: input, ctx }) => {
-	await new Promise(resolve => setTimeout(resolve, 3000));
 	const user = ctx.user;
 
-	await prisma.user.update({
-		where: {
-			id: user.id,
-		},
-		data: {
-			name: input.name,
-			email: input.email,
-		},
-	});
+	try {
+		if (input.email !== user.email) {
+			const existingUser = await prisma.user.findUnique({
+				where: { email: input.email },
+				select: { id: true },
+			});
 
-	revalidatePath('/account/profile');
+			if (existingUser && existingUser.id !== user.id) {
+				throw new SafeError('Cette adresse e-mail est déjà utilisée');
+			}
+		}
+
+		if (input.name === user.name && input.email === user.email) {
+			return;
+		}
+
+		await prisma.user.update({
+			where: { id: user.id },
+			data: {
+				name: input.name,
+				email: input.email,
+				updatedAt: new Date(),
+			},
+			select: {
+				id: true,
+				name: true,
+				email: true,
+				updatedAt: true,
+			},
+		});
+
+		revalidatePath('/account/profile');
+	} catch (error) {
+		if (error instanceof SafeError) {
+			throw error;
+		}
+		console.error('Erreur lors de la mise à jour du profil:', error);
+
+		throw new SafeError('Une erreur est survenue');
+	}
 });

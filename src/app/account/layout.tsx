@@ -5,9 +5,8 @@ import { unauthorized } from 'next/navigation';
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
 	const session = await getUser();
-	const admin = session?.role === 'admin';
 
-	if (!admin) {
+	if (!session) {
 		unauthorized();
 	}
 	return (

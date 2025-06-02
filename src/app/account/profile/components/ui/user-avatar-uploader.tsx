@@ -1,9 +1,8 @@
 'use client';
 
-import { CircleUserRoundIcon, XIcon, Camera } from 'lucide-react';
+import { CircleUserRoundIcon, Camera } from 'lucide-react';
 
 import { FileWithPreview, useFileUpload } from '@/hooks/use-file-upload';
-import { Button } from '@/components/ui/button';
 import { User } from 'better-auth';
 import { uploadAvatar } from '../../actions/uploadAvatar.action';
 import { useAction } from 'next-safe-action/hooks';
@@ -43,7 +42,7 @@ export function UserAvatarUploader(props: { user: User }) {
 
 	const [
 		{ files, isDragging },
-		{ removeFile, openFileDialog, getInputProps, handleDragEnter, handleDragLeave, handleDragOver, handleDrop },
+		{ openFileDialog, getInputProps, handleDragEnter, handleDragLeave, handleDragOver, handleDrop },
 	] = useFileUpload({
 		accept: 'image/*',
 		initialFiles: props.user.image
@@ -60,7 +59,7 @@ export function UserAvatarUploader(props: { user: User }) {
 		onFilesAdded: uploadFile,
 	});
 
-	const previewUrl = files[0]?.preview || props.user.image;
+	const previewUrl = files[0]?.preview;
 
 	return (
 		<div className='flex flex-col'>
@@ -99,20 +98,6 @@ export function UserAvatarUploader(props: { user: User }) {
 							<Camera className='w-8 h-8 text-white' />
 						</div>
 					</button>
-					{previewUrl && (
-						<Button
-							onClick={async () => {
-								removeFile(files[0]?.id);
-								setClientError(null);
-								await executeAsync({});
-							}}
-							size='icon'
-							disabled={isExecuting}
-							className='border-background focus-visible:border-background z-10 absolute -top-0 right-1 size-8 rounded-full border-2 shadow-none'
-							aria-label='Remove image'>
-							<XIcon className='size-4.5' />
-						</Button>
-					)}
 					<input
 						{...getInputProps()}
 						className='sr-only'

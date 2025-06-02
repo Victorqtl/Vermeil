@@ -8,7 +8,6 @@ import { zfd } from 'zod-form-data';
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
-// Image par défaut définie dans auth.ts
 const DEFAULT_AVATAR_URL =
 	'https://media.istockphoto.com/id/1194657244/vector/business-man-icon-male-face-silhouette-with-office-suit-and-tie-user-avatar-profile-vector.jpg?s=612x612&w=0&k=20&c=D-8JhQ1SF0ju-3QPAEsnXzutbaJtWicunTGMCmFLFmg=';
 

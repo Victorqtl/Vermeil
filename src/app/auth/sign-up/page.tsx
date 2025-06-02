@@ -15,19 +15,43 @@ import { Label } from '@/components/ui/label';
 
 const formSchema = z
 	.object({
-		firstName: z.string().min(1, 'Le prénom est requis'),
-		lastName: z.string().min(1, 'Le nom est requis'),
-		email: z.string().email('Adresse e-mail invalide'),
+		firstName: z
+			.string()
+			.min(1, 'Le prénom est requis')
+			.max(30, 'Le prénom ne peut pas dépasser 30 caractères')
+			.regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, 'Le prénom contient des caractères non autorisés')
+			.transform(value => value.trim())
+			.refine(value => value.length > 0, 'Le prénom ne peut pas être vide'),
+		lastName: z
+			.string()
+			.min(1, 'Le nom est requis')
+			.max(30, 'Le nom ne peut pas dépasser 30 caractères')
+			.regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, 'Le nom contient des caractères non autorisés')
+			.transform(value => value.trim())
+			.refine(value => value.length > 0, 'Le nom ne peut pas être vide'),
+		email: z
+			.string()
+			.min(1, "L'adresse e-mail est requise")
+			.max(254, "L'adresse e-mail est trop longue")
+			.email('Adresse e-mail invalide')
+			.transform(value => value.toLowerCase().trim()),
 		password: z
 			.string()
 			.min(8, 'Le mot de passe doit contenir au moins 8 caractères')
+			.max(128, 'Le mot de passe ne peut pas dépasser 128 caractères')
 			.refine(value => /[A-Z]/.test(value), {
 				message: 'Le mot de passe doit contenir au moins une majuscule',
+			})
+			.refine(value => /[a-z]/.test(value), {
+				message: 'Le mot de passe doit contenir au moins une minuscule',
+			})
+			.refine(value => /[0-9]/.test(value), {
+				message: 'Le mot de passe doit contenir au moins un chiffre',
 			})
 			.refine(value => /[^a-zA-Z0-9]/.test(value), {
 				message: 'Le mot de passe doit contenir au moins un caractère spécial',
 			}),
-		passwordConfirmation: z.string().min(8, 'La confirmation du mot de passe doit contenir au moins 8 caractères'),
+		passwordConfirmation: z.string().min(1, 'La confirmation du mot de passe est requise'),
 	})
 	.refine(data => data.password === data.passwordConfirmation, {
 		message: 'Les mots de passe ne correspondent pas',
@@ -100,6 +124,7 @@ export default function SignUpPage() {
 									id='firstName'
 									type='text'
 									{...register('firstName')}
+									aria-invalid={!!errors.firstName}
 								/>
 								{errors.firstName && (
 									<p className='mt-2 text-sm text-red-600'>{errors.firstName.message}</p>
