@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Article } from '@/types/article';
+import Link from 'next/link';
 
 interface SavedArticlesProps {
 	initialData: Article[];
@@ -36,16 +37,14 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 
 	return (
 		<div className='space-y-6 p-6'>
-			<div className='flex items-center justify-between'>
-				<h2 className='text-2xl font-bold text-gray-900'>Articles Sauvegardés ({articles.length})</h2>
-			</div>
-
 			<div className='grid gap-6'>
 				{articles.map(article => (
 					<article
 						key={article.id}
 						className='bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200'>
-						<div className='flex'>
+						<Link
+							href={`/article/${article.slug}`}
+							className='flex'>
 							{/* Image */}
 							<div className='flex-shrink-0 w-48 h-32'>
 								<img
@@ -122,7 +121,7 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 									</div>
 								</div>
 							</div>
-						</div>
+						</Link>
 					</article>
 				))}
 			</div>

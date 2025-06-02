@@ -78,19 +78,38 @@ export default function Header({ darkMode = false }: HeaderProps) {
 							<Search size={20} />
 						</Link>
 						<div className='w-px h-8 bg-gray-200'></div>
-						<Link
-							href={session?.user ? '/account/profile' : '/auth/sign-in'}
-							className={`flex items-center hover:opacity-70 transition-opacity ${
-								isScrolled || darkMode ? 'text-gray-900' : 'text-white'
-							}`}>
-							<User size={20} />
-							{session?.user ? (
-								<ChevronDown
-									size={26}
-									strokeWidth={1}
-								/>
-							) : null}
-						</Link>
+						<div className={`group relative ${isScrolled || darkMode ? 'text-gray-900' : 'text-white'}`}>
+							<div className='flex items-center hover:opacity-70 transition-opacity cursor-pointer'>
+								<User size={20} />
+								{session?.user ? (
+									<ChevronDown
+										size={26}
+										strokeWidth={1}
+									/>
+								) : null}
+							</div>
+							{session?.user && (
+								<>
+									<div className='hidden group-hover:block absolute -left-24 top-6 w-42 h-full bg-transparent z-5'></div>
+									<div className='hidden group-hover:flex flex-col items-start absolute -left-24 top-8 text-sm shadow-md z-10 bg-white text-gray-900'>
+										<Link
+											href='/account/profile'
+											className='hover:bg-gray-100 w-full py-3 px-8 transition-colors whitespace-nowrap block'>
+											Mon compte
+										</Link>
+										<div className='h-px bg-gray-200 w-4/5 mx-auto'></div>
+										<button
+											onClick={() => {
+												authClient.signOut();
+												redirect('/auth/sign-in');
+											}}
+											className='hover:bg-gray-100 py-3 px-8 w-full transition-colors whitespace-nowrap cursor-pointer text-left'>
+											Se déconnecter
+										</button>
+									</div>
+								</>
+							)}
+						</div>
 					</div>
 
 					{/* Mobile Menu Button */}
@@ -154,7 +173,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 										onClick={() => {
 											authClient.signOut();
 											setIsMenuOpen(false);
-											redirect('/');
+											redirect('/auth/sign-in');
 										}}
 										className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
 										<span>Se déconnecter</span>
