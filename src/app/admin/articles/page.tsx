@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import ArrowLinkButton from '../../../components/ui/arrow-link-button';
 import { getArticles } from '@/lib/data-access/articles';
+import { ArrowRight } from 'lucide-react';
 
 export default async function ArticlesListPage() {
 	const articles = await getArticles();
@@ -18,11 +18,15 @@ export default async function ArticlesListPage() {
 		<div className='max-w-6xl mx-auto p-6'>
 			<div className='flex items-center justify-between mb-6'>
 				<h1 className='text-3xl font-bold'>Articles</h1>
-				<ArrowLinkButton
-					variant='bordered'
+				<Link
 					href='/admin/articles/new'
-					text='Nouvel article'
-				/>
+					className='flex items-center gap-2 px-6 py-3 transition-colors group bg-white text-gray-900 border border-gray-300 hover:bg-gray-50'>
+					<span>Nouvel article</span>
+					<ArrowRight
+						size={18}
+						className='group-hover:translate-x-1 transition-transform duration-200'
+					/>
+				</Link>
 			</div>
 
 			{/*Mettre Suspense  */}
@@ -30,13 +34,24 @@ export default async function ArticlesListPage() {
 					<p className='text-gray-600'>Chargement des articles...</p>
 				</div> */}
 			{articles.length === 0 ? (
-				<div className='text-center py-10 bg-gray-50'>
-					<p className='text-gray-600 mb-4'>Aucun article trouvé</p>
-					<Link
-						href='/admin/articles/new'
-						className='bg-gray-200 px-4 py-2 hover:bg-gray-200/90'>
-						Créer votre premier article
-					</Link>
+				<div className='p-8 text-center text-gray-500'>
+					<div className='mb-4'>
+						<svg
+							className='mx-auto h-12 w-12 text-gray-400'
+							fill='none'
+							viewBox='0 0 24 24'
+							stroke='currentColor'
+							aria-hidden='true'>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								strokeWidth={2}
+								d='M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z'
+							/>
+						</svg>
+					</div>
+					<h3 className='text-lg font-medium text-gray-900 mb-2'>Aucun article </h3>
+					<p className='text-gray-500'>Commencez à écrire des articles pour les retrouver ici.</p>
 				</div>
 			) : (
 				<div className='bg-white border border-gray-200 overflow-hidden'>

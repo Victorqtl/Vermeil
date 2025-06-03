@@ -80,7 +80,13 @@ export default function Header({ darkMode = false }: HeaderProps) {
 						<div className='w-px h-8 bg-gray-200'></div>
 						<div className={`group relative ${isScrolled || darkMode ? 'text-gray-900' : 'text-white'}`}>
 							<div className='flex items-center hover:opacity-70 transition-opacity cursor-pointer'>
-								<User size={20} />
+								<Link
+									href={session?.user ? '/account/profile' : '/auth/sign-in'}
+									className={`hover:opacity-70 transition-opacity ${
+										isScrolled || darkMode ? 'text-gray-900' : 'text-white'
+									}`}>
+									<User size={20} />
+								</Link>
 								{session?.user ? (
 									<ChevronDown
 										size={26}
@@ -104,7 +110,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 												redirect('/auth/sign-in');
 											}}
 											className='hover:bg-gray-100 py-3 px-8 w-full transition-colors whitespace-nowrap cursor-pointer text-left'>
-											Se déconnecter
+											Déconnexion
 										</button>
 									</div>
 								</>
@@ -176,7 +182,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 											redirect('/auth/sign-in');
 										}}
 										className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
-										<span>Se déconnecter</span>
+										<span>Déconnexion</span>
 									</button>
 								) : (
 									<a

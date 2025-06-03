@@ -93,7 +93,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 								type='text'
 								{...register('name')}
 								aria-invalid={!!errors.name}
-								className={errors.name ? 'border-red-500 focus:border-red-500' : ''}
+								className={errors.name && 'border-red-500 focus:border-red-500'}
 							/>
 							{errors.name && (
 								<p
@@ -111,7 +111,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 								type='email'
 								{...register('email')}
 								aria-invalid={!!errors.email}
-								className={errors.email ? 'border-red-500 focus:border-red-500' : ''}
+								className={errors.email && 'border-red-500 focus:border-red-500'}
 							/>
 							{errors.email && (
 								<p

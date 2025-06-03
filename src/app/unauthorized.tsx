@@ -15,7 +15,7 @@ export default function NotFound() {
 					<p className='text-gray-600 mb-8'>Veuillez vous connecter pour accéder à cette page.</p>
 					<Link
 						href='/auth/sign-in'
-						className='inline-flex items-center bg-black text-white px-6 py-3 font-medium hover:bg-gray-900 transition-colors group'>
+						className='inline-flex items-center bg-gray-900 text-white px-6 py-3 font-medium hover:bg-gray-700 transition-colors group'>
 						Se connecter
 						<ArrowRight
 							size={18}
