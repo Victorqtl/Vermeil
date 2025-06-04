@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AddArticleSection from './ components/AddArticleSection';
 
 export default function NewArticlePage() {
 	const { executeAsync, hasErrored, result, isExecuting } = useAction(createArticle);
@@ -18,12 +19,14 @@ export default function NewArticlePage() {
 		register,
 		handleSubmit,
 		setValue,
+		control,
 		formState: { errors, isDirty, isValid },
 	} = useForm<ArticleFormValues>({
 		resolver: zodResolver(createArticleSchema),
 		defaultValues: {
 			readTime: 5,
 			featured: false,
+			sections: [],
 		},
 		mode: 'onChange',
 	});
@@ -32,6 +35,8 @@ export default function NewArticlePage() {
 		return title
 			.toLowerCase()
 			.trim()
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
 			.replace(/[\s\-_]+/g, '-')
 			.replace(/[^\w\-]+/g, '')
 			.replace(/\-\-+/g, '-')
@@ -70,89 +75,84 @@ export default function NewArticlePage() {
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='space-y-6 bg-white p-6 border border-gray-200'>
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-					<div className='col-span-2'>
-						<Label htmlFor='title'>Titre *</Label>
-						<Input
-							type='text'
-							id='title'
-							{...register('title', {
-								onChange: handleTitleChange,
-							})}
-							className='w-full'
-							aria-invalid={!!errors.title}
-						/>
-						{errors.title && <p className='mt-1 text-xs text-red-500'>{errors.title.message}</p>}
-					</div>
+				<h2 className='text-2xl font-bold'>Informations de base</h2>
+				<div>
+					<Label htmlFor='title'>Titre *</Label>
+					<Input
+						type='text'
+						id='title'
+						{...register('title', {
+							onChange: handleTitleChange,
+						})}
+						aria-invalid={!!errors.title}
+					/>
+					{errors.title && <p className='mt-1 text-xs text-red-500'>{errors.title.message}</p>}
+				</div>
 
-					<div>
+				<div className='flex flex-col sm:flex-row justify-between gap-6'>
+					<div className='w-full'>
 						<Label htmlFor='slug'>Slug *</Label>
 						<Input
 							type='text'
 							id='slug'
 							{...register('slug')}
-							className='w-full'
 							aria-invalid={!!errors.slug}
 						/>
 						<p className='mt-1 text-xs text-gray-500'>URL de l'article (auto-généré à partir du titre)</p>
 						{errors.slug && <p className='mt-1 text-xs text-red-500'>{errors.slug.message}</p>}
 					</div>
-
-					<div>
+					<div className='w-full'>
 						<Label htmlFor='readTime'>Temps de lecture (minutes) *</Label>
 						<Input
 							type='number'
 							id='readTime'
 							{...register('readTime')}
 							min='1'
-							className='w-full'
 							aria-invalid={!!errors.readTime}
 						/>
 						{errors.readTime && <p className='mt-1 text-xs text-red-500'>{errors.readTime.message}</p>}
 					</div>
+				</div>
 
-					<div className='col-span-2'>
-						<Label htmlFor='excerpt'>Extrait</Label>
-						<textarea
-							id='excerpt'
-							{...register('excerpt')}
-							rows={3}
-							className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
-								errors.excerpt && 'border-red-500 focus:ring-red-500'
-							}`}
-						/>
-						{errors.excerpt && <p className='mt-1 text-xs text-red-500'>{errors.excerpt.message}</p>}
-					</div>
+				<div>
+					<Label htmlFor='excerpt'>Extrait *</Label>
+					<textarea
+						id='excerpt'
+						{...register('excerpt')}
+						rows={3}
+						className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
+							errors.excerpt && 'border-red-500 focus:ring-red-500'
+						}`}
+					/>
+					{errors.excerpt && <p className='mt-1 text-xs text-red-500'>{errors.excerpt.message}</p>}
+				</div>
 
-					<div className='col-span-2'>
-						<Label htmlFor='description'>Description *</Label>
-						<textarea
-							id='description'
-							{...register('description')}
-							rows={6}
-							className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
-								errors.description && 'border-red-500 focus:ring-red-500'
-							}`}
-							aria-invalid={!!errors.description}
-						/>
-						{errors.description && (
-							<p className='mt-1 text-xs text-red-500'>{errors.description.message}</p>
-						)}
-					</div>
+				<div>
+					<Label htmlFor='description'>Description *</Label>
+					<textarea
+						id='description'
+						{...register('description')}
+						rows={6}
+						className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
+							errors.description && 'border-red-500 focus:ring-red-500'
+						}`}
+					/>
+					{errors.description && <p className='mt-1 text-xs text-red-500'>{errors.description.message}</p>}
+				</div>
 
-					<div className='col-span-2'>
-						<Label htmlFor='heroImage'>URL de l'image héroïque *</Label>
-						<Input
-							type='url'
-							id='heroImage'
-							{...register('heroImage')}
-							className='w-full'
-							aria-invalid={!!errors.heroImage}
-						/>
-						<p className='mt-1 text-xs text-gray-500'>URL de l'image principale de l'article</p>
-						{errors.heroImage && <p className='mt-1 text-xs text-red-500'>{errors.heroImage.message}</p>}
-					</div>
+				<div>
+					<Label htmlFor='heroImage'>URL de l'image *</Label>
+					<Input
+						type='url'
+						id='heroImage'
+						{...register('heroImage')}
+						aria-invalid={!!errors.heroImage}
+					/>
+					<p className='mt-1 text-xs text-gray-500'>URL de l'image principale de l'article</p>
+					{errors.heroImage && <p className='mt-1 text-xs text-red-500'>{errors.heroImage.message}</p>}
+				</div>
 
+				<div className='flex flex-col sm:flex-row justify-between gap-6'>
 					<div>
 						<Label htmlFor='category'>Catégorie *</Label>
 						<select
@@ -171,7 +171,6 @@ export default function NewArticlePage() {
 						</select>
 						{errors.category && <p className='mt-1 text-xs text-red-500'>{errors.category.message}</p>}
 					</div>
-
 					<div className='flex items-center'>
 						<Input
 							type='checkbox'
@@ -187,7 +186,15 @@ export default function NewArticlePage() {
 					</div>
 				</div>
 
-				<div className='flex justify-between'>
+				<div className='h-px w-11/12 mt-10 mx-auto bg-gray-200'></div>
+
+				<AddArticleSection
+					register={register}
+					errors={errors}
+					control={control}
+				/>
+
+				<div className='flex items-center justify-between'>
 					{hasErrored && <p className='text-red-500'>{result.serverError}</p>}
 					<Button
 						type='submit'

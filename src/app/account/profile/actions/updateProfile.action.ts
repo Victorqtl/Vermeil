@@ -56,6 +56,6 @@ export const updateProfile = authActionClient.schema(formSchema).action(async ({
 		}
 		console.error('Erreur lors de la mise à jour du profil:', error);
 
-		throw new SafeError('Une erreur est survenue');
+		throw new SafeError('Erreur lors de la mise à jour du profil');
 	}
 });

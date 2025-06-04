@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getArticles } from '@/lib/data-access/articles';
+import { getArticles } from '@/lib/data/articles';
 import { ArrowRight } from 'lucide-react';
 
 export default async function ArticlesListPage() {

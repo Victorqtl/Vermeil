@@ -66,6 +66,10 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 			data: {
 				image: fileUrl,
 			},
+			select: {
+				id: true,
+				image: true,
+			},
 		});
 
 		return {

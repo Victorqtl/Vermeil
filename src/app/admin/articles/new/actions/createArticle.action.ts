@@ -15,31 +15,42 @@ export const createArticle = authActionClient
 			throw new SafeError("Vous n'avez pas les permissions nécessaires pour créer un article");
 		}
 
-		const { title, slug, heroImage, readTime, category, excerpt, description, featured } = input;
+		const { title, slug, heroImage, readTime, category, excerpt, description, featured, sections } = input;
+
+		const existingArticle = await prisma.article.findUnique({
+			where: { slug },
+			select: { id: true },
+		});
+
+		if (existingArticle) {
+			throw new SafeError('Un article avec ce slug existe déjà');
+		}
 
 		try {
-			const existingArticle = await prisma.article.findUnique({
-				where: { slug },
-			});
-
-			if (existingArticle) {
-				throw new SafeError('Un article avec ce slug existe déjà');
-			}
-
 			await prisma.article.create({
 				data: {
 					title,
 					slug,
-					excerpt: excerpt ?? null,
+					excerpt,
 					description,
 					heroImage,
 					readTime,
 					featured,
 					category,
+					sections: {
+						create: sections.map(section => ({
+							name: section.name,
+							description: section.description,
+							image: section.image,
+							link: section.link,
+						})),
+					},
 				},
+				select: { id: true, slug: true },
 			});
 		} catch (error) {
 			console.error("Erreur lors de la création de l'article:", error);
+			throw new SafeError("Erreur lors de la création de l'article");
 		}
 
 		revalidatePath('/admin/articles');

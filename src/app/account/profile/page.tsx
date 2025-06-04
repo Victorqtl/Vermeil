@@ -1,5 +1,5 @@
 import { getUser } from '@/lib/auth-session';
-import { getUserSavedArticles } from '@/lib/data-access/articles';
+import { getUserSavedArticles } from '@/lib/data/articles';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';

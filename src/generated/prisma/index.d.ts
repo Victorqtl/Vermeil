@@ -39,10 +39,10 @@ export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
  */
 export type Article = $Result.DefaultSelection<Prisma.$ArticlePayload>
 /**
- * Model Product
+ * Model Section
  * 
  */
-export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
+export type Section = $Result.DefaultSelection<Prisma.$SectionPayload>
 /**
  * Model Comment
  * 
@@ -230,14 +230,14 @@ export class PrismaClient<
   get article(): Prisma.ArticleDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.product`: Exposes CRUD operations for the **Product** model.
+   * `prisma.section`: Exposes CRUD operations for the **Section** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Products
-    * const products = await prisma.product.findMany()
+    * // Fetch zero or more Sections
+    * const sections = await prisma.section.findMany()
     * ```
     */
-  get product(): Prisma.ProductDelegate<ExtArgs, ClientOptions>;
+  get section(): Prisma.SectionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.comment`: Exposes CRUD operations for the **Comment** model.
@@ -316,8 +316,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.9.0
+   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
    */
   export type PrismaVersion = {
     client: string
@@ -703,7 +703,7 @@ export namespace Prisma {
     Account: 'Account',
     Verification: 'Verification',
     Article: 'Article',
-    Product: 'Product',
+    Section: 'Section',
     Comment: 'Comment',
     UserFavorite: 'UserFavorite'
   };
@@ -724,7 +724,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "article" | "product" | "comment" | "userFavorite"
+      modelProps: "user" | "session" | "account" | "verification" | "article" | "section" | "comment" | "userFavorite"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1098,77 +1098,77 @@ export namespace Prisma {
           }
         }
       }
-      Product: {
-        payload: Prisma.$ProductPayload<ExtArgs>
-        fields: Prisma.ProductFieldRefs
+      Section: {
+        payload: Prisma.$SectionPayload<ExtArgs>
+        fields: Prisma.SectionFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ProductFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload> | null
+            args: Prisma.SectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ProductFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.SectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
           }
           findFirst: {
-            args: Prisma.ProductFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload> | null
+            args: Prisma.SectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ProductFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.SectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
           }
           findMany: {
-            args: Prisma.ProductFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>[]
+            args: Prisma.SectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>[]
           }
           create: {
-            args: Prisma.ProductCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.SectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
           }
           createMany: {
-            args: Prisma.ProductCreateManyArgs<ExtArgs>
+            args: Prisma.SectionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.ProductCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>[]
+            args: Prisma.SectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>[]
           }
           delete: {
-            args: Prisma.ProductDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.SectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
           }
           update: {
-            args: Prisma.ProductUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.SectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
           }
           deleteMany: {
-            args: Prisma.ProductDeleteManyArgs<ExtArgs>
+            args: Prisma.SectionDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ProductUpdateManyArgs<ExtArgs>
+            args: Prisma.SectionUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.ProductUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>[]
+            args: Prisma.SectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>[]
           }
           upsert: {
-            args: Prisma.ProductUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.SectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
           }
           aggregate: {
-            args: Prisma.ProductAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateProduct>
+            args: Prisma.SectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSection>
           }
           groupBy: {
-            args: Prisma.ProductGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ProductGroupByOutputType>[]
+            args: Prisma.SectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SectionGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ProductCountArgs<ExtArgs>
-            result: $Utils.Optional<ProductCountAggregateOutputType> | number
+            args: Prisma.SectionCountArgs<ExtArgs>
+            result: $Utils.Optional<SectionCountAggregateOutputType> | number
           }
         }
       }
@@ -1409,7 +1409,7 @@ export namespace Prisma {
     account?: AccountOmit
     verification?: VerificationOmit
     article?: ArticleOmit
-    product?: ProductOmit
+    section?: SectionOmit
     comment?: CommentOmit
     userFavorite?: UserFavoriteOmit
   }
@@ -1565,13 +1565,13 @@ export namespace Prisma {
 
   export type ArticleCountOutputType = {
     comments: number
-    products: number
+    sections: number
     favoriteByUsers: number
   }
 
   export type ArticleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | ArticleCountOutputTypeCountCommentsArgs
-    products?: boolean | ArticleCountOutputTypeCountProductsArgs
+    sections?: boolean | ArticleCountOutputTypeCountSectionsArgs
     favoriteByUsers?: boolean | ArticleCountOutputTypeCountFavoriteByUsersArgs
   }
 
@@ -1596,8 +1596,8 @@ export namespace Prisma {
   /**
    * ArticleCountOutputType without action
    */
-  export type ArticleCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductWhereInput
+  export type ArticleCountOutputTypeCountSectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SectionWhereInput
   }
 
   /**
@@ -6329,7 +6329,7 @@ export namespace Prisma {
     id: string
     slug: string
     title: string
-    excerpt: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -6371,7 +6371,7 @@ export namespace Prisma {
     updatedAt?: boolean
     category?: boolean
     comments?: boolean | Article$commentsArgs<ExtArgs>
-    products?: boolean | Article$productsArgs<ExtArgs>
+    sections?: boolean | Article$sectionsArgs<ExtArgs>
     favoriteByUsers?: boolean | Article$favoriteByUsersArgs<ExtArgs>
     _count?: boolean | ArticleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["article"]>
@@ -6421,7 +6421,7 @@ export namespace Prisma {
   export type ArticleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "description" | "heroImage" | "readTime" | "featured" | "createdAt" | "updatedAt" | "category", ExtArgs["result"]["article"]>
   export type ArticleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | Article$commentsArgs<ExtArgs>
-    products?: boolean | Article$productsArgs<ExtArgs>
+    sections?: boolean | Article$sectionsArgs<ExtArgs>
     favoriteByUsers?: boolean | Article$favoriteByUsersArgs<ExtArgs>
     _count?: boolean | ArticleCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -6432,14 +6432,14 @@ export namespace Prisma {
     name: "Article"
     objects: {
       comments: Prisma.$CommentPayload<ExtArgs>[]
-      products: Prisma.$ProductPayload<ExtArgs>[]
+      sections: Prisma.$SectionPayload<ExtArgs>[]
       favoriteByUsers: Prisma.$UserFavoritePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       slug: string
       title: string
-      excerpt: string | null
+      excerpt: string
       description: string
       heroImage: string
       readTime: number
@@ -6842,7 +6842,7 @@ export namespace Prisma {
   export interface Prisma__ArticleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     comments<T extends Article$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Article$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    products<T extends Article$productsArgs<ExtArgs> = {}>(args?: Subset<T, Article$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sections<T extends Article$sectionsArgs<ExtArgs> = {}>(args?: Subset<T, Article$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favoriteByUsers<T extends Article$favoriteByUsersArgs<ExtArgs> = {}>(args?: Subset<T, Article$favoriteByUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserFavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7296,27 +7296,27 @@ export namespace Prisma {
   }
 
   /**
-   * Article.products
+   * Article.sections
    */
-  export type Article$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Article$sectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
-    where?: ProductWhereInput
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
-    cursor?: ProductWhereUniqueInput
+    include?: SectionInclude<ExtArgs> | null
+    where?: SectionWhereInput
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
+    cursor?: SectionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
   }
 
   /**
@@ -7363,16 +7363,16 @@ export namespace Prisma {
 
 
   /**
-   * Model Product
+   * Model Section
    */
 
-  export type AggregateProduct = {
-    _count: ProductCountAggregateOutputType | null
-    _min: ProductMinAggregateOutputType | null
-    _max: ProductMaxAggregateOutputType | null
+  export type AggregateSection = {
+    _count: SectionCountAggregateOutputType | null
+    _min: SectionMinAggregateOutputType | null
+    _max: SectionMaxAggregateOutputType | null
   }
 
-  export type ProductMinAggregateOutputType = {
+  export type SectionMinAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
@@ -7381,7 +7381,7 @@ export namespace Prisma {
     articleId: string | null
   }
 
-  export type ProductMaxAggregateOutputType = {
+  export type SectionMaxAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
@@ -7390,7 +7390,7 @@ export namespace Prisma {
     articleId: string | null
   }
 
-  export type ProductCountAggregateOutputType = {
+  export type SectionCountAggregateOutputType = {
     id: number
     name: number
     description: number
@@ -7401,7 +7401,7 @@ export namespace Prisma {
   }
 
 
-  export type ProductMinAggregateInputType = {
+  export type SectionMinAggregateInputType = {
     id?: true
     name?: true
     description?: true
@@ -7410,7 +7410,7 @@ export namespace Prisma {
     articleId?: true
   }
 
-  export type ProductMaxAggregateInputType = {
+  export type SectionMaxAggregateInputType = {
     id?: true
     name?: true
     description?: true
@@ -7419,7 +7419,7 @@ export namespace Prisma {
     articleId?: true
   }
 
-  export type ProductCountAggregateInputType = {
+  export type SectionCountAggregateInputType = {
     id?: true
     name?: true
     description?: true
@@ -7429,105 +7429,105 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ProductAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Product to aggregate.
+     * Filter which Section to aggregate.
      */
-    where?: ProductWhereInput
+    where?: SectionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Products to fetch.
+     * Determine the order of Sections to fetch.
      */
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ProductWhereUniqueInput
+    cursor?: SectionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Products from the position of the cursor.
+     * Take `±n` Sections from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Products.
+     * Skip the first `n` Sections.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Products
+     * Count returned Sections
     **/
-    _count?: true | ProductCountAggregateInputType
+    _count?: true | SectionCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ProductMinAggregateInputType
+    _min?: SectionMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ProductMaxAggregateInputType
+    _max?: SectionMaxAggregateInputType
   }
 
-  export type GetProductAggregateType<T extends ProductAggregateArgs> = {
-        [P in keyof T & keyof AggregateProduct]: P extends '_count' | 'count'
+  export type GetSectionAggregateType<T extends SectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSection]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateProduct[P]>
-      : GetScalarType<T[P], AggregateProduct[P]>
+        : GetScalarType<T[P], AggregateSection[P]>
+      : GetScalarType<T[P], AggregateSection[P]>
   }
 
 
 
 
-  export type ProductGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductWhereInput
-    orderBy?: ProductOrderByWithAggregationInput | ProductOrderByWithAggregationInput[]
-    by: ProductScalarFieldEnum[] | ProductScalarFieldEnum
-    having?: ProductScalarWhereWithAggregatesInput
+  export type SectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SectionWhereInput
+    orderBy?: SectionOrderByWithAggregationInput | SectionOrderByWithAggregationInput[]
+    by: SectionScalarFieldEnum[] | SectionScalarFieldEnum
+    having?: SectionScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ProductCountAggregateInputType | true
-    _min?: ProductMinAggregateInputType
-    _max?: ProductMaxAggregateInputType
+    _count?: SectionCountAggregateInputType | true
+    _min?: SectionMinAggregateInputType
+    _max?: SectionMaxAggregateInputType
   }
 
-  export type ProductGroupByOutputType = {
+  export type SectionGroupByOutputType = {
     id: string
     name: string
     description: string
     image: string
-    link: string
+    link: string | null
     articleId: string
-    _count: ProductCountAggregateOutputType | null
-    _min: ProductMinAggregateOutputType | null
-    _max: ProductMaxAggregateOutputType | null
+    _count: SectionCountAggregateOutputType | null
+    _min: SectionMinAggregateOutputType | null
+    _max: SectionMaxAggregateOutputType | null
   }
 
-  type GetProductGroupByPayload<T extends ProductGroupByArgs> = Prisma.PrismaPromise<
+  type GetSectionGroupByPayload<T extends SectionGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ProductGroupByOutputType, T['by']> &
+      PickEnumerable<SectionGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ProductGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof SectionGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ProductGroupByOutputType[P]>
-            : GetScalarType<T[P], ProductGroupByOutputType[P]>
+              : GetScalarType<T[P], SectionGroupByOutputType[P]>
+            : GetScalarType<T[P], SectionGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
@@ -7535,9 +7535,9 @@ export namespace Prisma {
     link?: boolean
     articleId?: boolean
     article?: boolean | ArticleDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["product"]>
+  }, ExtArgs["result"]["section"]>
 
-  export type ProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
@@ -7545,9 +7545,9 @@ export namespace Prisma {
     link?: boolean
     articleId?: boolean
     article?: boolean | ArticleDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["product"]>
+  }, ExtArgs["result"]["section"]>
 
-  export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
@@ -7555,9 +7555,9 @@ export namespace Prisma {
     link?: boolean
     articleId?: boolean
     article?: boolean | ArticleDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["product"]>
+  }, ExtArgs["result"]["section"]>
 
-  export type ProductSelectScalar = {
+  export type SectionSelectScalar = {
     id?: boolean
     name?: boolean
     description?: boolean
@@ -7566,19 +7566,19 @@ export namespace Prisma {
     articleId?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "link" | "articleId", ExtArgs["result"]["product"]>
-  export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "link" | "articleId", ExtArgs["result"]["section"]>
+  export type SectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     article?: boolean | ArticleDefaultArgs<ExtArgs>
   }
-  export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     article?: boolean | ArticleDefaultArgs<ExtArgs>
   }
-  export type ProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     article?: boolean | ArticleDefaultArgs<ExtArgs>
   }
 
-  export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Product"
+  export type $SectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Section"
     objects: {
       article: Prisma.$ArticlePayload<ExtArgs>
     }
@@ -7587,138 +7587,138 @@ export namespace Prisma {
       name: string
       description: string
       image: string
-      link: string
+      link: string | null
       articleId: string
-    }, ExtArgs["result"]["product"]>
+    }, ExtArgs["result"]["section"]>
     composites: {}
   }
 
-  type ProductGetPayload<S extends boolean | null | undefined | ProductDefaultArgs> = $Result.GetResult<Prisma.$ProductPayload, S>
+  type SectionGetPayload<S extends boolean | null | undefined | SectionDefaultArgs> = $Result.GetResult<Prisma.$SectionPayload, S>
 
-  type ProductCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ProductFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ProductCountAggregateInputType | true
+  type SectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SectionCountAggregateInputType | true
     }
 
-  export interface ProductDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Product'], meta: { name: 'Product' } }
+  export interface SectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Section'], meta: { name: 'Section' } }
     /**
-     * Find zero or one Product that matches the filter.
-     * @param {ProductFindUniqueArgs} args - Arguments to find a Product
+     * Find zero or one Section that matches the filter.
+     * @param {SectionFindUniqueArgs} args - Arguments to find a Section
      * @example
-     * // Get one Product
-     * const product = await prisma.product.findUnique({
+     * // Get one Section
+     * const section = await prisma.section.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ProductFindUniqueArgs>(args: SelectSubset<T, ProductFindUniqueArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends SectionFindUniqueArgs>(args: SelectSubset<T, SectionFindUniqueArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Product that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Section that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ProductFindUniqueOrThrowArgs} args - Arguments to find a Product
+     * @param {SectionFindUniqueOrThrowArgs} args - Arguments to find a Section
      * @example
-     * // Get one Product
-     * const product = await prisma.product.findUniqueOrThrow({
+     * // Get one Section
+     * const section = await prisma.section.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ProductFindUniqueOrThrowArgs>(args: SelectSubset<T, ProductFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends SectionFindUniqueOrThrowArgs>(args: SelectSubset<T, SectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Product that matches the filter.
+     * Find the first Section that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductFindFirstArgs} args - Arguments to find a Product
+     * @param {SectionFindFirstArgs} args - Arguments to find a Section
      * @example
-     * // Get one Product
-     * const product = await prisma.product.findFirst({
+     * // Get one Section
+     * const section = await prisma.section.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ProductFindFirstArgs>(args?: SelectSubset<T, ProductFindFirstArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends SectionFindFirstArgs>(args?: SelectSubset<T, SectionFindFirstArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Product that matches the filter or
+     * Find the first Section that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductFindFirstOrThrowArgs} args - Arguments to find a Product
+     * @param {SectionFindFirstOrThrowArgs} args - Arguments to find a Section
      * @example
-     * // Get one Product
-     * const product = await prisma.product.findFirstOrThrow({
+     * // Get one Section
+     * const section = await prisma.section.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ProductFindFirstOrThrowArgs>(args?: SelectSubset<T, ProductFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends SectionFindFirstOrThrowArgs>(args?: SelectSubset<T, SectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Products that matches the filter.
+     * Find zero or more Sections that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {SectionFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Products
-     * const products = await prisma.product.findMany()
+     * // Get all Sections
+     * const sections = await prisma.section.findMany()
      * 
-     * // Get first 10 Products
-     * const products = await prisma.product.findMany({ take: 10 })
+     * // Get first 10 Sections
+     * const sections = await prisma.section.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const productWithIdOnly = await prisma.product.findMany({ select: { id: true } })
+     * const sectionWithIdOnly = await prisma.section.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends ProductFindManyArgs>(args?: SelectSubset<T, ProductFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends SectionFindManyArgs>(args?: SelectSubset<T, SectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Product.
-     * @param {ProductCreateArgs} args - Arguments to create a Product.
+     * Create a Section.
+     * @param {SectionCreateArgs} args - Arguments to create a Section.
      * @example
-     * // Create one Product
-     * const Product = await prisma.product.create({
+     * // Create one Section
+     * const Section = await prisma.section.create({
      *   data: {
-     *     // ... data to create a Product
+     *     // ... data to create a Section
      *   }
      * })
      * 
      */
-    create<T extends ProductCreateArgs>(args: SelectSubset<T, ProductCreateArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends SectionCreateArgs>(args: SelectSubset<T, SectionCreateArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Products.
-     * @param {ProductCreateManyArgs} args - Arguments to create many Products.
+     * Create many Sections.
+     * @param {SectionCreateManyArgs} args - Arguments to create many Sections.
      * @example
-     * // Create many Products
-     * const product = await prisma.product.createMany({
+     * // Create many Sections
+     * const section = await prisma.section.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends ProductCreateManyArgs>(args?: SelectSubset<T, ProductCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends SectionCreateManyArgs>(args?: SelectSubset<T, SectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Products and returns the data saved in the database.
-     * @param {ProductCreateManyAndReturnArgs} args - Arguments to create many Products.
+     * Create many Sections and returns the data saved in the database.
+     * @param {SectionCreateManyAndReturnArgs} args - Arguments to create many Sections.
      * @example
-     * // Create many Products
-     * const product = await prisma.product.createManyAndReturn({
+     * // Create many Sections
+     * const section = await prisma.section.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Products and only return the `id`
-     * const productWithIdOnly = await prisma.product.createManyAndReturn({
+     * // Create many Sections and only return the `id`
+     * const sectionWithIdOnly = await prisma.section.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -7728,28 +7728,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends ProductCreateManyAndReturnArgs>(args?: SelectSubset<T, ProductCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends SectionCreateManyAndReturnArgs>(args?: SelectSubset<T, SectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Product.
-     * @param {ProductDeleteArgs} args - Arguments to delete one Product.
+     * Delete a Section.
+     * @param {SectionDeleteArgs} args - Arguments to delete one Section.
      * @example
-     * // Delete one Product
-     * const Product = await prisma.product.delete({
+     * // Delete one Section
+     * const Section = await prisma.section.delete({
      *   where: {
-     *     // ... filter to delete one Product
+     *     // ... filter to delete one Section
      *   }
      * })
      * 
      */
-    delete<T extends ProductDeleteArgs>(args: SelectSubset<T, ProductDeleteArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends SectionDeleteArgs>(args: SelectSubset<T, SectionDeleteArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Product.
-     * @param {ProductUpdateArgs} args - Arguments to update one Product.
+     * Update one Section.
+     * @param {SectionUpdateArgs} args - Arguments to update one Section.
      * @example
-     * // Update one Product
-     * const product = await prisma.product.update({
+     * // Update one Section
+     * const section = await prisma.section.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7759,30 +7759,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends ProductUpdateArgs>(args: SelectSubset<T, ProductUpdateArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends SectionUpdateArgs>(args: SelectSubset<T, SectionUpdateArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Products.
-     * @param {ProductDeleteManyArgs} args - Arguments to filter Products to delete.
+     * Delete zero or more Sections.
+     * @param {SectionDeleteManyArgs} args - Arguments to filter Sections to delete.
      * @example
-     * // Delete a few Products
-     * const { count } = await prisma.product.deleteMany({
+     * // Delete a few Sections
+     * const { count } = await prisma.section.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends ProductDeleteManyArgs>(args?: SelectSubset<T, ProductDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends SectionDeleteManyArgs>(args?: SelectSubset<T, SectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Products.
+     * Update zero or more Sections.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {SectionUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Products
-     * const product = await prisma.product.updateMany({
+     * // Update many Sections
+     * const section = await prisma.section.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7792,14 +7792,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends ProductUpdateManyArgs>(args: SelectSubset<T, ProductUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends SectionUpdateManyArgs>(args: SelectSubset<T, SectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Products and returns the data updated in the database.
-     * @param {ProductUpdateManyAndReturnArgs} args - Arguments to update many Products.
+     * Update zero or more Sections and returns the data updated in the database.
+     * @param {SectionUpdateManyAndReturnArgs} args - Arguments to update many Sections.
      * @example
-     * // Update many Products
-     * const product = await prisma.product.updateManyAndReturn({
+     * // Update many Sections
+     * const section = await prisma.section.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7808,8 +7808,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Products and only return the `id`
-     * const productWithIdOnly = await prisma.product.updateManyAndReturn({
+     * // Update zero or more Sections and only return the `id`
+     * const sectionWithIdOnly = await prisma.section.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -7822,56 +7822,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends ProductUpdateManyAndReturnArgs>(args: SelectSubset<T, ProductUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends SectionUpdateManyAndReturnArgs>(args: SelectSubset<T, SectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Product.
-     * @param {ProductUpsertArgs} args - Arguments to update or create a Product.
+     * Create or update one Section.
+     * @param {SectionUpsertArgs} args - Arguments to update or create a Section.
      * @example
-     * // Update or create a Product
-     * const product = await prisma.product.upsert({
+     * // Update or create a Section
+     * const section = await prisma.section.upsert({
      *   create: {
-     *     // ... data to create a Product
+     *     // ... data to create a Section
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Product we want to update
+     *     // ... the filter for the Section we want to update
      *   }
      * })
      */
-    upsert<T extends ProductUpsertArgs>(args: SelectSubset<T, ProductUpsertArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends SectionUpsertArgs>(args: SelectSubset<T, SectionUpsertArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Products.
+     * Count the number of Sections.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductCountArgs} args - Arguments to filter Products to count.
+     * @param {SectionCountArgs} args - Arguments to filter Sections to count.
      * @example
-     * // Count the number of Products
-     * const count = await prisma.product.count({
+     * // Count the number of Sections
+     * const count = await prisma.section.count({
      *   where: {
-     *     // ... the filter for the Products we want to count
+     *     // ... the filter for the Sections we want to count
      *   }
      * })
     **/
-    count<T extends ProductCountArgs>(
-      args?: Subset<T, ProductCountArgs>,
+    count<T extends SectionCountArgs>(
+      args?: Subset<T, SectionCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ProductCountAggregateOutputType>
+          : GetScalarType<T['select'], SectionCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Product.
+     * Allows you to perform aggregations operations on a Section.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {SectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -7891,13 +7891,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ProductAggregateArgs>(args: Subset<T, ProductAggregateArgs>): Prisma.PrismaPromise<GetProductAggregateType<T>>
+    aggregate<T extends SectionAggregateArgs>(args: Subset<T, SectionAggregateArgs>): Prisma.PrismaPromise<GetSectionAggregateType<T>>
 
     /**
-     * Group by Product.
+     * Group by Section.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductGroupByArgs} args - Group by arguments.
+     * @param {SectionGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -7912,14 +7912,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ProductGroupByArgs,
+      T extends SectionGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ProductGroupByArgs['orderBy'] }
-        : { orderBy?: ProductGroupByArgs['orderBy'] },
+        ? { orderBy: SectionGroupByArgs['orderBy'] }
+        : { orderBy?: SectionGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -7968,20 +7968,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ProductGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, SectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Product model
+   * Fields of the Section model
    */
-  readonly fields: ProductFieldRefs;
+  readonly fields: SectionFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Product.
+   * The delegate class that acts as a "Promise-like" for Section.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__SectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     article<T extends ArticleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ArticleDefaultArgs<ExtArgs>>): Prisma__ArticleClient<$Result.GetResult<Prisma.$ArticlePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -8010,426 +8010,426 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Product model
+   * Fields of the Section model
    */
-  interface ProductFieldRefs {
-    readonly id: FieldRef<"Product", 'String'>
-    readonly name: FieldRef<"Product", 'String'>
-    readonly description: FieldRef<"Product", 'String'>
-    readonly image: FieldRef<"Product", 'String'>
-    readonly link: FieldRef<"Product", 'String'>
-    readonly articleId: FieldRef<"Product", 'String'>
+  interface SectionFieldRefs {
+    readonly id: FieldRef<"Section", 'String'>
+    readonly name: FieldRef<"Section", 'String'>
+    readonly description: FieldRef<"Section", 'String'>
+    readonly image: FieldRef<"Section", 'String'>
+    readonly link: FieldRef<"Section", 'String'>
+    readonly articleId: FieldRef<"Section", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Product findUnique
+   * Section findUnique
    */
-  export type ProductFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * Filter, which Product to fetch.
+     * Filter, which Section to fetch.
      */
-    where: ProductWhereUniqueInput
+    where: SectionWhereUniqueInput
   }
 
   /**
-   * Product findUniqueOrThrow
+   * Section findUniqueOrThrow
    */
-  export type ProductFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * Filter, which Product to fetch.
+     * Filter, which Section to fetch.
      */
-    where: ProductWhereUniqueInput
+    where: SectionWhereUniqueInput
   }
 
   /**
-   * Product findFirst
+   * Section findFirst
    */
-  export type ProductFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * Filter, which Product to fetch.
+     * Filter, which Section to fetch.
      */
-    where?: ProductWhereInput
+    where?: SectionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Products to fetch.
+     * Determine the order of Sections to fetch.
      */
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Products.
+     * Sets the position for searching for Sections.
      */
-    cursor?: ProductWhereUniqueInput
+    cursor?: SectionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Products from the position of the cursor.
+     * Take `±n` Sections from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Products.
+     * Skip the first `n` Sections.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Products.
+     * Filter by unique combinations of Sections.
      */
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
   }
 
   /**
-   * Product findFirstOrThrow
+   * Section findFirstOrThrow
    */
-  export type ProductFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * Filter, which Product to fetch.
+     * Filter, which Section to fetch.
      */
-    where?: ProductWhereInput
+    where?: SectionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Products to fetch.
+     * Determine the order of Sections to fetch.
      */
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Products.
+     * Sets the position for searching for Sections.
      */
-    cursor?: ProductWhereUniqueInput
+    cursor?: SectionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Products from the position of the cursor.
+     * Take `±n` Sections from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Products.
+     * Skip the first `n` Sections.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Products.
+     * Filter by unique combinations of Sections.
      */
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
   }
 
   /**
-   * Product findMany
+   * Section findMany
    */
-  export type ProductFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * Filter, which Products to fetch.
+     * Filter, which Sections to fetch.
      */
-    where?: ProductWhereInput
+    where?: SectionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Products to fetch.
+     * Determine the order of Sections to fetch.
      */
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Products.
+     * Sets the position for listing Sections.
      */
-    cursor?: ProductWhereUniqueInput
+    cursor?: SectionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Products from the position of the cursor.
+     * Take `±n` Sections from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Products.
+     * Skip the first `n` Sections.
      */
     skip?: number
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
   }
 
   /**
-   * Product create
+   * Section create
    */
-  export type ProductCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * The data needed to create a Product.
+     * The data needed to create a Section.
      */
-    data: XOR<ProductCreateInput, ProductUncheckedCreateInput>
+    data: XOR<SectionCreateInput, SectionUncheckedCreateInput>
   }
 
   /**
-   * Product createMany
+   * Section createMany
    */
-  export type ProductCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Products.
+     * The data used to create many Sections.
      */
-    data: ProductCreateManyInput | ProductCreateManyInput[]
+    data: SectionCreateManyInput | SectionCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Product createManyAndReturn
+   * Section createManyAndReturn
    */
-  export type ProductCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelectCreateManyAndReturn<ExtArgs> | null
+    select?: SectionSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
-     * The data used to create many Products.
+     * The data used to create many Sections.
      */
-    data: ProductCreateManyInput | ProductCreateManyInput[]
+    data: SectionCreateManyInput | SectionCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: SectionIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Product update
+   * Section update
    */
-  export type ProductUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * The data needed to update a Product.
+     * The data needed to update a Section.
      */
-    data: XOR<ProductUpdateInput, ProductUncheckedUpdateInput>
+    data: XOR<SectionUpdateInput, SectionUncheckedUpdateInput>
     /**
-     * Choose, which Product to update.
+     * Choose, which Section to update.
      */
-    where: ProductWhereUniqueInput
+    where: SectionWhereUniqueInput
   }
 
   /**
-   * Product updateMany
+   * Section updateMany
    */
-  export type ProductUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Products.
+     * The data used to update Sections.
      */
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyInput>
+    data: XOR<SectionUpdateManyMutationInput, SectionUncheckedUpdateManyInput>
     /**
-     * Filter which Products to update
+     * Filter which Sections to update
      */
-    where?: ProductWhereInput
+    where?: SectionWhereInput
     /**
-     * Limit how many Products to update.
+     * Limit how many Sections to update.
      */
     limit?: number
   }
 
   /**
-   * Product updateManyAndReturn
+   * Section updateManyAndReturn
    */
-  export type ProductUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: SectionSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
-     * The data used to update Products.
+     * The data used to update Sections.
      */
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyInput>
+    data: XOR<SectionUpdateManyMutationInput, SectionUncheckedUpdateManyInput>
     /**
-     * Filter which Products to update
+     * Filter which Sections to update
      */
-    where?: ProductWhereInput
+    where?: SectionWhereInput
     /**
-     * Limit how many Products to update.
+     * Limit how many Sections to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: SectionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Product upsert
+   * Section upsert
    */
-  export type ProductUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * The filter to search for the Product to update in case it exists.
+     * The filter to search for the Section to update in case it exists.
      */
-    where: ProductWhereUniqueInput
+    where: SectionWhereUniqueInput
     /**
-     * In case the Product found by the `where` argument doesn't exist, create a new Product with this data.
+     * In case the Section found by the `where` argument doesn't exist, create a new Section with this data.
      */
-    create: XOR<ProductCreateInput, ProductUncheckedCreateInput>
+    create: XOR<SectionCreateInput, SectionUncheckedCreateInput>
     /**
-     * In case the Product was found with the provided `where` argument, update it with this data.
+     * In case the Section was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ProductUpdateInput, ProductUncheckedUpdateInput>
+    update: XOR<SectionUpdateInput, SectionUncheckedUpdateInput>
   }
 
   /**
-   * Product delete
+   * Section delete
    */
-  export type ProductDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
     /**
-     * Filter which Product to delete.
+     * Filter which Section to delete.
      */
-    where: ProductWhereUniqueInput
+    where: SectionWhereUniqueInput
   }
 
   /**
-   * Product deleteMany
+   * Section deleteMany
    */
-  export type ProductDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Products to delete
+     * Filter which Sections to delete
      */
-    where?: ProductWhereInput
+    where?: SectionWhereInput
     /**
-     * Limit how many Products to delete.
+     * Limit how many Sections to delete.
      */
     limit?: number
   }
 
   /**
-   * Product without action
+   * Section without action
    */
-  export type ProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Section
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: SectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Product
+     * Omit specific fields from the Section
      */
-    omit?: ProductOmit<ExtArgs> | null
+    omit?: SectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
+    include?: SectionInclude<ExtArgs> | null
   }
 
 
@@ -10646,7 +10646,7 @@ export namespace Prisma {
   export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
 
 
-  export const ProductScalarFieldEnum: {
+  export const SectionScalarFieldEnum: {
     id: 'id',
     name: 'name',
     description: 'description',
@@ -10655,7 +10655,7 @@ export namespace Prisma {
     articleId: 'articleId'
   };
 
-  export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+  export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeof SectionScalarFieldEnum]
 
 
   export const CommentScalarFieldEnum: {
@@ -11102,7 +11102,7 @@ export namespace Prisma {
     id?: StringFilter<"Article"> | string
     slug?: StringFilter<"Article"> | string
     title?: StringFilter<"Article"> | string
-    excerpt?: StringNullableFilter<"Article"> | string | null
+    excerpt?: StringFilter<"Article"> | string
     description?: StringFilter<"Article"> | string
     heroImage?: StringFilter<"Article"> | string
     readTime?: IntFilter<"Article"> | number
@@ -11111,7 +11111,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Article"> | Date | string
     category?: StringFilter<"Article"> | string
     comments?: CommentListRelationFilter
-    products?: ProductListRelationFilter
+    sections?: SectionListRelationFilter
     favoriteByUsers?: UserFavoriteListRelationFilter
   }
 
@@ -11119,7 +11119,7 @@ export namespace Prisma {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
-    excerpt?: SortOrderInput | SortOrder
+    excerpt?: SortOrder
     description?: SortOrder
     heroImage?: SortOrder
     readTime?: SortOrder
@@ -11128,7 +11128,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     category?: SortOrder
     comments?: CommentOrderByRelationAggregateInput
-    products?: ProductOrderByRelationAggregateInput
+    sections?: SectionOrderByRelationAggregateInput
     favoriteByUsers?: UserFavoriteOrderByRelationAggregateInput
   }
 
@@ -11139,7 +11139,7 @@ export namespace Prisma {
     OR?: ArticleWhereInput[]
     NOT?: ArticleWhereInput | ArticleWhereInput[]
     title?: StringFilter<"Article"> | string
-    excerpt?: StringNullableFilter<"Article"> | string | null
+    excerpt?: StringFilter<"Article"> | string
     description?: StringFilter<"Article"> | string
     heroImage?: StringFilter<"Article"> | string
     readTime?: IntFilter<"Article"> | number
@@ -11148,7 +11148,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Article"> | Date | string
     category?: StringFilter<"Article"> | string
     comments?: CommentListRelationFilter
-    products?: ProductListRelationFilter
+    sections?: SectionListRelationFilter
     favoriteByUsers?: UserFavoriteListRelationFilter
   }, "id" | "slug">
 
@@ -11156,7 +11156,7 @@ export namespace Prisma {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
-    excerpt?: SortOrderInput | SortOrder
+    excerpt?: SortOrder
     description?: SortOrder
     heroImage?: SortOrder
     readTime?: SortOrder
@@ -11178,7 +11178,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Article"> | string
     slug?: StringWithAggregatesFilter<"Article"> | string
     title?: StringWithAggregatesFilter<"Article"> | string
-    excerpt?: StringNullableWithAggregatesFilter<"Article"> | string | null
+    excerpt?: StringWithAggregatesFilter<"Article"> | string
     description?: StringWithAggregatesFilter<"Article"> | string
     heroImage?: StringWithAggregatesFilter<"Article"> | string
     readTime?: IntWithAggregatesFilter<"Article"> | number
@@ -11188,64 +11188,64 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Article"> | string
   }
 
-  export type ProductWhereInput = {
-    AND?: ProductWhereInput | ProductWhereInput[]
-    OR?: ProductWhereInput[]
-    NOT?: ProductWhereInput | ProductWhereInput[]
-    id?: StringFilter<"Product"> | string
-    name?: StringFilter<"Product"> | string
-    description?: StringFilter<"Product"> | string
-    image?: StringFilter<"Product"> | string
-    link?: StringFilter<"Product"> | string
-    articleId?: StringFilter<"Product"> | string
+  export type SectionWhereInput = {
+    AND?: SectionWhereInput | SectionWhereInput[]
+    OR?: SectionWhereInput[]
+    NOT?: SectionWhereInput | SectionWhereInput[]
+    id?: StringFilter<"Section"> | string
+    name?: StringFilter<"Section"> | string
+    description?: StringFilter<"Section"> | string
+    image?: StringFilter<"Section"> | string
+    link?: StringNullableFilter<"Section"> | string | null
+    articleId?: StringFilter<"Section"> | string
     article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
   }
 
-  export type ProductOrderByWithRelationInput = {
+  export type SectionOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
-    link?: SortOrder
+    link?: SortOrderInput | SortOrder
     articleId?: SortOrder
     article?: ArticleOrderByWithRelationInput
   }
 
-  export type ProductWhereUniqueInput = Prisma.AtLeast<{
+  export type SectionWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: ProductWhereInput | ProductWhereInput[]
-    OR?: ProductWhereInput[]
-    NOT?: ProductWhereInput | ProductWhereInput[]
-    name?: StringFilter<"Product"> | string
-    description?: StringFilter<"Product"> | string
-    image?: StringFilter<"Product"> | string
-    link?: StringFilter<"Product"> | string
-    articleId?: StringFilter<"Product"> | string
+    AND?: SectionWhereInput | SectionWhereInput[]
+    OR?: SectionWhereInput[]
+    NOT?: SectionWhereInput | SectionWhereInput[]
+    name?: StringFilter<"Section"> | string
+    description?: StringFilter<"Section"> | string
+    image?: StringFilter<"Section"> | string
+    link?: StringNullableFilter<"Section"> | string | null
+    articleId?: StringFilter<"Section"> | string
     article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
   }, "id">
 
-  export type ProductOrderByWithAggregationInput = {
+  export type SectionOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
-    link?: SortOrder
+    link?: SortOrderInput | SortOrder
     articleId?: SortOrder
-    _count?: ProductCountOrderByAggregateInput
-    _max?: ProductMaxOrderByAggregateInput
-    _min?: ProductMinOrderByAggregateInput
+    _count?: SectionCountOrderByAggregateInput
+    _max?: SectionMaxOrderByAggregateInput
+    _min?: SectionMinOrderByAggregateInput
   }
 
-  export type ProductScalarWhereWithAggregatesInput = {
-    AND?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
-    OR?: ProductScalarWhereWithAggregatesInput[]
-    NOT?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Product"> | string
-    name?: StringWithAggregatesFilter<"Product"> | string
-    description?: StringWithAggregatesFilter<"Product"> | string
-    image?: StringWithAggregatesFilter<"Product"> | string
-    link?: StringWithAggregatesFilter<"Product"> | string
-    articleId?: StringWithAggregatesFilter<"Product"> | string
+  export type SectionScalarWhereWithAggregatesInput = {
+    AND?: SectionScalarWhereWithAggregatesInput | SectionScalarWhereWithAggregatesInput[]
+    OR?: SectionScalarWhereWithAggregatesInput[]
+    NOT?: SectionScalarWhereWithAggregatesInput | SectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Section"> | string
+    name?: StringWithAggregatesFilter<"Section"> | string
+    description?: StringWithAggregatesFilter<"Section"> | string
+    image?: StringWithAggregatesFilter<"Section"> | string
+    link?: StringNullableWithAggregatesFilter<"Section"> | string | null
+    articleId?: StringWithAggregatesFilter<"Section"> | string
   }
 
   export type CommentWhereInput = {
@@ -11735,7 +11735,7 @@ export namespace Prisma {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -11744,7 +11744,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     category: string
     comments?: CommentCreateNestedManyWithoutArticleInput
-    products?: ProductCreateNestedManyWithoutArticleInput
+    sections?: SectionCreateNestedManyWithoutArticleInput
     favoriteByUsers?: UserFavoriteCreateNestedManyWithoutArticleInput
   }
 
@@ -11752,7 +11752,7 @@ export namespace Prisma {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -11761,7 +11761,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     category: string
     comments?: CommentUncheckedCreateNestedManyWithoutArticleInput
-    products?: ProductUncheckedCreateNestedManyWithoutArticleInput
+    sections?: SectionUncheckedCreateNestedManyWithoutArticleInput
     favoriteByUsers?: UserFavoriteUncheckedCreateNestedManyWithoutArticleInput
   }
 
@@ -11769,7 +11769,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -11778,7 +11778,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
     comments?: CommentUpdateManyWithoutArticleNestedInput
-    products?: ProductUpdateManyWithoutArticleNestedInput
+    sections?: SectionUpdateManyWithoutArticleNestedInput
     favoriteByUsers?: UserFavoriteUpdateManyWithoutArticleNestedInput
   }
 
@@ -11786,7 +11786,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -11795,7 +11795,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
     comments?: CommentUncheckedUpdateManyWithoutArticleNestedInput
-    products?: ProductUncheckedUpdateManyWithoutArticleNestedInput
+    sections?: SectionUncheckedUpdateManyWithoutArticleNestedInput
     favoriteByUsers?: UserFavoriteUncheckedUpdateManyWithoutArticleNestedInput
   }
 
@@ -11803,7 +11803,7 @@ export namespace Prisma {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -11817,7 +11817,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -11831,7 +11831,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -11841,65 +11841,65 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductCreateInput = {
+  export type SectionCreateInput = {
     id?: string
     name: string
     description: string
     image: string
-    link: string
-    article: ArticleCreateNestedOneWithoutProductsInput
+    link?: string | null
+    article: ArticleCreateNestedOneWithoutSectionsInput
   }
 
-  export type ProductUncheckedCreateInput = {
+  export type SectionUncheckedCreateInput = {
     id?: string
     name: string
     description: string
     image: string
-    link: string
+    link?: string | null
     articleId: string
   }
 
-  export type ProductUpdateInput = {
+  export type SectionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
-    article?: ArticleUpdateOneRequiredWithoutProductsNestedInput
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    article?: ArticleUpdateOneRequiredWithoutSectionsNestedInput
   }
 
-  export type ProductUncheckedUpdateInput = {
+  export type SectionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
+    link?: NullableStringFieldUpdateOperationsInput | string | null
     articleId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductCreateManyInput = {
+  export type SectionCreateManyInput = {
     id?: string
     name: string
     description: string
     image: string
-    link: string
+    link?: string | null
     articleId: string
   }
 
-  export type ProductUpdateManyMutationInput = {
+  export type SectionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
+    link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ProductUncheckedUpdateManyInput = {
+  export type SectionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
+    link?: NullableStringFieldUpdateOperationsInput | string | null
     articleId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -12360,13 +12360,13 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type ProductListRelationFilter = {
-    every?: ProductWhereInput
-    some?: ProductWhereInput
-    none?: ProductWhereInput
+  export type SectionListRelationFilter = {
+    every?: SectionWhereInput
+    some?: SectionWhereInput
+    none?: SectionWhereInput
   }
 
-  export type ProductOrderByRelationAggregateInput = {
+  export type SectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12441,7 +12441,7 @@ export namespace Prisma {
     isNot?: ArticleWhereInput
   }
 
-  export type ProductCountOrderByAggregateInput = {
+  export type SectionCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -12450,7 +12450,7 @@ export namespace Prisma {
     articleId?: SortOrder
   }
 
-  export type ProductMaxOrderByAggregateInput = {
+  export type SectionMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -12459,7 +12459,7 @@ export namespace Prisma {
     articleId?: SortOrder
   }
 
-  export type ProductMinOrderByAggregateInput = {
+  export type SectionMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -12745,11 +12745,11 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
-  export type ProductCreateNestedManyWithoutArticleInput = {
-    create?: XOR<ProductCreateWithoutArticleInput, ProductUncheckedCreateWithoutArticleInput> | ProductCreateWithoutArticleInput[] | ProductUncheckedCreateWithoutArticleInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutArticleInput | ProductCreateOrConnectWithoutArticleInput[]
-    createMany?: ProductCreateManyArticleInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  export type SectionCreateNestedManyWithoutArticleInput = {
+    create?: XOR<SectionCreateWithoutArticleInput, SectionUncheckedCreateWithoutArticleInput> | SectionCreateWithoutArticleInput[] | SectionUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutArticleInput | SectionCreateOrConnectWithoutArticleInput[]
+    createMany?: SectionCreateManyArticleInputEnvelope
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
   }
 
   export type UserFavoriteCreateNestedManyWithoutArticleInput = {
@@ -12766,11 +12766,11 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
-  export type ProductUncheckedCreateNestedManyWithoutArticleInput = {
-    create?: XOR<ProductCreateWithoutArticleInput, ProductUncheckedCreateWithoutArticleInput> | ProductCreateWithoutArticleInput[] | ProductUncheckedCreateWithoutArticleInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutArticleInput | ProductCreateOrConnectWithoutArticleInput[]
-    createMany?: ProductCreateManyArticleInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  export type SectionUncheckedCreateNestedManyWithoutArticleInput = {
+    create?: XOR<SectionCreateWithoutArticleInput, SectionUncheckedCreateWithoutArticleInput> | SectionCreateWithoutArticleInput[] | SectionUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutArticleInput | SectionCreateOrConnectWithoutArticleInput[]
+    createMany?: SectionCreateManyArticleInputEnvelope
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
   }
 
   export type UserFavoriteUncheckedCreateNestedManyWithoutArticleInput = {
@@ -12802,18 +12802,18 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type ProductUpdateManyWithoutArticleNestedInput = {
-    create?: XOR<ProductCreateWithoutArticleInput, ProductUncheckedCreateWithoutArticleInput> | ProductCreateWithoutArticleInput[] | ProductUncheckedCreateWithoutArticleInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutArticleInput | ProductCreateOrConnectWithoutArticleInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutArticleInput | ProductUpsertWithWhereUniqueWithoutArticleInput[]
-    createMany?: ProductCreateManyArticleInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutArticleInput | ProductUpdateWithWhereUniqueWithoutArticleInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutArticleInput | ProductUpdateManyWithWhereWithoutArticleInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  export type SectionUpdateManyWithoutArticleNestedInput = {
+    create?: XOR<SectionCreateWithoutArticleInput, SectionUncheckedCreateWithoutArticleInput> | SectionCreateWithoutArticleInput[] | SectionUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutArticleInput | SectionCreateOrConnectWithoutArticleInput[]
+    upsert?: SectionUpsertWithWhereUniqueWithoutArticleInput | SectionUpsertWithWhereUniqueWithoutArticleInput[]
+    createMany?: SectionCreateManyArticleInputEnvelope
+    set?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    disconnect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    delete?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    update?: SectionUpdateWithWhereUniqueWithoutArticleInput | SectionUpdateWithWhereUniqueWithoutArticleInput[]
+    updateMany?: SectionUpdateManyWithWhereWithoutArticleInput | SectionUpdateManyWithWhereWithoutArticleInput[]
+    deleteMany?: SectionScalarWhereInput | SectionScalarWhereInput[]
   }
 
   export type UserFavoriteUpdateManyWithoutArticleNestedInput = {
@@ -12844,18 +12844,18 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type ProductUncheckedUpdateManyWithoutArticleNestedInput = {
-    create?: XOR<ProductCreateWithoutArticleInput, ProductUncheckedCreateWithoutArticleInput> | ProductCreateWithoutArticleInput[] | ProductUncheckedCreateWithoutArticleInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutArticleInput | ProductCreateOrConnectWithoutArticleInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutArticleInput | ProductUpsertWithWhereUniqueWithoutArticleInput[]
-    createMany?: ProductCreateManyArticleInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutArticleInput | ProductUpdateWithWhereUniqueWithoutArticleInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutArticleInput | ProductUpdateManyWithWhereWithoutArticleInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  export type SectionUncheckedUpdateManyWithoutArticleNestedInput = {
+    create?: XOR<SectionCreateWithoutArticleInput, SectionUncheckedCreateWithoutArticleInput> | SectionCreateWithoutArticleInput[] | SectionUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutArticleInput | SectionCreateOrConnectWithoutArticleInput[]
+    upsert?: SectionUpsertWithWhereUniqueWithoutArticleInput | SectionUpsertWithWhereUniqueWithoutArticleInput[]
+    createMany?: SectionCreateManyArticleInputEnvelope
+    set?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    disconnect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    delete?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    update?: SectionUpdateWithWhereUniqueWithoutArticleInput | SectionUpdateWithWhereUniqueWithoutArticleInput[]
+    updateMany?: SectionUpdateManyWithWhereWithoutArticleInput | SectionUpdateManyWithWhereWithoutArticleInput[]
+    deleteMany?: SectionScalarWhereInput | SectionScalarWhereInput[]
   }
 
   export type UserFavoriteUncheckedUpdateManyWithoutArticleNestedInput = {
@@ -12872,18 +12872,18 @@ export namespace Prisma {
     deleteMany?: UserFavoriteScalarWhereInput | UserFavoriteScalarWhereInput[]
   }
 
-  export type ArticleCreateNestedOneWithoutProductsInput = {
-    create?: XOR<ArticleCreateWithoutProductsInput, ArticleUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: ArticleCreateOrConnectWithoutProductsInput
+  export type ArticleCreateNestedOneWithoutSectionsInput = {
+    create?: XOR<ArticleCreateWithoutSectionsInput, ArticleUncheckedCreateWithoutSectionsInput>
+    connectOrCreate?: ArticleCreateOrConnectWithoutSectionsInput
     connect?: ArticleWhereUniqueInput
   }
 
-  export type ArticleUpdateOneRequiredWithoutProductsNestedInput = {
-    create?: XOR<ArticleCreateWithoutProductsInput, ArticleUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: ArticleCreateOrConnectWithoutProductsInput
-    upsert?: ArticleUpsertWithoutProductsInput
+  export type ArticleUpdateOneRequiredWithoutSectionsNestedInput = {
+    create?: XOR<ArticleCreateWithoutSectionsInput, ArticleUncheckedCreateWithoutSectionsInput>
+    connectOrCreate?: ArticleCreateOrConnectWithoutSectionsInput
+    upsert?: ArticleUpsertWithoutSectionsInput
     connect?: ArticleWhereUniqueInput
-    update?: XOR<XOR<ArticleUpdateToOneWithWhereWithoutProductsInput, ArticleUpdateWithoutProductsInput>, ArticleUncheckedUpdateWithoutProductsInput>
+    update?: XOR<XOR<ArticleUpdateToOneWithWhereWithoutSectionsInput, ArticleUpdateWithoutSectionsInput>, ArticleUncheckedUpdateWithoutSectionsInput>
   }
 
   export type UserCreateNestedOneWithoutCommentsInput = {
@@ -13560,29 +13560,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProductCreateWithoutArticleInput = {
+  export type SectionCreateWithoutArticleInput = {
     id?: string
     name: string
     description: string
     image: string
-    link: string
+    link?: string | null
   }
 
-  export type ProductUncheckedCreateWithoutArticleInput = {
+  export type SectionUncheckedCreateWithoutArticleInput = {
     id?: string
     name: string
     description: string
     image: string
-    link: string
+    link?: string | null
   }
 
-  export type ProductCreateOrConnectWithoutArticleInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutArticleInput, ProductUncheckedCreateWithoutArticleInput>
+  export type SectionCreateOrConnectWithoutArticleInput = {
+    where: SectionWhereUniqueInput
+    create: XOR<SectionCreateWithoutArticleInput, SectionUncheckedCreateWithoutArticleInput>
   }
 
-  export type ProductCreateManyArticleInputEnvelope = {
-    data: ProductCreateManyArticleInput | ProductCreateManyArticleInput[]
+  export type SectionCreateManyArticleInputEnvelope = {
+    data: SectionCreateManyArticleInput | SectionCreateManyArticleInput[]
     skipDuplicates?: boolean
   }
 
@@ -13622,32 +13622,32 @@ export namespace Prisma {
     data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutArticleInput>
   }
 
-  export type ProductUpsertWithWhereUniqueWithoutArticleInput = {
-    where: ProductWhereUniqueInput
-    update: XOR<ProductUpdateWithoutArticleInput, ProductUncheckedUpdateWithoutArticleInput>
-    create: XOR<ProductCreateWithoutArticleInput, ProductUncheckedCreateWithoutArticleInput>
+  export type SectionUpsertWithWhereUniqueWithoutArticleInput = {
+    where: SectionWhereUniqueInput
+    update: XOR<SectionUpdateWithoutArticleInput, SectionUncheckedUpdateWithoutArticleInput>
+    create: XOR<SectionCreateWithoutArticleInput, SectionUncheckedCreateWithoutArticleInput>
   }
 
-  export type ProductUpdateWithWhereUniqueWithoutArticleInput = {
-    where: ProductWhereUniqueInput
-    data: XOR<ProductUpdateWithoutArticleInput, ProductUncheckedUpdateWithoutArticleInput>
+  export type SectionUpdateWithWhereUniqueWithoutArticleInput = {
+    where: SectionWhereUniqueInput
+    data: XOR<SectionUpdateWithoutArticleInput, SectionUncheckedUpdateWithoutArticleInput>
   }
 
-  export type ProductUpdateManyWithWhereWithoutArticleInput = {
-    where: ProductScalarWhereInput
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutArticleInput>
+  export type SectionUpdateManyWithWhereWithoutArticleInput = {
+    where: SectionScalarWhereInput
+    data: XOR<SectionUpdateManyMutationInput, SectionUncheckedUpdateManyWithoutArticleInput>
   }
 
-  export type ProductScalarWhereInput = {
-    AND?: ProductScalarWhereInput | ProductScalarWhereInput[]
-    OR?: ProductScalarWhereInput[]
-    NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
-    id?: StringFilter<"Product"> | string
-    name?: StringFilter<"Product"> | string
-    description?: StringFilter<"Product"> | string
-    image?: StringFilter<"Product"> | string
-    link?: StringFilter<"Product"> | string
-    articleId?: StringFilter<"Product"> | string
+  export type SectionScalarWhereInput = {
+    AND?: SectionScalarWhereInput | SectionScalarWhereInput[]
+    OR?: SectionScalarWhereInput[]
+    NOT?: SectionScalarWhereInput | SectionScalarWhereInput[]
+    id?: StringFilter<"Section"> | string
+    name?: StringFilter<"Section"> | string
+    description?: StringFilter<"Section"> | string
+    image?: StringFilter<"Section"> | string
+    link?: StringNullableFilter<"Section"> | string | null
+    articleId?: StringFilter<"Section"> | string
   }
 
   export type UserFavoriteUpsertWithWhereUniqueWithoutArticleInput = {
@@ -13666,11 +13666,11 @@ export namespace Prisma {
     data: XOR<UserFavoriteUpdateManyMutationInput, UserFavoriteUncheckedUpdateManyWithoutArticleInput>
   }
 
-  export type ArticleCreateWithoutProductsInput = {
+  export type ArticleCreateWithoutSectionsInput = {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -13682,11 +13682,11 @@ export namespace Prisma {
     favoriteByUsers?: UserFavoriteCreateNestedManyWithoutArticleInput
   }
 
-  export type ArticleUncheckedCreateWithoutProductsInput = {
+  export type ArticleUncheckedCreateWithoutSectionsInput = {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -13698,27 +13698,27 @@ export namespace Prisma {
     favoriteByUsers?: UserFavoriteUncheckedCreateNestedManyWithoutArticleInput
   }
 
-  export type ArticleCreateOrConnectWithoutProductsInput = {
+  export type ArticleCreateOrConnectWithoutSectionsInput = {
     where: ArticleWhereUniqueInput
-    create: XOR<ArticleCreateWithoutProductsInput, ArticleUncheckedCreateWithoutProductsInput>
+    create: XOR<ArticleCreateWithoutSectionsInput, ArticleUncheckedCreateWithoutSectionsInput>
   }
 
-  export type ArticleUpsertWithoutProductsInput = {
-    update: XOR<ArticleUpdateWithoutProductsInput, ArticleUncheckedUpdateWithoutProductsInput>
-    create: XOR<ArticleCreateWithoutProductsInput, ArticleUncheckedCreateWithoutProductsInput>
+  export type ArticleUpsertWithoutSectionsInput = {
+    update: XOR<ArticleUpdateWithoutSectionsInput, ArticleUncheckedUpdateWithoutSectionsInput>
+    create: XOR<ArticleCreateWithoutSectionsInput, ArticleUncheckedCreateWithoutSectionsInput>
     where?: ArticleWhereInput
   }
 
-  export type ArticleUpdateToOneWithWhereWithoutProductsInput = {
+  export type ArticleUpdateToOneWithWhereWithoutSectionsInput = {
     where?: ArticleWhereInput
-    data: XOR<ArticleUpdateWithoutProductsInput, ArticleUncheckedUpdateWithoutProductsInput>
+    data: XOR<ArticleUpdateWithoutSectionsInput, ArticleUncheckedUpdateWithoutSectionsInput>
   }
 
-  export type ArticleUpdateWithoutProductsInput = {
+  export type ArticleUpdateWithoutSectionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -13730,11 +13730,11 @@ export namespace Prisma {
     favoriteByUsers?: UserFavoriteUpdateManyWithoutArticleNestedInput
   }
 
-  export type ArticleUncheckedUpdateWithoutProductsInput = {
+  export type ArticleUncheckedUpdateWithoutSectionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -13789,7 +13789,7 @@ export namespace Prisma {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -13797,7 +13797,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
-    products?: ProductCreateNestedManyWithoutArticleInput
+    sections?: SectionCreateNestedManyWithoutArticleInput
     favoriteByUsers?: UserFavoriteCreateNestedManyWithoutArticleInput
   }
 
@@ -13805,7 +13805,7 @@ export namespace Prisma {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -13813,7 +13813,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
-    products?: ProductUncheckedCreateNestedManyWithoutArticleInput
+    sections?: SectionUncheckedCreateNestedManyWithoutArticleInput
     favoriteByUsers?: UserFavoriteUncheckedCreateNestedManyWithoutArticleInput
   }
 
@@ -13882,7 +13882,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -13890,7 +13890,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
-    products?: ProductUpdateManyWithoutArticleNestedInput
+    sections?: SectionUpdateManyWithoutArticleNestedInput
     favoriteByUsers?: UserFavoriteUpdateManyWithoutArticleNestedInput
   }
 
@@ -13898,7 +13898,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -13906,7 +13906,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
-    products?: ProductUncheckedUpdateManyWithoutArticleNestedInput
+    sections?: SectionUncheckedUpdateManyWithoutArticleNestedInput
     favoriteByUsers?: UserFavoriteUncheckedUpdateManyWithoutArticleNestedInput
   }
 
@@ -13953,7 +13953,7 @@ export namespace Prisma {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -13962,14 +13962,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     category: string
     comments?: CommentCreateNestedManyWithoutArticleInput
-    products?: ProductCreateNestedManyWithoutArticleInput
+    sections?: SectionCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleUncheckedCreateWithoutFavoriteByUsersInput = {
     id?: string
     slug: string
     title: string
-    excerpt?: string | null
+    excerpt: string
     description: string
     heroImage: string
     readTime: number
@@ -13978,7 +13978,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     category: string
     comments?: CommentUncheckedCreateNestedManyWithoutArticleInput
-    products?: ProductUncheckedCreateNestedManyWithoutArticleInput
+    sections?: SectionUncheckedCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleCreateOrConnectWithoutFavoriteByUsersInput = {
@@ -14046,7 +14046,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -14055,14 +14055,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
     comments?: CommentUpdateManyWithoutArticleNestedInput
-    products?: ProductUpdateManyWithoutArticleNestedInput
+    sections?: SectionUpdateManyWithoutArticleNestedInput
   }
 
   export type ArticleUncheckedUpdateWithoutFavoriteByUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
@@ -14071,7 +14071,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
     comments?: CommentUncheckedUpdateManyWithoutArticleNestedInput
-    products?: ProductUncheckedUpdateManyWithoutArticleNestedInput
+    sections?: SectionUncheckedUpdateManyWithoutArticleNestedInput
   }
 
   export type UserFavoriteCreateManyUserInput = {
@@ -14238,12 +14238,12 @@ export namespace Prisma {
     userId: string
   }
 
-  export type ProductCreateManyArticleInput = {
+  export type SectionCreateManyArticleInput = {
     id?: string
     name: string
     description: string
     image: string
-    link: string
+    link?: string | null
   }
 
   export type UserFavoriteCreateManyArticleInput = {
@@ -14275,28 +14275,28 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductUpdateWithoutArticleInput = {
+  export type SectionUpdateWithoutArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
+    link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ProductUncheckedUpdateWithoutArticleInput = {
+  export type SectionUncheckedUpdateWithoutArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
+    link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ProductUncheckedUpdateManyWithoutArticleInput = {
+  export type SectionUncheckedUpdateManyWithoutArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
+    link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserFavoriteUpdateWithoutArticleInput = {
