@@ -1,20 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { getArticles } from '@/lib/data/articles';
+import { getArticleBySlug } from '@/lib/data/articles';
+import { notFound } from 'next/navigation';
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-	const articles = await getArticles();
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
-	const article = articles.find(article => resolvedParams.slug === article.slug);
+	const article = await getArticleBySlug(resolvedParams.slug);
+
+	if (!article) {
+		notFound();
+	}
 
 	return (
 		<article className='min-h-screen bg-white'>
 			{/* Hero Section */}
 			<div className='relative h-[60vh] min-h-[500px] w-full'>
 				<Image
-					src={article!.heroImage}
-					alt={article!.title}
+					src={article.heroImage}
+					alt={article.title}
 					fill
 					className='object-cover'
 					priority
@@ -23,15 +27,15 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 				<div className='absolute inset-0 flex items-center justify-center'>
 					<div className='container mx-auto px-4 md:px-6 text-center'>
 						<span className='inline-block bg-white px-4 py-2 mb-4 text-sm font-medium text-black uppercase tracking-wider'>
-							{article!.category}
+							{article.category}
 						</span>
 						<h1 className='text-3xl md:text-5xl font-serif font-bold text-white max-w-4xl mx-auto leading-tight'>
-							{article!.title}
+							{article.title}
 						</h1>
 						<div className='mt-6 text-white/90'>
-							<span>{article!.createdAt.toLocaleDateString('fr-FR')}</span>
+							<span>{article.createdAt.toLocaleDateString('fr-FR')}</span>
 							<span className='mx-3'>•</span>
-							<span>{article!.readTime} min de lecture</span>
+							<span>{article.readTime} min de lecture</span>
 						</div>
 					</div>
 				</div>
@@ -40,7 +44,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 			{/* Products Section */}
 			<div className='container mx-auto px-4 md:px-6 py-16'>
 				<div className='max-w-3xl mx-auto'>
-					{article!.sections.map((section, index) => (
+					{article.sections.map((section, index) => (
 						<div
 							key={section.id}
 							className='mb-16'>

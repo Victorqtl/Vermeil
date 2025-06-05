@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-export default function NotFound() {
+export default function Unauthorized() {
 	return (
 		<div className='flex flex-col justify-between min-h-screen'>
 			<Header darkMode={true} />

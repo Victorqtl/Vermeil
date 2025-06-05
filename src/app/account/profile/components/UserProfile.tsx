@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { z } from 'zod';
+import { updateProfileSchema, UserProfileFormValues } from '@/lib/schemas/updateProfile.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfile } from '../actions/updateProfile.action';
 import { useAction } from 'next-safe-action/hooks';
@@ -24,18 +24,6 @@ interface UserProfileProps {
 	};
 }
 
-export const formSchema = z.object({
-	name: z
-		.string()
-		.min(1, 'Le nom est requis')
-		.max(30, 'Le nom ne doit pas dépasser 30 caractères')
-		.regex(/^[a-zA-ZÀ-ÿ\s\-']+$/, 'Le nom contient des caractères non autorisés')
-		.trim(),
-	email: z.string().email('Adresse e-mail invalide').toLowerCase().trim(),
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
 export default function UserProfile({ initialSavedArticles, user }: UserProfileProps) {
 	const { executeAsync, hasErrored, result, isExecuting } = useAction(updateProfile);
 
@@ -45,8 +33,8 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 		register,
 		handleSubmit,
 		formState: { errors, isDirty, isValid },
-	} = useForm<FormValues>({
-		resolver: zodResolver(formSchema),
+	} = useForm<UserProfileFormValues>({
+		resolver: zodResolver(updateProfileSchema),
 		defaultValues: {
 			name: user.name,
 			email: user.email,
@@ -54,7 +42,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 		mode: 'onChange',
 	});
 
-	const onSubmit: SubmitHandler<FormValues> = async data => {
+	const onSubmit: SubmitHandler<UserProfileFormValues> = async data => {
 		try {
 			await executeAsync(data);
 		} catch (error) {

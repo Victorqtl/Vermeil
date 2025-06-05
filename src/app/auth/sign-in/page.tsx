@@ -20,7 +20,7 @@ const signInSchema = z.object({
 
 type SignInFormValues = z.infer<typeof signInSchema>;
 
-export default function SignInPage() {
+function SignInPage() {
 	const [loading, setLoading] = useState(false);
 	const [loadingGoogle, setLoadingGoogle] = useState(false);
 	const [apiError, setApiError] = useState('');
@@ -220,3 +220,5 @@ export default function SignInPage() {
 		</div>
 	);
 }
+
+export default SignInPage;

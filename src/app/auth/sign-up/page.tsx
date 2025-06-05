@@ -60,7 +60,7 @@ const formSchema = z
 
 type SignUpFormValues = z.infer<typeof formSchema>;
 
-export default function SignUpPage() {
+function SignUpPage() {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [apiError, setApiError] = useState('');
@@ -226,3 +226,5 @@ export default function SignUpPage() {
 		</div>
 	);
 }
+
+export default SignUpPage;

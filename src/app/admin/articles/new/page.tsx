@@ -37,9 +37,9 @@ export default function NewArticlePage() {
 			.trim()
 			.normalize('NFD')
 			.replace(/[\u0300-\u036f]/g, '')
-			.replace(/[\s\-_]+/g, '-')
-			.replace(/[^\w\-]+/g, '')
-			.replace(/\-\-+/g, '-')
+			.replace(/[\s_-]+/g, '-')
+			.replace(/[^\w-]+/g, '')
+			.replace(/--+/g, '-')
 			.replace(/^-+/, '')
 			.replace(/-+$/, '');
 	};
