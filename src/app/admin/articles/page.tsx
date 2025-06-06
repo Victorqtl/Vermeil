@@ -15,7 +15,7 @@ export default async function ArticlesListPage() {
 	};
 
 	return (
-		<div className='max-w-6xl mx-auto p-6'>
+		<div className='max-w-6xl mx-auto p-6 overflow-x-auto'>
 			<div className='flex items-center justify-between mb-6'>
 				<h1 className='text-3xl font-bold'>Articles</h1>
 				<Link
@@ -54,7 +54,7 @@ export default async function ArticlesListPage() {
 					<p className='text-gray-500'>Commencez à écrire des articles pour les retrouver ici.</p>
 				</div>
 			) : (
-				<div className='bg-white border border-gray-200 overflow-hidden'>
+				<div className='bg-white border border-gray-200 overflow-x-auto'>
 					<table className='min-w-full divide-y divide-gray-200'>
 						<thead className='bg-gray-50'>
 							<tr>

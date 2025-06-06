@@ -5,10 +5,11 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAction } from 'next-safe-action/hooks';
 import { updateArticle } from '../actions/updateArticle.action';
+import { deleteArticle } from '../actions/deleteArticle.action';
 import { updateArticleSchema, type UpdateArticleFormValues } from '@/lib/schemas/article.schema';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import { ArrowLeft, Loader2, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import EditArticleSection from './EditArticleSection';
 
@@ -34,6 +35,12 @@ interface EditArticlePageProps {
 
 export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 	const { executeAsync, hasErrored, result, isExecuting } = useAction(updateArticle);
+	const {
+		executeAsync: executeDeleteAsync,
+		hasErrored: hasDeleteErrored,
+		result: deleteResult,
+		isExecuting: isDeleting,
+	} = useAction(deleteArticle);
 
 	const {
 		register,
@@ -90,6 +97,20 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 		}
 	};
 
+	const handleDeleteArticle = async () => {
+		const isConfirmed = window.confirm(
+			'Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.'
+		);
+
+		if (isConfirmed) {
+			try {
+				await executeDeleteAsync({ id: initialData.id });
+			} catch (error) {
+				console.error('Erreur lors de la suppression:', error);
+			}
+		}
+	};
+
 	return (
 		<div className='max-w-4xl mx-auto p-6'>
 			<div className='flex items-center justify-between mb-6'>
@@ -111,7 +132,26 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 					type='hidden'
 					{...register('id')}
 				/>
-				<h2 className='text-2xl font-bold'>Informations de base</h2>
+				<div className='flex items-center justify-between'>
+					<h2 className='text-2xl font-bold'>Informations de base</h2>
+					<div className='flex items-center gap-4'>
+						<Button
+							type='button'
+							onClick={handleDeleteArticle}
+							disabled={isDeleting || isExecuting}
+							className='flex items-center'>
+							{isDeleting ? (
+								<>
+									<Loader2 className='animate-spin' />
+								</>
+							) : (
+								<>
+									<Trash2 />
+								</>
+							)}
+						</Button>
+					</div>
+				</div>
 				<div>
 					<Label htmlFor='title'>Titre *</Label>
 					<Input
@@ -232,6 +272,7 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 
 				<div className='flex items-center justify-between'>
 					{hasErrored && <p className='text-red-500'>{result.serverError}</p>}
+					{hasDeleteErrored && <p className='text-red-500'>{deleteResult.serverError}</p>}
 					<Button
 						type='submit'
 						className='ml-auto w-36 h-12'
