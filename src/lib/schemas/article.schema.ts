@@ -62,4 +62,9 @@ export const createArticleSchema = z.object({
 		.min(1, 'Au moins une section est requise'),
 });
 
+export const updateArticleSchema = createArticleSchema.extend({
+	id: z.string().min(1, "L'ID de l'article est requis"),
+});
+
 export type ArticleFormValues = z.infer<typeof createArticleSchema>;
+export type UpdateArticleFormValues = z.infer<typeof updateArticleSchema>;

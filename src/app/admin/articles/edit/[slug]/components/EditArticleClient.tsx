@@ -4,16 +4,36 @@ import Link from 'next/link';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAction } from 'next-safe-action/hooks';
-import { createArticle } from './actions/createArticle.action';
-import { createArticleSchema, type ArticleFormValues } from '@/lib/schemas/article.schema';
+import { updateArticle } from '../actions/updateArticle.action';
+import { updateArticleSchema, type UpdateArticleFormValues } from '@/lib/schemas/article.schema';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import AddArticleSection from './ components/AddArticleSection';
+import EditArticleSection from './EditArticleSection';
 
-export default function NewArticle() {
-	const { executeAsync, hasErrored, result, isExecuting } = useAction(createArticle);
+interface EditArticlePageProps {
+	initialData: {
+		id: string;
+		title: string;
+		slug: string;
+		excerpt: string;
+		description: string;
+		heroImage: string;
+		readTime: number;
+		featured: boolean;
+		category: string;
+		sections: Array<{
+			name: string;
+			description: string;
+			image: string;
+			link: string | null;
+		}>;
+	};
+}
+
+export default function EditArticlePage({ initialData }: EditArticlePageProps) {
+	const { executeAsync, hasErrored, result, isExecuting } = useAction(updateArticle);
 
 	const {
 		register,
@@ -21,12 +41,24 @@ export default function NewArticle() {
 		setValue,
 		control,
 		formState: { errors, isDirty, isValid },
-	} = useForm<ArticleFormValues>({
-		resolver: zodResolver(createArticleSchema),
+	} = useForm<UpdateArticleFormValues>({
+		resolver: zodResolver(updateArticleSchema),
 		defaultValues: {
-			readTime: 5,
-			featured: false,
-			sections: [],
+			id: initialData.id,
+			title: initialData.title,
+			slug: initialData.slug,
+			excerpt: initialData.excerpt,
+			description: initialData.description,
+			heroImage: initialData.heroImage,
+			readTime: initialData.readTime,
+			featured: initialData.featured,
+			category: initialData.category,
+			sections: initialData.sections.map(section => ({
+				name: section.name,
+				description: section.description,
+				image: section.image,
+				link: section.link || '',
+			})),
 		},
 		mode: 'onChange',
 	});
@@ -50,7 +82,7 @@ export default function NewArticle() {
 		setValue('slug', newSlug, { shouldValidate: true });
 	};
 
-	const onSubmit: SubmitHandler<ArticleFormValues> = async data => {
+	const onSubmit: SubmitHandler<UpdateArticleFormValues> = async data => {
 		try {
 			await executeAsync(data);
 		} catch (error) {
@@ -61,7 +93,7 @@ export default function NewArticle() {
 	return (
 		<div className='max-w-4xl mx-auto p-6'>
 			<div className='flex items-center justify-between mb-6'>
-				<h1 className='text-4xl font-bold'>Nouvel article</h1>
+				<h1 className='text-4xl font-bold'>Modifier l'article</h1>
 				<Link
 					href='/admin/articles'
 					className='inline-flex items-center bg-white text-gray-900 px-6 py-3 border border-gray-200 font-medium hover:bg-gray-100 transition-colors group'>
@@ -75,6 +107,10 @@ export default function NewArticle() {
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='space-y-6 bg-white p-6 border border-gray-200'>
+				<input
+					type='hidden'
+					{...register('id')}
+				/>
 				<h2 className='text-2xl font-bold'>Informations de base</h2>
 				<div>
 					<Label htmlFor='title'>Titre *</Label>
@@ -188,7 +224,7 @@ export default function NewArticle() {
 
 				<div className='h-px w-11/12 mt-10 mx-auto bg-gray-200'></div>
 
-				<AddArticleSection
+				<EditArticleSection
 					register={register}
 					errors={errors}
 					control={control}
@@ -205,7 +241,7 @@ export default function NewArticle() {
 								<Loader2 className='animate-spin mr-2 h-4 w-4' />
 							</>
 						) : (
-							'Sauvegarder'
+							'Mettre à jour'
 						)}
 					</Button>
 				</div>

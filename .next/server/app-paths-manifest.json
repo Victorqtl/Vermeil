@@ -1,12 +1,12 @@
 {
+  "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/account/profile/page": "app/account/profile/page.js",
   "/(main)/article/[slug]/page": "app/(main)/article/[slug]/page.js",
-  "/(main)/page": "app/(main)/page.js",
-  "/admin/articles/page": "app/admin/articles/page.js",
+  "/account/profile/page": "app/account/profile/page.js",
   "/admin/articles/edit/[slug]/page": "app/admin/articles/edit/[slug]/page.js",
   "/admin/articles/new/page": "app/admin/articles/new/page.js",
+  "/admin/articles/page": "app/admin/articles/page.js",
+  "/(main)/page": "app/(main)/page.js",
   "/auth/sign-in/page": "app/auth/sign-in/page.js",
-  "/auth/sign-up/page": "app/auth/sign-up/page.js",
-  "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js"
+  "/auth/sign-up/page": "app/auth/sign-up/page.js"
 }
