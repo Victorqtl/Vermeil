@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  provider      = "prisma-client-js"
+  output        = "../src/generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -80,7 +81,7 @@ model Article {
   id              String         @id @default(cuid())
   slug            String         @unique
   title           String
-  excerpt         String?
+  excerpt         String
   description     String
   heroImage       String
   readTime        Int
@@ -89,22 +90,22 @@ model Article {
   updatedAt       DateTime       @updatedAt
   category        String
   comments        Comment[]
-  products        Product[]
+  sections        Section[]
   favoriteByUsers UserFavorite[]
 
   @@map("article")
 }
 
-model Product {
+model Section {
   id          String  @id @default(cuid())
   name        String
   description String
   image       String
-  link        String
-  article     Article @relation(fields: [articleId], references: [id])
+  link        String?
+  article     Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
   articleId   String
 
-  @@map("product")
+  @@map("section")
 }
 
 model Comment {

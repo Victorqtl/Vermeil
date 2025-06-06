@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.9.0
- * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
+ * Prisma Client JS version: 6.7.0
+ * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
  */
 Prisma.prismaVersion = {
-  client: "6.9.0",
-  engine: "81e4af48011447c3cc503a190e86995b66d2a28e"
+  client: "6.7.0",
+  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -229,6 +229,10 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -240,12 +244,13 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
-  "clientVersion": "6.9.0",
-  "engineVersion": "81e4af48011447c3cc503a190e86995b66d2a28e",
+  "clientVersion": "6.7.0",
+  "engineVersion": "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -254,8 +259,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String         @id @default(cuid())\n  email            String         @unique\n  name             String\n  emailVerified    Boolean\n  favoriteArticles UserFavorite[]\n  image            String?\n  comments         Comment[]\n  sessions         Session[]\n  accounts         Account[]\n  createdAt        DateTime\n  updatedAt        DateTime\n\n  role       String?\n  banned     Boolean?\n  banReason  String?\n  banExpires DateTime?\n\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id\n  expiresAt DateTime\n  token     String\n  createdAt DateTime\n  updatedAt DateTime\n  ipAddress String?\n  userAgent String?\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  impersonatedBy String?\n\n  @@unique([token])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id\n  accountId             String\n  providerId            String\n  userId                String\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  accessToken           String?\n  refreshToken          String?\n  idToken               String?\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String?\n  password              String?\n  createdAt             DateTime\n  updatedAt             DateTime\n\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String    @id\n  identifier String\n  value      String\n  expiresAt  DateTime\n  createdAt  DateTime?\n  updatedAt  DateTime?\n\n  @@map(\"verification\")\n}\n\nmodel Article {\n  id              String         @id @default(cuid())\n  slug            String         @unique\n  title           String\n  excerpt         String\n  description     String\n  heroImage       String\n  readTime        Int\n  featured        Boolean        @default(false)\n  createdAt       DateTime       @default(now())\n  updatedAt       DateTime       @updatedAt\n  category        String\n  comments        Comment[]\n  sections        Section[]\n  favoriteByUsers UserFavorite[]\n\n  @@map(\"article\")\n}\n\nmodel Section {\n  id          String  @id @default(cuid())\n  name        String\n  description String\n  image       String\n  link        String?\n  article     Article @relation(fields: [articleId], references: [id], onDelete: Cascade)\n  articleId   String\n\n  @@map(\"section\")\n}\n\nmodel Comment {\n  id        String   @id @default(cuid())\n  text      String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  user      User     @relation(fields: [userId], references: [id])\n  userId    String\n  article   Article  @relation(fields: [articleId], references: [id])\n  articleId String\n\n  @@map(\"comment\")\n}\n\nmodel UserFavorite {\n  id        String  @id @default(cuid())\n  user      User    @relation(fields: [userId], references: [id])\n  userId    String\n  article   Article @relation(fields: [articleId], references: [id])\n  articleId String\n\n  @@unique([userId, articleId])\n  @@map(\"user_favorite\")\n}\n",
-  "inlineSchemaHash": "65c6b9f81d645e6be37a1bd05d5d35c139b5d35698239e76b82dc5b31585f155",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String         @id @default(cuid())\n  email            String         @unique\n  name             String\n  emailVerified    Boolean\n  favoriteArticles UserFavorite[]\n  image            String?\n  comments         Comment[]\n  sessions         Session[]\n  accounts         Account[]\n  createdAt        DateTime\n  updatedAt        DateTime\n\n  role       String?\n  banned     Boolean?\n  banReason  String?\n  banExpires DateTime?\n\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id\n  expiresAt DateTime\n  token     String\n  createdAt DateTime\n  updatedAt DateTime\n  ipAddress String?\n  userAgent String?\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  impersonatedBy String?\n\n  @@unique([token])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id\n  accountId             String\n  providerId            String\n  userId                String\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  accessToken           String?\n  refreshToken          String?\n  idToken               String?\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String?\n  password              String?\n  createdAt             DateTime\n  updatedAt             DateTime\n\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String    @id\n  identifier String\n  value      String\n  expiresAt  DateTime\n  createdAt  DateTime?\n  updatedAt  DateTime?\n\n  @@map(\"verification\")\n}\n\nmodel Article {\n  id              String         @id @default(cuid())\n  slug            String         @unique\n  title           String\n  excerpt         String\n  description     String\n  heroImage       String\n  readTime        Int\n  featured        Boolean        @default(false)\n  createdAt       DateTime       @default(now())\n  updatedAt       DateTime       @updatedAt\n  category        String\n  comments        Comment[]\n  sections        Section[]\n  favoriteByUsers UserFavorite[]\n\n  @@map(\"article\")\n}\n\nmodel Section {\n  id          String  @id @default(cuid())\n  name        String\n  description String\n  image       String\n  link        String?\n  article     Article @relation(fields: [articleId], references: [id], onDelete: Cascade)\n  articleId   String\n\n  @@map(\"section\")\n}\n\nmodel Comment {\n  id        String   @id @default(cuid())\n  text      String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  user      User     @relation(fields: [userId], references: [id])\n  userId    String\n  article   Article  @relation(fields: [articleId], references: [id])\n  articleId String\n\n  @@map(\"comment\")\n}\n\nmodel UserFavorite {\n  id        String  @id @default(cuid())\n  user      User    @relation(fields: [userId], references: [id])\n  userId    String\n  article   Article @relation(fields: [articleId], references: [id])\n  articleId String\n\n  @@unique([userId, articleId])\n  @@map(\"user_favorite\")\n}\n",
+  "inlineSchemaHash": "82ce3958b6aa6070e54a304adb5086061a5c186245dc7f20ba8f42c13f40c860",
   "copyEngine": true
 }
 config.dirname = '/'
