@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 		'Vermeil propose aux hommes des conseils raffinés en mode, soins, lifestyle et culture. Articles experts pour cultiver un art de vivre exigeant.',
 };
 
-export async function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='fr'>
 			<body className={`flex flex-col min-h-screen font-sans text-gray-900 ${inter.className}`}>{children}</body>
