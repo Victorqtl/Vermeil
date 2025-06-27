@@ -6,7 +6,7 @@ import { FileWithPreview, useFileUpload } from '@/hooks/use-file-upload';
 import { User } from 'better-auth';
 import { uploadAvatar } from '../../actions/uploadAvatar.action';
 import { useAction } from 'next-safe-action/hooks';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 const ALLOWED_MIME_TYPES = ['image/png'];
