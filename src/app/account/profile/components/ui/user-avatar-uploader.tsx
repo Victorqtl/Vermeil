@@ -1,12 +1,12 @@
 'use client';
 
-import { CircleUserRoundIcon, Camera } from 'lucide-react';
+import { CircleUserRoundIcon, Camera, Loader2 } from 'lucide-react';
 
 import { FileWithPreview, useFileUpload } from '@/hooks/use-file-upload';
 import { User } from 'better-auth';
 import { uploadAvatar } from '../../actions/uploadAvatar.action';
 import { useAction } from 'next-safe-action/hooks';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 const ALLOWED_MIME_TYPES = ['image/png'];
@@ -14,6 +14,7 @@ const ALLOWED_MIME_TYPES = ['image/png'];
 export function UserAvatarUploader(props: { user: User }) {
 	const { executeAsync, hasErrored, result, isExecuting } = useAction(uploadAvatar);
 	const [clientError, setClientError] = useState<string | null>(null);
+	const [currentImageUrl, setCurrentImageUrl] = useState<string | null>(props.user.image ?? null);
 
 	const uploadFile = async (files: FileWithPreview[]) => {
 		const file = files[0];
@@ -37,7 +38,12 @@ export function UserAvatarUploader(props: { user: User }) {
 
 		const formData = new FormData();
 		formData.set('file', file.file as File);
-		await executeAsync(formData);
+		const response = await executeAsync(formData);
+
+		// Mettre à jour l'URL locale si l'upload réussit
+		if (response?.data?.url) {
+			setCurrentImageUrl(response.data.url);
+		}
 	};
 
 	const [
@@ -45,12 +51,12 @@ export function UserAvatarUploader(props: { user: User }) {
 		{ openFileDialog, getInputProps, handleDragEnter, handleDragLeave, handleDragOver, handleDrop },
 	] = useFileUpload({
 		accept: 'image/*',
-		initialFiles: props.user.image
+		initialFiles: currentImageUrl
 			? [
 					{
 						name: 'profile.png',
 						type: 'image/png',
-						url: props.user.image ?? '',
+						url: currentImageUrl,
 						id: props.user.id ?? '',
 						size: 128,
 					},
@@ -59,7 +65,7 @@ export function UserAvatarUploader(props: { user: User }) {
 		onFilesAdded: uploadFile,
 	});
 
-	const previewUrl = files[0]?.preview;
+	const previewUrl = files[0]?.preview || currentImageUrl;
 
 	return (
 		<div className='flex flex-col'>
@@ -94,8 +100,18 @@ export function UserAvatarUploader(props: { user: User }) {
 								/>
 							</div>
 						)}
-						<div className='absolute inset-0 bg-black/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center z-10'>
-							<Camera className='w-8 h-8 text-white' />
+
+						<div
+							className={`absolute inset-0 bg-black/30 rounded-full transition-opacity duration-200 flex items-center justify-center z-10 ${
+								isExecuting ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+							}`}>
+							{isExecuting ? (
+								<Loader2 className='w-8 h-8 text-white animate-spin' />
+							) : (
+								<div className='opacity-0 group-hover:opacity-100 transition-opacity duration-200'>
+									<Camera className='w-8 h-8 text-white' />
+								</div>
+							)}
 						</div>
 					</button>
 					<input

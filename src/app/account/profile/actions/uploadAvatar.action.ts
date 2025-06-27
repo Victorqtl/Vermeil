@@ -3,6 +3,7 @@
 import { prisma } from '@/lib/prisma';
 import { uploadFileToS3 } from '@/utils/s3-utils';
 import { authActionClient, SafeError } from '@/lib/safe-actions';
+import { revalidatePath } from 'next/cache';
 import { zfd } from 'zod-form-data';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
@@ -29,6 +30,8 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 				image: DEFAULT_AVATAR_URL,
 			},
 		});
+
+		revalidatePath('/account/profile');
 		return {
 			url: DEFAULT_AVATAR_URL,
 		};
@@ -72,6 +75,7 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 			},
 		});
 
+		revalidatePath('/account/profile');
 		return {
 			url: fileUrl,
 		};

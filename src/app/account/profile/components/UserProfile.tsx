@@ -109,7 +109,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 								</p>
 							)}
 						</div>
-
+						{/* 
 						<div className='inline-flex flex-col gap-1'>
 							<Label htmlFor='password'>Mot de passe</Label>
 							<Link
@@ -117,7 +117,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 								className='text-sm font-medium underline'>
 								Changer de mot de passe
 							</Link>
-						</div>
+						</div> */}
 
 						<div className='flex items-center justify-between w-full pt-4'>
 							{hasErrored && <p className='text-red-500 text-sm'>{result.serverError}</p>}
