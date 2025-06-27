@@ -9,7 +9,7 @@ import { useAction } from 'next-safe-action/hooks';
 import { useState } from 'react';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
-const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const ALLOWED_MIME_TYPES = ['image/png'];
 
 export function UserAvatarUploader(props: { user: User }) {
 	const { executeAsync, hasErrored, result, isExecuting } = useAction(uploadAvatar);
@@ -26,7 +26,7 @@ export function UserAvatarUploader(props: { user: User }) {
 		}
 
 		if (!ALLOWED_MIME_TYPES.includes(file.file.type)) {
-			setClientError('Type de fichier non autorisé.');
+			setClientError('Votre image doit être au format PNG.');
 			return;
 		}
 

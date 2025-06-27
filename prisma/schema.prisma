@@ -100,7 +100,7 @@ model Section {
   id          String  @id @default(cuid())
   name        String
   description String
-  image       String
+  image       String?
   link        String?
   article     Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
   articleId   String

@@ -6,7 +6,7 @@ import { authActionClient, SafeError } from '@/lib/safe-actions';
 import { zfd } from 'zod-form-data';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
-const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const ALLOWED_MIME_TYPES = ['image/png'];
 
 const DEFAULT_AVATAR_URL =
 	'https://media.istockphoto.com/id/1194657244/vector/business-man-icon-male-face-silhouette-with-office-suit-and-tie-user-avatar-profile-vector.jpg?s=612x612&w=0&k=20&c=D-8JhQ1SF0ju-3QPAEsnXzutbaJtWicunTGMCmFLFmg=';
@@ -45,7 +45,7 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 	}
 
 	if (!ALLOWED_MIME_TYPES.includes(file.type)) {
-		throw new SafeError('Type de fichier non autorisé. Formats acceptés : JPEG, PNG, WebP');
+		throw new SafeError('Votre image doit être au format PNG.');
 	}
 
 	if (!/^[a-zA-Z0-9._\s-]+$/.test(file.name)) {

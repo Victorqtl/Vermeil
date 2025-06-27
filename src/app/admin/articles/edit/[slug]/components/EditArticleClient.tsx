@@ -27,7 +27,7 @@ interface EditArticlePageProps {
 		sections: Array<{
 			name: string;
 			description: string;
-			image: string;
+			image: string | null;
 			link: string | null;
 		}>;
 	};
@@ -63,7 +63,7 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 			sections: initialData.sections.map(section => ({
 				name: section.name,
 				description: section.description,
-				image: section.image,
+				image: section.image || '',
 				link: section.link || '',
 			})),
 		},

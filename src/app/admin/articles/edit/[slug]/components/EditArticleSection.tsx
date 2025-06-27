@@ -63,7 +63,7 @@ export default function EditArticleSection({
 						)}
 					</div>
 					<div>
-						<Label htmlFor={`sections.${index}.image`}>URL de l'image *</Label>
+						<Label htmlFor={`sections.${index}.image`}>URL de l'image</Label>
 						<Input
 							type='url'
 							id={`sections.${index}.image`}

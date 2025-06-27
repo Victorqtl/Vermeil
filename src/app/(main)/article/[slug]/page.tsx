@@ -44,33 +44,63 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 			{/* Products Section */}
 			<div className='container mx-auto px-4 md:px-6 py-16'>
 				<div className='max-w-3xl mx-auto'>
-					{article.sections.map((section, index) => (
+					<div className='text-gray-900 md:text-lg leading-relaxed mb-6'>
+						{article.description.split('\n').map((paragraph, index) => (
+							<p
+								key={index}
+								className={index > 0 ? 'mt-4' : ''}>
+								{paragraph}
+							</p>
+						))}
+					</div>
+					{article.sections.map(section => (
 						<div
 							key={section.id}
-							className='mb-16'>
-							<Link
-								href={`${section.link}`}
-								className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
-								<Image
-									src={section.image}
-									alt={section.name}
-									fill
-									className='object-cover transition-transform duration-500 group-hover:scale-105'
-								/>
-							</Link>
-							<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>
-								{`${index + 1}. ${section.name}`}
-							</h2>
-							<p className='text-gray-600 leading-relaxed mb-6'>{section.description}</p>
-							<Link
-								href={`${section.link}`}
-								className='inline-flex items-center bg-black text-white px-6 py-3 font-medium hover:bg-gray-900 transition-colors group'>
-								Voir le produit
-								<ArrowRight
-									size={18}
-									className='ml-2 transition-transform group-hover:translate-x-1'
-								/>
-							</Link>
+							className='mt-16'>
+							<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>{`${section.name}`}</h2>
+							<div className='text-gray-900 md:text-lg leading-relaxed mb-6'>
+								{section.description.split('\n').map((paragraph, index) => (
+									<p
+										key={index}
+										className={index > 0 ? 'mt-4' : ''}>
+										{paragraph}
+									</p>
+								))}
+							</div>
+							{section.image && section.link ? (
+								<Link
+									href={section.link}
+									className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
+									<Image
+										src={section.image}
+										alt={section.name}
+										fill
+										className='object-cover transition-transform duration-500 group-hover:scale-105'
+									/>
+								</Link>
+							) : (
+								section.image && (
+									<div className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
+										<Image
+											src={section.image}
+											alt={section.name}
+											fill
+											className='object-cover'
+										/>
+									</div>
+								)
+							)}
+							{section.link && (
+								<Link
+									href={section.link}
+									className='inline-flex items-center bg-black text-white px-6 py-3 font-medium hover:bg-gray-900 transition-colors group'>
+									Voir le produit
+									<ArrowRight
+										size={18}
+										className='ml-2 transition-transform group-hover:translate-x-1'
+									/>
+								</Link>
+							)}
 						</div>
 					))}
 				</div>
@@ -97,7 +127,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 								<span className='inline-block text-sm font-medium uppercase tracking-wider text-gray-500 mb-2'>
 									{article.category}
 								</span>
-								<h3 className='text-xl font-serif font-medium group-hover:text-gray-600 transition-colors'>
+								<h3 className='text-xl font-serif font-medium group-hover:text-gray-900 transition-colors'>
 									{article.title}
 								</h3>
 							</Link>

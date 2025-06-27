@@ -48,7 +48,14 @@ export const createArticleSchema = z.object({
 			z.object({
 				name: z.string().trim().min(1, 'Le nom de la section est requis'),
 				description: z.string().trim().min(1, 'La description de la section est requise'),
-				image: z.string().trim().url("L'URL de l'image doit être une URL valide"),
+				image: z
+					.string()
+					.trim()
+					.refine(
+						val => !val || z.string().url().safeParse(val).success,
+						"L'URL de l'image doit être une URL valide"
+					)
+					.optional(),
 				link: z
 					.string()
 					.trim()

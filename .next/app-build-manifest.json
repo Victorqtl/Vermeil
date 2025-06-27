@@ -26,10 +26,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/articles/page.js"
     ],
-    "/admin/articles/edit/[slug]/page": [
+    "/admin/articles/new/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/articles/edit/[slug]/page.js"
+      "static/chunks/app/admin/articles/new/page.js"
     ],
     "/(main)/layout": [
       "static/chunks/webpack.js",
@@ -55,6 +55,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+    ],
+    "/admin/articles/edit/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/articles/edit/[slug]/page.js"
+    ],
+    "/(main)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(main)/page.js"
     ]
   }
 }

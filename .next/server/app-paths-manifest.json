@@ -1,4 +1,7 @@
 {
-  "/admin/articles/page": "app/admin/articles/page.js",
-  "/admin/articles/edit/[slug]/page": "app/admin/articles/edit/[slug]/page.js"
+  "/(main)/article/[slug]/page": "app/(main)/article/[slug]/page.js",
+  "/admin/articles/new/page": "app/admin/articles/new/page.js",
+  "/admin/articles/edit/[slug]/page": "app/admin/articles/edit/[slug]/page.js",
+  "/(main)/page": "app/(main)/page.js",
+  "/admin/articles/page": "app/admin/articles/page.js"
 }

@@ -35,9 +35,10 @@ export default async function FeaturedArticles() {
 										<span className='inline-block bg-white px-3 py-1 mb-3 text-xs font-medium text-black uppercase tracking-wider'>
 											{article.category}
 										</span>
-										<h3 className='text-xl md:text-2xl lg:text-xl xl:text-2xl font-serif font-bold text-white mb-2'>
+										<h3 className='text-xl md:text-2xl lg:text-xl xl:text-3xl font-serif font-bold text-white mb-2'>
 											{article.title}
 										</h3>
+										<p className='text-white md:text-lg leading-relaxed mb-6'>{article.excerpt}</p>
 										<div className='flex items-center text-white/80 text-sm'>
 											<span>{article.createdAt.toLocaleDateString()}</span>
 											<span className='mx-2'>•</span>

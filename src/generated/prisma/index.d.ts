@@ -316,8 +316,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.10.1
+   * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
    */
   export type PrismaVersion = {
     client: string
@@ -7505,7 +7505,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string
-    image: string
+    image: string | null
     link: string | null
     articleId: string
     _count: SectionCountAggregateOutputType | null
@@ -7586,7 +7586,7 @@ export namespace Prisma {
       id: string
       name: string
       description: string
-      image: string
+      image: string | null
       link: string | null
       articleId: string
     }, ExtArgs["result"]["section"]>
@@ -11195,7 +11195,7 @@ export namespace Prisma {
     id?: StringFilter<"Section"> | string
     name?: StringFilter<"Section"> | string
     description?: StringFilter<"Section"> | string
-    image?: StringFilter<"Section"> | string
+    image?: StringNullableFilter<"Section"> | string | null
     link?: StringNullableFilter<"Section"> | string | null
     articleId?: StringFilter<"Section"> | string
     article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
@@ -11205,7 +11205,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    image?: SortOrder
+    image?: SortOrderInput | SortOrder
     link?: SortOrderInput | SortOrder
     articleId?: SortOrder
     article?: ArticleOrderByWithRelationInput
@@ -11218,7 +11218,7 @@ export namespace Prisma {
     NOT?: SectionWhereInput | SectionWhereInput[]
     name?: StringFilter<"Section"> | string
     description?: StringFilter<"Section"> | string
-    image?: StringFilter<"Section"> | string
+    image?: StringNullableFilter<"Section"> | string | null
     link?: StringNullableFilter<"Section"> | string | null
     articleId?: StringFilter<"Section"> | string
     article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
@@ -11228,7 +11228,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    image?: SortOrder
+    image?: SortOrderInput | SortOrder
     link?: SortOrderInput | SortOrder
     articleId?: SortOrder
     _count?: SectionCountOrderByAggregateInput
@@ -11243,7 +11243,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Section"> | string
     name?: StringWithAggregatesFilter<"Section"> | string
     description?: StringWithAggregatesFilter<"Section"> | string
-    image?: StringWithAggregatesFilter<"Section"> | string
+    image?: StringNullableWithAggregatesFilter<"Section"> | string | null
     link?: StringNullableWithAggregatesFilter<"Section"> | string | null
     articleId?: StringWithAggregatesFilter<"Section"> | string
   }
@@ -11845,7 +11845,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    image: string
+    image?: string | null
     link?: string | null
     article: ArticleCreateNestedOneWithoutSectionsInput
   }
@@ -11854,7 +11854,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    image: string
+    image?: string | null
     link?: string | null
     articleId: string
   }
@@ -11863,7 +11863,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
     article?: ArticleUpdateOneRequiredWithoutSectionsNestedInput
   }
@@ -11872,7 +11872,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
     articleId?: StringFieldUpdateOperationsInput | string
   }
@@ -11881,7 +11881,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    image: string
+    image?: string | null
     link?: string | null
     articleId: string
   }
@@ -11890,7 +11890,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -11898,7 +11898,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
     articleId?: StringFieldUpdateOperationsInput | string
   }
@@ -13564,7 +13564,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    image: string
+    image?: string | null
     link?: string | null
   }
 
@@ -13572,7 +13572,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    image: string
+    image?: string | null
     link?: string | null
   }
 
@@ -13645,7 +13645,7 @@ export namespace Prisma {
     id?: StringFilter<"Section"> | string
     name?: StringFilter<"Section"> | string
     description?: StringFilter<"Section"> | string
-    image?: StringFilter<"Section"> | string
+    image?: StringNullableFilter<"Section"> | string | null
     link?: StringNullableFilter<"Section"> | string | null
     articleId?: StringFilter<"Section"> | string
   }
@@ -14242,7 +14242,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    image: string
+    image?: string | null
     link?: string | null
   }
 
@@ -14279,7 +14279,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14287,7 +14287,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14295,7 +14295,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

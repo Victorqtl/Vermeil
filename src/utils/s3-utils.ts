@@ -1,5 +1,4 @@
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { randomUUID } from 'crypto';
 
 function getS3Client() {
 	return new S3Client({
@@ -22,8 +21,7 @@ export async function uploadFileToS3({ file, path, contentType }: { file: File; 
 	const buffer = Buffer.from(fileBuffer);
 
 	const fileExtension = file.name.split('.').pop()?.toLowerCase();
-	const uniqueFileName = `${randomUUID()}.${fileExtension}`;
-	const filePath = `${path}/${uniqueFileName}`;
+	const filePath = `${path}/default.${fileExtension}`;
 
 	const command = new PutObjectCommand({
 		Bucket: process.env.AWS_BUCKET_NAME,
