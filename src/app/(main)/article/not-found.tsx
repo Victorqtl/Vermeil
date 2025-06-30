@@ -7,7 +7,7 @@ import { ArrowLeft } from 'lucide-react';
 export default function NotFound() {
 	return (
 		<div className='flex flex-col justify-between min-h-screen'>
-			<Header darkMode={true} />
+			<Header whiteHeader={true} />
 			<div className='mt-28 mb-20 md:mb-0 md:mt-0 flex justify-center items-center flex-grow px-4'>
 				<div className='max-w-md w-full text-center'>
 					<h1 className='font-serif text-9xl font-bold mb-4'>404</h1>

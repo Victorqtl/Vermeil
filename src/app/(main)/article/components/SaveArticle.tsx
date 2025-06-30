@@ -4,11 +4,12 @@ import { useAction } from 'next-safe-action/hooks';
 import { saveArticle } from '@/app/(main)/article/actions/saveArticle.action';
 import { useState } from 'react';
 import { Bookmark } from 'lucide-react';
-import { UserFavorite } from '@prisma/client';
 
 interface SaveArticleButtonProps {
 	articleId: string;
-	savedArticle: UserFavorite | null;
+	savedArticle: {
+		id: string;
+	} | null;
 	user?: {
 		id: string;
 	};
