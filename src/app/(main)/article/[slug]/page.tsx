@@ -3,10 +3,15 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { getArticleBySlug } from '@/lib/data/articles';
 import { notFound } from 'next/navigation';
+import { getUser } from '@/lib/auth-session';
+import SaveArticle from '@/app/(main)/article/components/SaveArticle';
+import { getSavedArticlesById } from '@/lib/data/saved-articles';
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
 	const article = await getArticleBySlug(resolvedParams.slug);
+	const user = await getUser();
+	const savedArticle = await getSavedArticlesById(user!.id, article!.id);
 
 	if (!article) {
 		notFound();
@@ -43,8 +48,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
 			{/* Products Section */}
 			<div className='container mx-auto px-4 md:px-6 py-16'>
+				<SaveArticle
+					articleId={article.id}
+					savedArticle={savedArticle}
+					user={user}
+				/>
+
 				<div className='max-w-3xl mx-auto'>
-					<div className='text-gray-900 md:text-lg leading-relaxed mb-6'>
+					<div className='text-gray-900 text-lg leading-relaxed mb-6'>
 						{article.description.split('\n').map((paragraph, index) => (
 							<p
 								key={index}
@@ -58,7 +69,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 							key={section.id}
 							className='mt-16'>
 							<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>{`${section.name}`}</h2>
-							<div className='text-gray-900 md:text-lg leading-relaxed mb-6'>
+							<div className='text-gray-900 text-lg leading-relaxed mb-6'>
 								{section.description.split('\n').map((paragraph, index) => (
 									<p
 										key={index}

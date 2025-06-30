@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
 	}, []);
 
 	return (
-		<section className='relative h-[50vh] md:h-screen flex items-center justify-center overflow-hidden'>
+		<section className='relative h-[60vh] min-h-[500px] md:h-screen flex items-center justify-center overflow-hidden'>
 			<div
 				className='absolute inset-0 bg-cover'
 				style={{
@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
 			</div>
 
 			{/* Content */}
-			<div className='container mx-auto px-4 md:px-6 relative z-10 text-center'>
+			<div className='container mx-auto px-8 md:px-6 relative z-10 text-center'>
 				<div className='max-w-3xl mx-auto'>
 					<h1 className='font-serif text-4xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight'>
 						L’excellence n’est pas un hasard.

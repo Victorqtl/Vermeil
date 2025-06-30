@@ -38,7 +38,9 @@ export default async function FeaturedArticles() {
 										<h3 className='text-xl md:text-2xl lg:text-xl xl:text-3xl font-serif font-bold text-white mb-2'>
 											{article.title}
 										</h3>
-										<p className='text-white md:text-lg leading-relaxed mb-6'>{article.excerpt}</p>
+										<p className='text-white text-sm md:text-lg leading-relaxed mb-2 md:mb-6 line-clamp-2'>
+											{article.excerpt}
+										</p>
 										<div className='flex items-center text-white/80 text-sm'>
 											<span>{article.createdAt.toLocaleDateString()}</span>
 											<span className='mx-2'>•</span>

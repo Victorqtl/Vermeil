@@ -220,5 +220,4 @@ function SignInPage() {
 		</div>
 	);
 }
-
 export default SignInPage;

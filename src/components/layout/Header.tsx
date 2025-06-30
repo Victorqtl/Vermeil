@@ -7,10 +7,10 @@ import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
-	darkMode?: boolean;
+	whiteHeader?: boolean;
 }
 
-export default function Header({ darkMode = false }: HeaderProps) {
+export default function Header({ whiteHeader = false }: HeaderProps) {
 	const { data: session } = authClient.useSession();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,13 +29,13 @@ export default function Header({ darkMode = false }: HeaderProps) {
 		<header
 			className={`fixed w-full z-50 transition-all duration-300 ${
 				isScrolled || isMenuOpen ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-			} ${darkMode ? 'h-[69px] border-b border-gray-100' : ''}`}>
+			} ${whiteHeader && 'flex items-center h-[64px] border-b border-gray-100 bg-white shadow-none'}`}>
 			<div className='container mx-auto px-4 md:px-6'>
 				<div className='flex items-center justify-between'>
 					<Link
 						href='/'
 						className='text-2xl md:text-3xl font-serif font-bold tracking-tight'>
-						<span className={isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'}>
+						<span className={isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'}>
 							VERMEIL
 						</span>
 					</Link>
@@ -45,28 +45,28 @@ export default function Header({ darkMode = false }: HeaderProps) {
 						<Link
 							href='/mode'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 							}`}>
 							Mode
 						</Link>
 						<Link
 							href='/soins'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 							}`}>
 							Soins
 						</Link>
 						<Link
 							href='/lifestyle'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 							}`}>
 							Lifestyle
 						</Link>
 						<Link
 							href='/culture'
 							className={`font-medium hover:opacity-70 transition-opacity ${
-								isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 							}`}>
 							Culture
 						</Link>
@@ -76,17 +76,17 @@ export default function Header({ darkMode = false }: HeaderProps) {
 						<Link
 							href='/search'
 							className={`hover:opacity-70 transition-opacity cursor-pointer ${
-								isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 							}`}>
 							<Search size={20} />
 						</Link>
 						<div className='w-px h-8 bg-gray-200'></div>
-						<div className={`group relative ${isScrolled || darkMode ? 'text-gray-900' : 'text-white'}`}>
+						<div className={`group relative ${isScrolled || whiteHeader ? 'text-gray-900' : 'text-white'}`}>
 							<div className='flex items-center hover:opacity-70 transition-opacity cursor-pointer'>
 								<Link
 									href={session?.user ? '/account/profile' : '/auth/sign-in'}
 									className={`hover:opacity-70 transition-opacity ${
-										isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+										isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 									}`}>
 									<User size={20} />
 								</Link>
@@ -125,7 +125,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 					<div className='md:hidden flex items-center'>
 						<button
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
-							className={`p-1 ${isScrolled || darkMode ? 'text-gray-900' : 'text-white'}`}>
+							className={`p-1 ${isScrolled || whiteHeader ? 'text-gray-900' : 'text-white'}`}>
 							{isMenuOpen ? (
 								<X
 									size={24}
@@ -142,11 +142,11 @@ export default function Header({ darkMode = false }: HeaderProps) {
 				{isMenuOpen && (
 					<div
 						className={`md:hidden absolute top-full left-0 right-0 py-4 px-4 animate-fadeIn ${
-							isScrolled || darkMode || isMenuOpen ? 'bg-white shadow-md' : 'bg-transparent'
+							isScrolled || whiteHeader || isMenuOpen ? 'bg-white shadow-md' : 'bg-transparent'
 						}`}>
 						<nav
 							className={`flex flex-col space-y-4 text-black font-medium ${
-								isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 							}`}>
 							<div className='flex flex-col gap-4 pb-4 border-b border-gray-200'>
 								<Link
@@ -172,7 +172,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 								<Link
 									href='/search'
 									className={`flex items-center gap-2 ${
-										isScrolled || darkMode || isMenuOpen ? 'text-gray-900' : 'text-white'
+										isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 									}`}>
 									<Search size={18} />
 									<span>Rechercher</span>
