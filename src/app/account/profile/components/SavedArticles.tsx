@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Article } from '@/types/article';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface SavedArticlesProps {
 	initialData: Article[];
@@ -36,28 +37,27 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 	}
 
 	return (
-		<div className='space-y-6 p-6'>
+		<div className='space-y-6 md:p-6'>
 			<div className='grid gap-6'>
 				{articles.map(article => (
 					<article
 						key={article.id}
-						className='bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200'>
+						className='bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200'>
 						<Link
 							href={`/article/${article.slug}`}
-							className='flex'>
+							className='flex flex-col sm:flex-row h-72 sm:h-52'>
 							{/* Image */}
-							<div className='flex-shrink-0 w-48 h-32'>
-								<img
-									src={article.heroImage}
-									alt={article.title}
-									className='w-full h-full object-cover'
-								/>
-							</div>
-
+							<Image
+								src={article.heroImage}
+								alt={article.title}
+								className='h-32 object-cover w-full sm:h-full'
+								width={500}
+								height={500}
+							/>
 							{/* Contenu */}
-							<div className='flex-1 p-6'>
+							<div className='p-6'>
 								<div className='flex items-start justify-between'>
-									<div className='flex-1'>
+									<div>
 										<div className='flex items-center gap-2 mb-2'>
 											<span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize'>
 												{article.category}
@@ -67,57 +67,19 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 											</span>
 										</div>
 
-										<h3
-											className='text-xl font-semibold text-gray-900 mb-2 overflow-hidden'
-											style={{
-												display: '-webkit-box',
-												WebkitLineClamp: 2,
-												WebkitBoxOrient: 'vertical',
-											}}>
+										<h3 className='text-xl font-semibold text-gray-900 mb-2 overflow-hidden sm:line-clamp-3'>
 											{article.title}
 										</h3>
 
 										{article.excerpt && (
-											<p
-												className='text-gray-600 text-sm mb-3 overflow-hidden'
-												style={{
-													display: '-webkit-box',
-													WebkitLineClamp: 2,
-													WebkitBoxOrient: 'vertical',
-												}}>
+											<p className='text-gray-600 text-sm mb-3 overflow-hidden hidden sm:line-clamp-2 sm:block'>
 												{article.excerpt}
 											</p>
 										)}
 
 										<p className='text-gray-500 text-sm'>
-											Sauvegardé le{' '}
-											{new Date(article.createdAt).toLocaleDateString('fr-FR', {
-												year: 'numeric',
-												month: 'long',
-												day: 'numeric',
-											})}
+											{new Date(article.createdAt).toLocaleDateString('fr-FR')}
 										</p>
-									</div>
-
-									{/* Actions */}
-									<div className='flex items-center gap-2 ml-4'>
-										<button className='p-2 text-gray-400 hover:text-red-500 transition-colors'>
-											<svg
-												className='w-5 h-5'
-												fill='currentColor'
-												viewBox='0 0 20 20'>
-												<path
-													fillRule='evenodd'
-													d='M9 2a1 1 0 000 2h2a1 1 0 100-2H9z'
-													clipRule='evenodd'
-												/>
-												<path
-													fillRule='evenodd'
-													d='M4 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 3a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3z'
-													clipRule='evenodd'
-												/>
-											</svg>
-										</button>
 									</div>
 								</div>
 							</div>

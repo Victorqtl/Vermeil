@@ -5,13 +5,13 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/2GISf3-TwnAMIs3YhbwII/_buildManifest.js",
-    "static/2GISf3-TwnAMIs3YhbwII/_ssgManifest.js"
+    "static/K7huHRWmZHJ2wVGlQK09S/_buildManifest.js",
+    "static/K7huHRWmZHJ2wVGlQK09S/_ssgManifest.js"
   ],
   "rootMainFiles": [
     "static/chunks/webpack-a8fd0294a83a04f6.js",
-    "static/chunks/09f5f10c-937cd3b6db66f022.js",
-    "static/chunks/951-c1d8bce6040502b1.js",
+    "static/chunks/09f5f10c-cbe9469910962341.js",
+    "static/chunks/951-d820ee832d744abc.js",
     "static/chunks/main-app-55302ca3a0a52ecb.js"
   ],
   "rootMainFilesTree": {},

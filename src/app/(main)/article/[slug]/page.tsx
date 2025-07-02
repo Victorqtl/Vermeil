@@ -11,7 +11,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 	const resolvedParams = await params;
 	const article = await getArticleBySlug(resolvedParams.slug);
 	const user = await getUser();
-	const savedArticle = await getSavedArticlesById(user!.id, article!.id);
+	const savedArticle = user?.id ? await getSavedArticlesById(user.id, article!.id) : null;
 
 	if (!article) {
 		notFound();
