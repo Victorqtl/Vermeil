@@ -15,7 +15,20 @@ export const updateArticle = authActionClient
 			throw new SafeError("Vous n'avez pas les permissions nécessaires pour modifier un article");
 		}
 
-		const { id, title, slug, heroImage, readTime, category, excerpt, description, featured, sections } = input;
+		const {
+			id,
+			title,
+			slug,
+			heroImage,
+			readTime,
+			metaTitle,
+			metaDescription,
+			category,
+			excerpt,
+			description,
+			featured,
+			sections,
+		} = input;
 
 		const existingArticle = await prisma.article.findUnique({
 			where: { id },
@@ -49,6 +62,8 @@ export const updateArticle = authActionClient
 						title,
 						slug,
 						excerpt,
+						metaTitle,
+						metaDescription,
 						description,
 						heroImage,
 						readTime,

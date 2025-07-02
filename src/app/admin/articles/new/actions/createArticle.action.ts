@@ -15,7 +15,19 @@ export const createArticle = authActionClient
 			throw new SafeError("Vous n'avez pas les permissions nécessaires pour créer un article");
 		}
 
-		const { title, slug, heroImage, readTime, category, excerpt, description, featured, sections } = input;
+		const {
+			title,
+			slug,
+			heroImage,
+			readTime,
+			metaTitle,
+			metaDescription,
+			category,
+			excerpt,
+			description,
+			featured,
+			sections,
+		} = input;
 
 		const existingArticle = await prisma.article.findUnique({
 			where: { slug },
@@ -32,6 +44,8 @@ export const createArticle = authActionClient
 					title,
 					slug,
 					excerpt,
+					metaTitle,
+					metaDescription,
 					description,
 					heroImage,
 					readTime,

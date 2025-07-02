@@ -18,6 +18,8 @@ interface EditArticlePageProps {
 		id: string;
 		title: string;
 		slug: string;
+		metaTitle: string;
+		metaDescription: string;
 		excerpt: string;
 		description: string;
 		heroImage: string;
@@ -54,6 +56,8 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 			id: initialData.id,
 			title: initialData.title,
 			slug: initialData.slug,
+			metaTitle: initialData.metaTitle,
+			metaDescription: initialData.metaDescription,
 			excerpt: initialData.excerpt,
 			description: initialData.description,
 			heroImage: initialData.heroImage,
@@ -188,6 +192,34 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 						/>
 						{errors.readTime && <p className='mt-1 text-xs text-red-500'>{errors.readTime.message}</p>}
 					</div>
+				</div>
+
+				<div>
+					<Label htmlFor='metaTitle'>Meta Title *</Label>
+					<textarea
+						id='metaTitle'
+						{...register('metaTitle')}
+						rows={3}
+						className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
+							errors.metaTitle && 'border-red-500 focus:ring-red-500'
+						}`}
+					/>
+					{errors.metaTitle && <p className='mt-1 text-xs text-red-500'>{errors.metaTitle.message}</p>}
+				</div>
+
+				<div>
+					<Label htmlFor='metaDescription'>Meta Description *</Label>
+					<textarea
+						id='metaDescription'
+						{...register('metaDescription')}
+						rows={3}
+						className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
+							errors.metaDescription && 'border-red-500 focus:ring-red-500'
+						}`}
+					/>
+					{errors.metaDescription && (
+						<p className='mt-1 text-xs text-red-500'>{errors.metaDescription.message}</p>
+					)}
 				</div>
 
 				<div>

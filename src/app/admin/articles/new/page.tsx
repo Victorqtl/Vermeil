@@ -115,6 +115,32 @@ export default function NewArticle() {
 				</div>
 
 				<div>
+					<Label htmlFor='metaTitle'>Meta title*</Label>
+					<Input
+						type='text'
+						id='metaTitle'
+						{...register('metaTitle')}
+						aria-invalid={!!errors.metaTitle}
+					/>
+					{errors.metaTitle && <p className='mt-1 text-xs text-red-500'>{errors.metaTitle.message}</p>}
+				</div>
+
+				<div>
+					<Label htmlFor='metaDescription'>Meta description*</Label>
+					<textarea
+						id='metaDescription'
+						{...register('metaDescription')}
+						rows={3}
+						className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
+							errors.metaDescription && 'border-red-500 focus:ring-red-500'
+						}`}
+					/>
+					{errors.metaDescription && (
+						<p className='mt-1 text-xs text-red-500'>{errors.metaDescription.message}</p>
+					)}
+				</div>
+
+				<div>
 					<Label htmlFor='excerpt'>Extrait *</Label>
 					<textarea
 						id='excerpt'

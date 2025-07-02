@@ -316,8 +316,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.10.1
-   * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
+   * Prisma Client JS version: 6.11.0
+   * Query Engine version: 9c30299f5a0ea26a96790e13f796dc6094db3173
    */
   export type PrismaVersion = {
     client: string
@@ -6153,6 +6153,8 @@ export namespace Prisma {
     heroImage: string | null
     readTime: number | null
     featured: boolean | null
+    metaTitle: string | null
+    metaDescription: string | null
     createdAt: Date | null
     updatedAt: Date | null
     category: string | null
@@ -6167,6 +6169,8 @@ export namespace Prisma {
     heroImage: string | null
     readTime: number | null
     featured: boolean | null
+    metaTitle: string | null
+    metaDescription: string | null
     createdAt: Date | null
     updatedAt: Date | null
     category: string | null
@@ -6181,6 +6185,8 @@ export namespace Prisma {
     heroImage: number
     readTime: number
     featured: number
+    metaTitle: number
+    metaDescription: number
     createdAt: number
     updatedAt: number
     category: number
@@ -6205,6 +6211,8 @@ export namespace Prisma {
     heroImage?: true
     readTime?: true
     featured?: true
+    metaTitle?: true
+    metaDescription?: true
     createdAt?: true
     updatedAt?: true
     category?: true
@@ -6219,6 +6227,8 @@ export namespace Prisma {
     heroImage?: true
     readTime?: true
     featured?: true
+    metaTitle?: true
+    metaDescription?: true
     createdAt?: true
     updatedAt?: true
     category?: true
@@ -6233,6 +6243,8 @@ export namespace Prisma {
     heroImage?: true
     readTime?: true
     featured?: true
+    metaTitle?: true
+    metaDescription?: true
     createdAt?: true
     updatedAt?: true
     category?: true
@@ -6334,6 +6346,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt: Date
     updatedAt: Date
     category: string
@@ -6367,6 +6381,8 @@ export namespace Prisma {
     heroImage?: boolean
     readTime?: boolean
     featured?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean
@@ -6385,6 +6401,8 @@ export namespace Prisma {
     heroImage?: boolean
     readTime?: boolean
     featured?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean
@@ -6399,6 +6417,8 @@ export namespace Prisma {
     heroImage?: boolean
     readTime?: boolean
     featured?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean
@@ -6413,12 +6433,14 @@ export namespace Prisma {
     heroImage?: boolean
     readTime?: boolean
     featured?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean
   }
 
-  export type ArticleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "description" | "heroImage" | "readTime" | "featured" | "createdAt" | "updatedAt" | "category", ExtArgs["result"]["article"]>
+  export type ArticleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "description" | "heroImage" | "readTime" | "featured" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt" | "category", ExtArgs["result"]["article"]>
   export type ArticleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | Article$commentsArgs<ExtArgs>
     sections?: boolean | Article$sectionsArgs<ExtArgs>
@@ -6444,6 +6466,8 @@ export namespace Prisma {
       heroImage: string
       readTime: number
       featured: boolean
+      metaTitle: string
+      metaDescription: string
       createdAt: Date
       updatedAt: Date
       category: string
@@ -6881,6 +6905,8 @@ export namespace Prisma {
     readonly heroImage: FieldRef<"Article", 'String'>
     readonly readTime: FieldRef<"Article", 'Int'>
     readonly featured: FieldRef<"Article", 'Boolean'>
+    readonly metaTitle: FieldRef<"Article", 'String'>
+    readonly metaDescription: FieldRef<"Article", 'String'>
     readonly createdAt: FieldRef<"Article", 'DateTime'>
     readonly updatedAt: FieldRef<"Article", 'DateTime'>
     readonly category: FieldRef<"Article", 'String'>
@@ -10638,6 +10664,8 @@ export namespace Prisma {
     heroImage: 'heroImage',
     readTime: 'readTime',
     featured: 'featured',
+    metaTitle: 'metaTitle',
+    metaDescription: 'metaDescription',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     category: 'category'
@@ -11107,6 +11135,8 @@ export namespace Prisma {
     heroImage?: StringFilter<"Article"> | string
     readTime?: IntFilter<"Article"> | number
     featured?: BoolFilter<"Article"> | boolean
+    metaTitle?: StringFilter<"Article"> | string
+    metaDescription?: StringFilter<"Article"> | string
     createdAt?: DateTimeFilter<"Article"> | Date | string
     updatedAt?: DateTimeFilter<"Article"> | Date | string
     category?: StringFilter<"Article"> | string
@@ -11124,6 +11154,8 @@ export namespace Prisma {
     heroImage?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: SortOrder
@@ -11144,6 +11176,8 @@ export namespace Prisma {
     heroImage?: StringFilter<"Article"> | string
     readTime?: IntFilter<"Article"> | number
     featured?: BoolFilter<"Article"> | boolean
+    metaTitle?: StringFilter<"Article"> | string
+    metaDescription?: StringFilter<"Article"> | string
     createdAt?: DateTimeFilter<"Article"> | Date | string
     updatedAt?: DateTimeFilter<"Article"> | Date | string
     category?: StringFilter<"Article"> | string
@@ -11161,6 +11195,8 @@ export namespace Prisma {
     heroImage?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: SortOrder
@@ -11183,6 +11219,8 @@ export namespace Prisma {
     heroImage?: StringWithAggregatesFilter<"Article"> | string
     readTime?: IntWithAggregatesFilter<"Article"> | number
     featured?: BoolWithAggregatesFilter<"Article"> | boolean
+    metaTitle?: StringWithAggregatesFilter<"Article"> | string
+    metaDescription?: StringWithAggregatesFilter<"Article"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Article"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Article"> | Date | string
     category?: StringWithAggregatesFilter<"Article"> | string
@@ -11740,6 +11778,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -11757,6 +11797,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -11774,6 +11816,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -11791,6 +11835,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -11808,6 +11854,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -11822,6 +11870,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -11836,6 +11886,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -12379,6 +12431,8 @@ export namespace Prisma {
     heroImage?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: SortOrder
@@ -12397,6 +12451,8 @@ export namespace Prisma {
     heroImage?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: SortOrder
@@ -12411,6 +12467,8 @@ export namespace Prisma {
     heroImage?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: SortOrder
@@ -13675,6 +13733,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -13691,6 +13751,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -13723,6 +13785,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -13739,6 +13803,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -13794,6 +13860,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -13810,6 +13878,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -13887,6 +13957,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -13903,6 +13975,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -13958,6 +14032,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -13974,6 +14050,8 @@ export namespace Prisma {
     heroImage: string
     readTime: number
     featured?: boolean
+    metaTitle: string
+    metaDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     category: string
@@ -14051,6 +14129,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string
@@ -14067,6 +14147,8 @@ export namespace Prisma {
     heroImage?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
+    metaTitle?: StringFieldUpdateOperationsInput | string
+    metaDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: StringFieldUpdateOperationsInput | string

@@ -24,6 +24,16 @@ export const createArticleSchema = z.object({
 		.int('Le temps de lecture doit être un nombre entier')
 		.min(1, 'Le temps de lecture doit être au moins de 1 minute')
 		.max(120, 'Le temps de lecture ne peut pas dépasser 120 minutes'),
+	metaTitle: z
+		.string()
+		.trim()
+		.min(1, 'Le titre meta est requis')
+		.max(70, 'Le titre meta ne peut pas dépasser 70 caractères'),
+	metaDescription: z
+		.string()
+		.trim()
+		.min(10, 'La description meta doit contenir au moins 10 caractères')
+		.max(155, 'La description meta ne peut pas dépasser 155 caractères'),
 	category: z
 		.string()
 		.trim()

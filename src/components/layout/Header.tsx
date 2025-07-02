@@ -1,7 +1,7 @@
 'use client';
 
 import { Menu, Search, User, X, ChevronDown, LogOut } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
@@ -15,6 +15,7 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const router = useRouter();
+	const mobileMenuRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -25,8 +26,30 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node) && isMenuOpen) {
+				setIsMenuOpen(false);
+			}
+		};
+
+		if (isMenuOpen) {
+			document.addEventListener('mousedown', handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isMenuOpen]);
+
+	const closeMobileMenu = () => {
+		setIsMenuOpen(false);
+	};
+
 	return (
 		<header
+			ref={mobileMenuRef}
+			role='banner'
 			className={`fixed w-full z-50 transition-all duration-300 ${
 				isScrolled || isMenuOpen ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
 			} ${whiteHeader && 'flex items-center h-[64px] border-b border-gray-100 bg-white shadow-none'}`}>
@@ -34,14 +57,18 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 				<div className='flex items-center justify-between'>
 					<Link
 						href='/'
-						className='text-2xl md:text-3xl font-serif font-bold tracking-tight'>
+						className='text-2xl md:text-3xl font-serif font-bold tracking-tight'
+						aria-label='Accueil Vermeil'>
 						<span className={isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'}>
 							VERMEIL
 						</span>
 					</Link>
 
 					{/* Desktop Navigation */}
-					<nav className='hidden md:flex items-center space-x-8'>
+					<nav
+						className='hidden md:flex items-center space-x-8'
+						role='navigation'
+						aria-label='Navigation principale'>
 						<Link
 							href='/mode'
 							className={`font-medium hover:opacity-70 transition-opacity ${
@@ -75,16 +102,20 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 					<div className='hidden md:flex items-center gap-4'>
 						<Link
 							href='/search'
+							aria-label='Rechercher'
 							className={`hover:opacity-70 transition-opacity cursor-pointer ${
 								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 							}`}>
 							<Search size={20} />
 						</Link>
-						<div className='w-px h-8 bg-gray-200'></div>
+						<div
+							className='w-px h-8 bg-gray-200'
+							aria-hidden='true'></div>
 						<div className={`group relative ${isScrolled || whiteHeader ? 'text-gray-900' : 'text-white'}`}>
 							<div className='flex items-center hover:opacity-70 transition-opacity cursor-pointer'>
 								<Link
 									href={session?.user ? '/account/profile' : '/auth/sign-in'}
+									aria-label={session?.user ? 'Mon compte' : 'Se connecter'}
 									className={`hover:opacity-70 transition-opacity ${
 										isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 									}`}>
@@ -94,24 +125,32 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 									<ChevronDown
 										size={26}
 										strokeWidth={1}
+										aria-hidden='true'
 									/>
 								) : null}
 							</div>
 							{session?.user && (
 								<>
 									<div className='hidden group-hover:block absolute -left-24 top-6 w-42 h-full bg-transparent z-5'></div>
-									<div className='hidden group-hover:flex flex-col items-start absolute -left-24 top-8 text-sm shadow-md z-10 bg-white text-gray-900'>
+									<div
+										className='hidden group-hover:flex flex-col items-start absolute -left-24 top-8 text-sm shadow-md z-10 bg-white text-gray-900'
+										role='menu'
+										aria-label='Menu utilisateur'>
 										<Link
 											href='/account/profile'
+											role='menuitem'
 											className='hover:bg-gray-100 w-full py-3 px-8 transition-colors whitespace-nowrap block'>
 											Mon compte
 										</Link>
-										<div className='h-px bg-gray-200 w-4/5 mx-auto'></div>
+										<div
+											className='h-px bg-gray-200 w-4/5 mx-auto'
+											aria-hidden='true'></div>
 										<button
 											onClick={() => {
 												authClient.signOut();
 												router.push('/auth/sign-in');
 											}}
+											role='menuitem'
 											className='hover:bg-gray-100 py-3 px-8 w-full transition-colors whitespace-nowrap cursor-pointer text-left'>
 											Déconnexion
 										</button>
@@ -125,6 +164,9 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 					<div className='md:hidden flex items-center'>
 						<button
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
+							aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+							aria-expanded={isMenuOpen}
+							aria-controls='mobile-menu'
 							className={`p-1 ${isScrolled || whiteHeader ? 'text-gray-900' : 'text-white'}`}>
 							{isMenuOpen ? (
 								<X
@@ -141,6 +183,9 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 				{/* Mobile Menu */}
 				{isMenuOpen && (
 					<div
+						id='mobile-menu'
+						role='menu'
+						aria-label='Navigation mobile'
 						className={`md:hidden absolute top-full left-0 right-0 py-4 px-4 animate-fadeIn ${
 							isScrolled || whiteHeader || isMenuOpen ? 'bg-white shadow-md' : 'bg-transparent'
 						}`}>
@@ -151,26 +196,37 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 							<div className='flex flex-col gap-4 pb-4 border-b border-gray-200'>
 								<Link
 									href='/mode'
+									onClick={closeMobileMenu}
+									role='menuitem'
 									className='hover:text-gray-700 transition-colors'>
 									Mode
 								</Link>
 								<Link
 									href='/soins'
+									onClick={closeMobileMenu}
+									role='menuitem'
 									className='hover:text-gray-700 transition-colors'>
 									Soins
 								</Link>
 								<Link
 									href='/lifestyle'
+									onClick={closeMobileMenu}
+									role='menuitem'
 									className='hover:text-gray-700 transition-colors'>
 									Lifestyle
 								</Link>
 								<Link
 									href='/culture'
+									onClick={closeMobileMenu}
+									role='menuitem'
 									className='hover:text-gray-700 transition-colors'>
 									Culture
 								</Link>
 								<Link
 									href='/search'
+									onClick={closeMobileMenu}
+									role='menuitem'
+									aria-label='Rechercher'
 									className={`flex items-center gap-2 ${
 										isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
 									}`}>
@@ -180,18 +236,23 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 							</div>
 							<div className='flex flex-col gap-4'>
 								{session?.user ? (
-									<div className='flex items-center gap-2'>
+									<Link
+										href='/account/profile'
+										onClick={closeMobileMenu}
+										role='menuitem'
+										className='flex items-center gap-2'>
 										<User size={18} />
-										<Link href='/account/profile'>Mon compte</Link>
-									</div>
+										<span>Mon compte</span>
+									</Link>
 								) : null}
 								{session?.user ? (
 									<button
 										onClick={() => {
 											authClient.signOut();
-											setIsMenuOpen(false);
+											closeMobileMenu();
 											router.push('/auth/sign-in');
 										}}
+										role='menuitem'
 										className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
 										<LogOut
 											size={18}
@@ -202,6 +263,8 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 								) : (
 									<Link
 										href='/auth/sign-in'
+										onClick={closeMobileMenu}
+										role='menuitem'
 										className='flex items-center gap-2 hover:text-gray-700 transition-colors'>
 										<User size={18} />
 										<span>Se connecter</span>
