@@ -23,6 +23,7 @@ interface EditArticlePageProps {
 		excerpt: string;
 		description: string;
 		heroImage: string;
+		heroImageAlt: string;
 		readTime: number;
 		featured: boolean;
 		category: string;
@@ -30,6 +31,7 @@ interface EditArticlePageProps {
 			name: string;
 			description: string;
 			image: string | null;
+			imageAlt: string | null;
 			link: string | null;
 		}>;
 	};
@@ -61,6 +63,7 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 			excerpt: initialData.excerpt,
 			description: initialData.description,
 			heroImage: initialData.heroImage,
+			heroImageAlt: initialData.heroImageAlt,
 			readTime: initialData.readTime,
 			featured: initialData.featured,
 			category: initialData.category,
@@ -196,10 +199,10 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 
 				<div>
 					<Label htmlFor='metaTitle'>Meta Title *</Label>
-					<textarea
+					<Input
+						type='text'
 						id='metaTitle'
 						{...register('metaTitle')}
-						rows={3}
 						className={`w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent ${
 							errors.metaTitle && 'border-red-500 focus:ring-red-500'
 						}`}
@@ -258,6 +261,17 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 					/>
 					<p className='mt-1 text-xs text-gray-500'>URL de l'image principale de l'article</p>
 					{errors.heroImage && <p className='mt-1 text-xs text-red-500'>{errors.heroImage.message}</p>}
+				</div>
+
+				<div>
+					<Label htmlFor='heroImageAlt'>Alt de l'image *</Label>
+					<Input
+						type='text'
+						id='heroImageAlt'
+						{...register('heroImageAlt')}
+						aria-invalid={!!errors.heroImageAlt}
+					/>
+					{errors.heroImageAlt && <p className='mt-1 text-xs text-red-500'>{errors.heroImageAlt.message}</p>}
 				</div>
 
 				<div className='flex flex-col sm:flex-row justify-between gap-6'>

@@ -178,6 +178,7 @@ exports.Prisma.ArticleScalarFieldEnum = {
   excerpt: 'excerpt',
   description: 'description',
   heroImage: 'heroImage',
+  heroImageAlt: 'heroImageAlt',
   readTime: 'readTime',
   featured: 'featured',
   metaTitle: 'metaTitle',
@@ -192,6 +193,7 @@ exports.Prisma.SectionScalarFieldEnum = {
   name: 'name',
   description: 'description',
   image: 'image',
+  imageAlt: 'imageAlt',
   link: 'link',
   articleId: 'articleId'
 };

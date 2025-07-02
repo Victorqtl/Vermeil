@@ -26,7 +26,7 @@ export default async function FeaturedArticles() {
 								className='block relative'>
 								<div className='relative overflow-hidden'>
 									<div
-										className='aspect-[16/9] bg-gray-200 bg-cover bg-center transform transition-transform duration-500 group-hover:scale-105'
+										className='aspect-[4/3] bg-gray-200 bg-cover bg-center transform transition-transform duration-500 group-hover:scale-105'
 										style={{ backgroundImage: `url(${article.heroImage})` }}
 									/>
 									<div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80'></div>

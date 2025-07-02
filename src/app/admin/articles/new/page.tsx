@@ -75,7 +75,7 @@ export default function NewArticle() {
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='space-y-6 bg-white p-6 border border-gray-200'>
-				<h2 className='text-2xl font-bold'>Informations de base</h2>
+				<h2 className='text-2xl font-bold'>Informations</h2>
 				<div>
 					<Label htmlFor='title'>Titre *</Label>
 					<Input
@@ -176,6 +176,17 @@ export default function NewArticle() {
 					/>
 					<p className='mt-1 text-xs text-gray-500'>URL de l'image principale de l'article</p>
 					{errors.heroImage && <p className='mt-1 text-xs text-red-500'>{errors.heroImage.message}</p>}
+				</div>
+
+				<div>
+					<Label htmlFor='heroImageAlt'>Alt de l'image *</Label>
+					<Input
+						type='text'
+						id='heroImageAlt'
+						{...register('heroImageAlt')}
+						aria-invalid={!!errors.heroImageAlt}
+					/>
+					{errors.heroImageAlt && <p className='mt-1 text-xs text-red-500'>{errors.heroImageAlt.message}</p>}
 				</div>
 
 				<div className='flex flex-col sm:flex-row justify-between gap-6'>

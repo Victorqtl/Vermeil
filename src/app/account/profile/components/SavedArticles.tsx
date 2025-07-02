@@ -45,17 +45,17 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 						className='bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200'>
 						<Link
 							href={`/article/${article.slug}`}
-							className='flex flex-col sm:flex-row h-72 sm:h-52'>
-							{/* Image */}
-							<Image
-								src={article.heroImage}
-								alt={article.title}
-								className='h-32 object-cover w-full sm:h-full'
-								width={500}
-								height={500}
-							/>
-							{/* Contenu */}
-							<div className='p-6'>
+							className='flex flex-col sm:flex-row h-80 sm:h-fit'>
+							<div className='sm:basis-2/6'>
+								<Image
+									src={article.heroImage}
+									alt={article.title}
+									className='h-[130px] object-cover sm:min-h-full w-full'
+									width={500}
+									height={500}
+								/>
+							</div>
+							<div className='h-[190px] sm:h-full p-6 sm:basis-4/6'>
 								<div className='flex items-start justify-between'>
 									<div>
 										<div className='flex items-center gap-2 mb-2'>
@@ -67,15 +67,9 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 											</span>
 										</div>
 
-										<h3 className='text-xl font-semibold text-gray-900 mb-2 overflow-hidden sm:line-clamp-3'>
+										<h2 className='text-xl font-semibold text-gray-900 mb-2 overflow-hidden line-clamp-3 sm:line-clamp-2'>
 											{article.title}
-										</h3>
-
-										{article.excerpt && (
-											<p className='text-gray-600 text-sm mb-3 overflow-hidden hidden sm:line-clamp-2 sm:block'>
-												{article.excerpt}
-											</p>
-										)}
+										</h2>
 
 										<p className='text-gray-500 text-sm'>
 											{new Date(article.createdAt).toLocaleDateString('fr-FR')}

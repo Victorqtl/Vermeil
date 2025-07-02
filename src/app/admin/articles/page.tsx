@@ -17,7 +17,7 @@ export default async function ArticlesListPage() {
 	return (
 		<div className='max-w-6xl mx-auto p-6 overflow-x-auto'>
 			<div className='flex items-center justify-between mb-6'>
-				<h1 className='text-3xl font-bold'>Articles</h1>
+				<h1 className='text-3xl font-bold'>ARTICLES</h1>
 				<Link
 					href='/admin/articles/new'
 					className='flex items-center gap-2 px-6 py-3 transition-colors group bg-white text-gray-900 border border-gray-300 hover:bg-gray-50'>

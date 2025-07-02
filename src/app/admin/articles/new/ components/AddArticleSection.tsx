@@ -74,6 +74,19 @@ export default function AddArticleSection({
 							<p className='mt-1 text-xs text-red-500'>{errors.sections?.[index]?.image.message}</p>
 						)}
 					</div>
+
+					<div>
+						<Label htmlFor={`sections.${index}.imageAlt`}>Alt de l'image</Label>
+						<Input
+							type='text'
+							id={`sections.${index}.imageAlt`}
+							{...register(`sections.${index}.imageAlt`)}
+							aria-invalid={!!errors.sections?.[index]?.imageAlt}
+						/>
+						{errors.sections?.[index]?.imageAlt && (
+							<p className='mt-1 text-xs text-red-500'>{errors.sections?.[index]?.imageAlt.message}</p>
+						)}
+					</div>
 					<div>
 						<Label htmlFor={`sections.${index}.link`}>URL du produit</Label>
 						<Input
@@ -89,12 +102,12 @@ export default function AddArticleSection({
 				</div>
 			))}
 			<div className='flex flex-col items-center gap-2'>
-				<h2 className=' font-sans'>Ajouter une section</h2>
+				<h2 className='font-sans'>Ajouter une section</h2>
 				<button
 					type='button'
 					className='w-12 h-12 border border-gray-200 cursor-pointer hover:bg-gray-100 flex items-center justify-center'
 					onClick={() => {
-						append({ name: '', description: '', image: '', link: '' });
+						append({ name: '', description: '', image: '', imageAlt: '', link: '' });
 					}}>
 					<svg
 						width='24'

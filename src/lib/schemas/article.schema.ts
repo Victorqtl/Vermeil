@@ -16,6 +16,7 @@ export const createArticleSchema = z.object({
 			'Le slug ne peut pas commencer ou finir par un tiret'
 		),
 	heroImage: z.string().trim().url("L'URL de l'image doit être une URL valide"),
+	heroImageAlt: z.string().trim().min(1, "L'alt de l'image est requis"),
 	readTime: z.coerce
 		.number({
 			required_error: 'Le temps de lecture est requis',
@@ -66,6 +67,11 @@ export const createArticleSchema = z.object({
 						"L'URL de l'image doit être une URL valide"
 					)
 					.optional(),
+				imageAlt: z
+					.string()
+					.trim()
+					.min(1, "L'alt de l'image de section est requis quand une image est présente")
+					.optional(),
 				link: z
 					.string()
 					.trim()
@@ -76,7 +82,11 @@ export const createArticleSchema = z.object({
 					),
 			})
 		)
-		.min(1, 'Au moins une section est requise'),
+		.min(1, 'Au moins une section est requise')
+		.refine(
+			sections => sections.every(section => !section.image || (section.image && section.imageAlt)),
+			'Le texte alt est requis pour toutes les images de sections'
+		),
 });
 
 export const updateArticleSchema = createArticleSchema.extend({

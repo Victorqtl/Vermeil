@@ -7,6 +7,35 @@ import { getUser } from '@/lib/auth-session';
 import SaveArticle from '@/app/(main)/article/components/SaveArticle';
 import { getSavedArticlesById } from '@/lib/data/saved-articles';
 
+function parseTitle(title: string) {
+	if (title.startsWith('### ')) {
+		return {
+			isH3: true,
+			content: title.replace('### ', '').trim(),
+		};
+	}
+	return {
+		isH3: false,
+		content: title,
+	};
+}
+
+function parseBoldText(text: string) {
+	return text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>');
+}
+
+function renderParagraph(text: string, index: number) {
+	const parsedText = parseBoldText(text);
+
+	return (
+		<p
+			key={index}
+			className={index > 0 ? 'mt-4' : ''}
+			dangerouslySetInnerHTML={{ __html: parsedText }}
+		/>
+	);
+}
+
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
 	const article = await getArticleBySlug(resolvedParams.slug);
@@ -23,7 +52,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 			<div className='relative h-[60vh] min-h-[500px] w-full'>
 				<Image
 					src={article.heroImage}
-					alt={article.title}
+					alt={article.heroImageAlt}
 					fill
 					className='object-cover'
 					priority
@@ -56,64 +85,66 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
 				<div className='max-w-3xl mx-auto'>
 					<div className='text-gray-900 text-lg leading-relaxed mb-6'>
-						{article.description.split('\n').map((paragraph, index) => (
-							<p
-								key={index}
-								className={index > 0 ? 'mt-4' : ''}>
-								{paragraph}
-							</p>
-						))}
+						{article.description.split('\n').map((paragraph, index) => renderParagraph(paragraph, index))}
 					</div>
-					{article.sections.map(section => (
-						<div
-							key={section.id}
-							className='mt-16'>
-							<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>{`${section.name}`}</h2>
-							<div className='text-gray-900 text-lg leading-relaxed mb-6'>
-								{section.description.split('\n').map((paragraph, index) => (
-									<p
-										key={index}
-										className={index > 0 ? 'mt-4' : ''}>
-										{paragraph}
-									</p>
-								))}
-							</div>
-							{section.image && section.link ? (
-								<Link
-									href={section.link}
-									className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
-									<Image
-										src={section.image}
-										alt={section.name}
-										fill
-										className='object-cover transition-transform duration-500 group-hover:scale-105'
-									/>
-								</Link>
-							) : (
-								section.image && (
-									<div className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
+					{article.sections.map(section => {
+						const parsedTitle = parseTitle(section.name);
+
+						return (
+							<div
+								key={section.id}
+								className='mt-16'>
+								{parsedTitle.isH3 ? (
+									<h3 className='text-xl md:text-2xl font-serif font-bold mb-4'>
+										{parsedTitle.content}
+									</h3>
+								) : (
+									<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>
+										{parsedTitle.content}
+									</h2>
+								)}
+								<div className='text-gray-900 text-lg leading-relaxed mb-6'>
+									{section.description
+										.split('\n')
+										.map((paragraph, index) => renderParagraph(paragraph, index))}
+								</div>
+								{section.image && section.link ? (
+									<Link
+										href={section.link}
+										className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
 										<Image
 											src={section.image}
-											alt={section.name}
+											alt={section.imageAlt!}
 											fill
-											className='object-cover'
+											className='object-cover transition-transform duration-500 group-hover:scale-105'
 										/>
-									</div>
-								)
-							)}
-							{section.link && (
-								<Link
-									href={section.link}
-									className='inline-flex items-center bg-black text-white px-6 py-3 font-medium hover:bg-gray-900 transition-colors group'>
-									Voir le produit
-									<ArrowRight
-										size={18}
-										className='ml-2 transition-transform group-hover:translate-x-1'
-									/>
-								</Link>
-							)}
-						</div>
-					))}
+									</Link>
+								) : (
+									section.image && (
+										<div className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
+											<Image
+												src={section.image}
+												alt={section.imageAlt!}
+												fill
+												className='object-cover'
+											/>
+										</div>
+									)
+								)}
+								{section.link && (
+									<Link
+										href={section.link}
+										className='inline-flex items-center bg-black text-white px-6 py-3 font-medium hover:bg-gray-900 transition-colors group'>
+										Voir le produit
+										<ArrowRight
+											size={18}
+											className='ml-2 transition-transform group-hover:translate-x-1'
+										/>
+									</Link>
+								)}
+							</div>
+						);
+					})}
 				</div>
 			</div>
 

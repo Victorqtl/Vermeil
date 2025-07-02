@@ -6151,6 +6151,7 @@ export namespace Prisma {
     excerpt: string | null
     description: string | null
     heroImage: string | null
+    heroImageAlt: string | null
     readTime: number | null
     featured: boolean | null
     metaTitle: string | null
@@ -6167,6 +6168,7 @@ export namespace Prisma {
     excerpt: string | null
     description: string | null
     heroImage: string | null
+    heroImageAlt: string | null
     readTime: number | null
     featured: boolean | null
     metaTitle: string | null
@@ -6183,6 +6185,7 @@ export namespace Prisma {
     excerpt: number
     description: number
     heroImage: number
+    heroImageAlt: number
     readTime: number
     featured: number
     metaTitle: number
@@ -6209,6 +6212,7 @@ export namespace Prisma {
     excerpt?: true
     description?: true
     heroImage?: true
+    heroImageAlt?: true
     readTime?: true
     featured?: true
     metaTitle?: true
@@ -6225,6 +6229,7 @@ export namespace Prisma {
     excerpt?: true
     description?: true
     heroImage?: true
+    heroImageAlt?: true
     readTime?: true
     featured?: true
     metaTitle?: true
@@ -6241,6 +6246,7 @@ export namespace Prisma {
     excerpt?: true
     description?: true
     heroImage?: true
+    heroImageAlt?: true
     readTime?: true
     featured?: true
     metaTitle?: true
@@ -6344,6 +6350,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured: boolean
     metaTitle: string
@@ -6379,6 +6386,7 @@ export namespace Prisma {
     excerpt?: boolean
     description?: boolean
     heroImage?: boolean
+    heroImageAlt?: boolean
     readTime?: boolean
     featured?: boolean
     metaTitle?: boolean
@@ -6399,6 +6407,7 @@ export namespace Prisma {
     excerpt?: boolean
     description?: boolean
     heroImage?: boolean
+    heroImageAlt?: boolean
     readTime?: boolean
     featured?: boolean
     metaTitle?: boolean
@@ -6415,6 +6424,7 @@ export namespace Prisma {
     excerpt?: boolean
     description?: boolean
     heroImage?: boolean
+    heroImageAlt?: boolean
     readTime?: boolean
     featured?: boolean
     metaTitle?: boolean
@@ -6431,6 +6441,7 @@ export namespace Prisma {
     excerpt?: boolean
     description?: boolean
     heroImage?: boolean
+    heroImageAlt?: boolean
     readTime?: boolean
     featured?: boolean
     metaTitle?: boolean
@@ -6440,7 +6451,7 @@ export namespace Prisma {
     category?: boolean
   }
 
-  export type ArticleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "description" | "heroImage" | "readTime" | "featured" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt" | "category", ExtArgs["result"]["article"]>
+  export type ArticleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "excerpt" | "description" | "heroImage" | "heroImageAlt" | "readTime" | "featured" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt" | "category", ExtArgs["result"]["article"]>
   export type ArticleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | Article$commentsArgs<ExtArgs>
     sections?: boolean | Article$sectionsArgs<ExtArgs>
@@ -6464,6 +6475,7 @@ export namespace Prisma {
       excerpt: string
       description: string
       heroImage: string
+      heroImageAlt: string
       readTime: number
       featured: boolean
       metaTitle: string
@@ -6903,6 +6915,7 @@ export namespace Prisma {
     readonly excerpt: FieldRef<"Article", 'String'>
     readonly description: FieldRef<"Article", 'String'>
     readonly heroImage: FieldRef<"Article", 'String'>
+    readonly heroImageAlt: FieldRef<"Article", 'String'>
     readonly readTime: FieldRef<"Article", 'Int'>
     readonly featured: FieldRef<"Article", 'Boolean'>
     readonly metaTitle: FieldRef<"Article", 'String'>
@@ -7403,6 +7416,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     image: string | null
+    imageAlt: string | null
     link: string | null
     articleId: string | null
   }
@@ -7412,6 +7426,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     image: string | null
+    imageAlt: string | null
     link: string | null
     articleId: string | null
   }
@@ -7421,6 +7436,7 @@ export namespace Prisma {
     name: number
     description: number
     image: number
+    imageAlt: number
     link: number
     articleId: number
     _all: number
@@ -7432,6 +7448,7 @@ export namespace Prisma {
     name?: true
     description?: true
     image?: true
+    imageAlt?: true
     link?: true
     articleId?: true
   }
@@ -7441,6 +7458,7 @@ export namespace Prisma {
     name?: true
     description?: true
     image?: true
+    imageAlt?: true
     link?: true
     articleId?: true
   }
@@ -7450,6 +7468,7 @@ export namespace Prisma {
     name?: true
     description?: true
     image?: true
+    imageAlt?: true
     link?: true
     articleId?: true
     _all?: true
@@ -7532,6 +7551,7 @@ export namespace Prisma {
     name: string
     description: string
     image: string | null
+    imageAlt: string | null
     link: string | null
     articleId: string
     _count: SectionCountAggregateOutputType | null
@@ -7558,6 +7578,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    imageAlt?: boolean
     link?: boolean
     articleId?: boolean
     article?: boolean | ArticleDefaultArgs<ExtArgs>
@@ -7568,6 +7589,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    imageAlt?: boolean
     link?: boolean
     articleId?: boolean
     article?: boolean | ArticleDefaultArgs<ExtArgs>
@@ -7578,6 +7600,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    imageAlt?: boolean
     link?: boolean
     articleId?: boolean
     article?: boolean | ArticleDefaultArgs<ExtArgs>
@@ -7588,11 +7611,12 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    imageAlt?: boolean
     link?: boolean
     articleId?: boolean
   }
 
-  export type SectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "link" | "articleId", ExtArgs["result"]["section"]>
+  export type SectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "imageAlt" | "link" | "articleId", ExtArgs["result"]["section"]>
   export type SectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     article?: boolean | ArticleDefaultArgs<ExtArgs>
   }
@@ -7613,6 +7637,7 @@ export namespace Prisma {
       name: string
       description: string
       image: string | null
+      imageAlt: string | null
       link: string | null
       articleId: string
     }, ExtArgs["result"]["section"]>
@@ -8043,6 +8068,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Section", 'String'>
     readonly description: FieldRef<"Section", 'String'>
     readonly image: FieldRef<"Section", 'String'>
+    readonly imageAlt: FieldRef<"Section", 'String'>
     readonly link: FieldRef<"Section", 'String'>
     readonly articleId: FieldRef<"Section", 'String'>
   }
@@ -10662,6 +10688,7 @@ export namespace Prisma {
     excerpt: 'excerpt',
     description: 'description',
     heroImage: 'heroImage',
+    heroImageAlt: 'heroImageAlt',
     readTime: 'readTime',
     featured: 'featured',
     metaTitle: 'metaTitle',
@@ -10679,6 +10706,7 @@ export namespace Prisma {
     name: 'name',
     description: 'description',
     image: 'image',
+    imageAlt: 'imageAlt',
     link: 'link',
     articleId: 'articleId'
   };
@@ -11133,6 +11161,7 @@ export namespace Prisma {
     excerpt?: StringFilter<"Article"> | string
     description?: StringFilter<"Article"> | string
     heroImage?: StringFilter<"Article"> | string
+    heroImageAlt?: StringFilter<"Article"> | string
     readTime?: IntFilter<"Article"> | number
     featured?: BoolFilter<"Article"> | boolean
     metaTitle?: StringFilter<"Article"> | string
@@ -11152,6 +11181,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     description?: SortOrder
     heroImage?: SortOrder
+    heroImageAlt?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
     metaTitle?: SortOrder
@@ -11174,6 +11204,7 @@ export namespace Prisma {
     excerpt?: StringFilter<"Article"> | string
     description?: StringFilter<"Article"> | string
     heroImage?: StringFilter<"Article"> | string
+    heroImageAlt?: StringFilter<"Article"> | string
     readTime?: IntFilter<"Article"> | number
     featured?: BoolFilter<"Article"> | boolean
     metaTitle?: StringFilter<"Article"> | string
@@ -11193,6 +11224,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     description?: SortOrder
     heroImage?: SortOrder
+    heroImageAlt?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
     metaTitle?: SortOrder
@@ -11217,6 +11249,7 @@ export namespace Prisma {
     excerpt?: StringWithAggregatesFilter<"Article"> | string
     description?: StringWithAggregatesFilter<"Article"> | string
     heroImage?: StringWithAggregatesFilter<"Article"> | string
+    heroImageAlt?: StringWithAggregatesFilter<"Article"> | string
     readTime?: IntWithAggregatesFilter<"Article"> | number
     featured?: BoolWithAggregatesFilter<"Article"> | boolean
     metaTitle?: StringWithAggregatesFilter<"Article"> | string
@@ -11234,6 +11267,7 @@ export namespace Prisma {
     name?: StringFilter<"Section"> | string
     description?: StringFilter<"Section"> | string
     image?: StringNullableFilter<"Section"> | string | null
+    imageAlt?: StringNullableFilter<"Section"> | string | null
     link?: StringNullableFilter<"Section"> | string | null
     articleId?: StringFilter<"Section"> | string
     article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
@@ -11244,6 +11278,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     image?: SortOrderInput | SortOrder
+    imageAlt?: SortOrderInput | SortOrder
     link?: SortOrderInput | SortOrder
     articleId?: SortOrder
     article?: ArticleOrderByWithRelationInput
@@ -11257,6 +11292,7 @@ export namespace Prisma {
     name?: StringFilter<"Section"> | string
     description?: StringFilter<"Section"> | string
     image?: StringNullableFilter<"Section"> | string | null
+    imageAlt?: StringNullableFilter<"Section"> | string | null
     link?: StringNullableFilter<"Section"> | string | null
     articleId?: StringFilter<"Section"> | string
     article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
@@ -11267,6 +11303,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     image?: SortOrderInput | SortOrder
+    imageAlt?: SortOrderInput | SortOrder
     link?: SortOrderInput | SortOrder
     articleId?: SortOrder
     _count?: SectionCountOrderByAggregateInput
@@ -11282,6 +11319,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Section"> | string
     description?: StringWithAggregatesFilter<"Section"> | string
     image?: StringNullableWithAggregatesFilter<"Section"> | string | null
+    imageAlt?: StringNullableWithAggregatesFilter<"Section"> | string | null
     link?: StringNullableWithAggregatesFilter<"Section"> | string | null
     articleId?: StringWithAggregatesFilter<"Section"> | string
   }
@@ -11776,6 +11814,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -11795,6 +11834,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -11814,6 +11854,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -11833,6 +11874,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -11852,6 +11894,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -11868,6 +11911,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -11884,6 +11928,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -11898,6 +11943,7 @@ export namespace Prisma {
     name: string
     description: string
     image?: string | null
+    imageAlt?: string | null
     link?: string | null
     article: ArticleCreateNestedOneWithoutSectionsInput
   }
@@ -11907,6 +11953,7 @@ export namespace Prisma {
     name: string
     description: string
     image?: string | null
+    imageAlt?: string | null
     link?: string | null
     articleId: string
   }
@@ -11916,6 +11963,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
     article?: ArticleUpdateOneRequiredWithoutSectionsNestedInput
   }
@@ -11925,6 +11973,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
     articleId?: StringFieldUpdateOperationsInput | string
   }
@@ -11934,6 +11983,7 @@ export namespace Prisma {
     name: string
     description: string
     image?: string | null
+    imageAlt?: string | null
     link?: string | null
     articleId: string
   }
@@ -11943,6 +11993,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -11951,6 +12002,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
     articleId?: StringFieldUpdateOperationsInput | string
   }
@@ -12429,6 +12481,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     description?: SortOrder
     heroImage?: SortOrder
+    heroImageAlt?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
     metaTitle?: SortOrder
@@ -12449,6 +12502,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     description?: SortOrder
     heroImage?: SortOrder
+    heroImageAlt?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
     metaTitle?: SortOrder
@@ -12465,6 +12519,7 @@ export namespace Prisma {
     excerpt?: SortOrder
     description?: SortOrder
     heroImage?: SortOrder
+    heroImageAlt?: SortOrder
     readTime?: SortOrder
     featured?: SortOrder
     metaTitle?: SortOrder
@@ -12504,6 +12559,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    imageAlt?: SortOrder
     link?: SortOrder
     articleId?: SortOrder
   }
@@ -12513,6 +12569,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    imageAlt?: SortOrder
     link?: SortOrder
     articleId?: SortOrder
   }
@@ -12522,6 +12579,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    imageAlt?: SortOrder
     link?: SortOrder
     articleId?: SortOrder
   }
@@ -13623,6 +13681,7 @@ export namespace Prisma {
     name: string
     description: string
     image?: string | null
+    imageAlt?: string | null
     link?: string | null
   }
 
@@ -13631,6 +13690,7 @@ export namespace Prisma {
     name: string
     description: string
     image?: string | null
+    imageAlt?: string | null
     link?: string | null
   }
 
@@ -13704,6 +13764,7 @@ export namespace Prisma {
     name?: StringFilter<"Section"> | string
     description?: StringFilter<"Section"> | string
     image?: StringNullableFilter<"Section"> | string | null
+    imageAlt?: StringNullableFilter<"Section"> | string | null
     link?: StringNullableFilter<"Section"> | string | null
     articleId?: StringFilter<"Section"> | string
   }
@@ -13731,6 +13792,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -13749,6 +13811,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -13783,6 +13846,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -13801,6 +13865,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -13858,6 +13923,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -13876,6 +13942,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -13955,6 +14022,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -13973,6 +14041,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -14030,6 +14099,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -14048,6 +14118,7 @@ export namespace Prisma {
     excerpt: string
     description: string
     heroImage: string
+    heroImageAlt: string
     readTime: number
     featured?: boolean
     metaTitle: string
@@ -14127,6 +14198,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -14145,6 +14217,7 @@ export namespace Prisma {
     excerpt?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     heroImage?: StringFieldUpdateOperationsInput | string
+    heroImageAlt?: StringFieldUpdateOperationsInput | string
     readTime?: IntFieldUpdateOperationsInput | number
     featured?: BoolFieldUpdateOperationsInput | boolean
     metaTitle?: StringFieldUpdateOperationsInput | string
@@ -14325,6 +14398,7 @@ export namespace Prisma {
     name: string
     description: string
     image?: string | null
+    imageAlt?: string | null
     link?: string | null
   }
 
@@ -14362,6 +14436,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14370,6 +14445,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14378,6 +14454,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
