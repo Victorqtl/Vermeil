@@ -1,1 +1,39 @@
-{"node":{"0060167a490ae99aea534f8bc674630db7719d6489":{"workers":{"app/account/profile/page":{"moduleId":"26979","async":false}},"layer":{"app/account/profile/page":"rsc"}},"7f9959c163a4c75eb57b8959b4cd76d7bdafaf7bbd":{"workers":{"app/admin/articles/edit/[slug]/page":{"moduleId":"5166","async":false}},"layer":{"app/admin/articles/edit/[slug]/page":"action-browser"}},"7f224cddfd4931a8e6bd99077d3cd6604b5db3302f":{"workers":{"app/admin/articles/edit/[slug]/page":{"moduleId":"5166","async":false}},"layer":{"app/admin/articles/edit/[slug]/page":"action-browser"}},"7f09877228e86f199445f81056164b7743501933bf":{"workers":{"app/admin/articles/new/page":{"moduleId":"57096","async":false}},"layer":{"app/admin/articles/new/page":"action-browser"}},"7f7b304d7abd676248ec95fca573fe92e9a0da3c4a":{"workers":{"app/account/profile/page":{"moduleId":"38022","async":false}},"layer":{"app/account/profile/page":"action-browser"}},"7f71f276e99a1adad00588728d4d486eb31bce0b93":{"workers":{"app/account/profile/page":{"moduleId":"38022","async":false}},"layer":{"app/account/profile/page":"action-browser"}},"7f8c711893d5b04662a58afc63b15913c925197412":{"workers":{"app/(main)/article/[slug]/page":{"moduleId":"35516","async":false}},"layer":{"app/(main)/article/[slug]/page":"action-browser"}}},"edge":{},"encryptionKey":"MfjYrJudbKuxZbmGbPjD1SJsfJ6BzFoZdmzoKt3KH84="}
+{
+  "node": {
+    "0060167a490ae99aea534f8bc674630db7719d6489": {
+      "workers": {
+        "app/account/profile/page": {
+          "moduleId": "(rsc)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Fpage.tsx%22%2C%5B%7B%22id%22%3A%220060167a490ae99aea534f8bc674630db7719d6489%22%2C%22exportedName%22%3A%22%24%24RSC_SERVER_ACTION_0%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/account/profile/page": "rsc"
+      }
+    },
+    "7f7b304d7abd676248ec95fca573fe92e9a0da3c4a": {
+      "workers": {
+        "app/account/profile/page": {
+          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FuploadAvatar.action.ts%22%2C%5B%7B%22id%22%3A%227f7b304d7abd676248ec95fca573fe92e9a0da3c4a%22%2C%22exportedName%22%3A%22uploadAvatar%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FupdateProfile.action.ts%22%2C%5B%7B%22id%22%3A%227f71f276e99a1adad00588728d4d486eb31bce0b93%22%2C%22exportedName%22%3A%22updateProfile%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/account/profile/page": "action-browser"
+      }
+    },
+    "7f71f276e99a1adad00588728d4d486eb31bce0b93": {
+      "workers": {
+        "app/account/profile/page": {
+          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FuploadAvatar.action.ts%22%2C%5B%7B%22id%22%3A%227f7b304d7abd676248ec95fca573fe92e9a0da3c4a%22%2C%22exportedName%22%3A%22uploadAvatar%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FupdateProfile.action.ts%22%2C%5B%7B%22id%22%3A%227f71f276e99a1adad00588728d4d486eb31bce0b93%22%2C%22exportedName%22%3A%22updateProfile%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/account/profile/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "MfjYrJudbKuxZbmGbPjD1SJsfJ6BzFoZdmzoKt3KH84="
+}
