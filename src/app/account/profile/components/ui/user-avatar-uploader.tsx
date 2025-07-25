@@ -18,7 +18,6 @@ export function UserAvatarUploader(props: { user: User }) {
 	const [uploadSuccess, setUploadSuccess] = useState(false);
 	const [isPending, startTransition] = useTransition();
 
-	// Optimisation : utiliser useCallback pour éviter les re-renders inutiles
 	const uploadFile = useCallback(
 		async (files: FileWithPreview[]) => {
 			const file = files[0];
@@ -27,7 +26,6 @@ export function UserAvatarUploader(props: { user: User }) {
 			setClientError(null);
 			setUploadSuccess(false);
 
-			// Validation côté client optimisée
 			if (file.file && file.file.size > MAX_FILE_SIZE) {
 				setClientError(`Fichier trop volumineux. Taille maximale : ${MAX_FILE_SIZE / (1024 * 1024)}MB`);
 				return;
@@ -45,7 +43,6 @@ export function UserAvatarUploader(props: { user: User }) {
 				return;
 			}
 
-			// Utilisation de startTransition pour une meilleure UX
 			startTransition(async () => {
 				try {
 					const formData = new FormData();
@@ -56,7 +53,6 @@ export function UserAvatarUploader(props: { user: User }) {
 					if (response?.data?.url) {
 						setCurrentImageUrl(response.data.url);
 						setUploadSuccess(true);
-						// Cacher le message de succès après 3 secondes
 						setTimeout(() => setUploadSuccess(false), 3000);
 					}
 				} catch (error) {

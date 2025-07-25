@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import HeroImage from '@/assets/images/hero-background-image.jpeg';
 import ArrowLinkButton from '../../../components/ui/arrow-link-button';
 
 const Hero: React.FC = () => {
@@ -20,7 +21,7 @@ const Hero: React.FC = () => {
 			<div
 				className='absolute inset-0 bg-cover'
 				style={{
-					backgroundImage: 'url(https://images.pexels.com/photos/31699433/pexels-photo-31699433.jpeg)',
+					backgroundImage: `url(${HeroImage.src})`,
 					backgroundPosition: 'center 20%',
 				}}>
 				<div className='absolute inset-0 bg-black opacity-40'></div>

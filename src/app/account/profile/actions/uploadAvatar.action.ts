@@ -1,7 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
-import { uploadFileToS3 } from '@/utils/s3-utils';
+import { uploadFileToS3, cleanupOldAvatars } from '@/utils/s3-utils';
 import { authActionClient, SafeError } from '@/lib/safe-actions';
 import { revalidatePath } from 'next/cache';
 import { zfd } from 'zod-form-data';
@@ -32,6 +32,8 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 		});
 
 		revalidatePath('/account/profile');
+		revalidatePath('/account');
+		revalidatePath('/', 'layout');
 		return {
 			url: DEFAULT_AVATAR_URL,
 		};
@@ -56,18 +58,22 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 	}
 
 	try {
+		await cleanupOldAvatars(user.id);
+
 		const fileUrl = await uploadFileToS3({
 			contentType: file.type,
 			file: file,
 			path: `users/${user.id}/avatar`,
 		});
 
+		const cacheBustedUrl = `${fileUrl}?v=${Date.now()}`;
+
 		await prisma.user.update({
 			where: {
 				id: user.id,
 			},
 			data: {
-				image: fileUrl,
+				image: cacheBustedUrl,
 			},
 			select: {
 				id: true,
@@ -76,8 +82,10 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 		});
 
 		revalidatePath('/account/profile');
+		revalidatePath('/account');
+		revalidatePath('/', 'layout');
 		return {
-			url: fileUrl,
+			url: cacheBustedUrl,
 		};
 	} catch (error) {
 		console.error("Erreur lors de l'upload d'avatar:", error);
