@@ -1,9 +1,42 @@
 {
   "node": {
+    "7f5fa0fadb1b22dc8373900f2ed1484d411815a625": {
+      "workers": {
+        "app/(main)/article/[slug]/page": {
+          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f5fa0fadb1b22dc8373900f2ed1484d411815a625%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f80c9f2a543011ae0e39e8c9bfada863586d6db71%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa0aba0d637cbd9a85e8cd79b1e0a17b07fa04df2%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227f8c711893d5b04662a58afc63b15913c925197412%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(main)/article/[slug]/page": "action-browser"
+      }
+    },
+    "7f80c9f2a543011ae0e39e8c9bfada863586d6db71": {
+      "workers": {
+        "app/(main)/article/[slug]/page": {
+          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f5fa0fadb1b22dc8373900f2ed1484d411815a625%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f80c9f2a543011ae0e39e8c9bfada863586d6db71%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa0aba0d637cbd9a85e8cd79b1e0a17b07fa04df2%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227f8c711893d5b04662a58afc63b15913c925197412%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(main)/article/[slug]/page": "action-browser"
+      }
+    },
+    "7fa0aba0d637cbd9a85e8cd79b1e0a17b07fa04df2": {
+      "workers": {
+        "app/(main)/article/[slug]/page": {
+          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f5fa0fadb1b22dc8373900f2ed1484d411815a625%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f80c9f2a543011ae0e39e8c9bfada863586d6db71%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa0aba0d637cbd9a85e8cd79b1e0a17b07fa04df2%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227f8c711893d5b04662a58afc63b15913c925197412%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(main)/article/[slug]/page": "action-browser"
+      }
+    },
     "7f8c711893d5b04662a58afc63b15913c925197412": {
       "workers": {
         "app/(main)/article/[slug]/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227f8c711893d5b04662a58afc63b15913c925197412%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f5fa0fadb1b22dc8373900f2ed1484d411815a625%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f80c9f2a543011ae0e39e8c9bfada863586d6db71%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa0aba0d637cbd9a85e8cd79b1e0a17b07fa04df2%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227f8c711893d5b04662a58afc63b15913c925197412%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },

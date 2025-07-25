@@ -4,8 +4,11 @@ import { ArrowRight } from 'lucide-react';
 import { getArticleBySlug } from '@/lib/data/articles';
 import { notFound } from 'next/navigation';
 import { getUser } from '@/lib/auth-session';
-import SaveArticle from '@/app/(main)/article/components/SaveArticle';
+import SaveArticle from '@/app/(main)/article/components/save-article/SaveArticle';
 import { getSavedArticlesById } from '@/lib/data/saved-articles';
+import { getCommentsByArticleId } from '@/lib/data/comments';
+import CommentForm from '@/app/(main)/article/components/comment/CommentForm';
+import CommentList from '@/app/(main)/article/components/comment/CommentList';
 
 function parseTitle(title: string) {
 	if (title.startsWith('### ')) {
@@ -45,6 +48,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 	if (!article) {
 		notFound();
 	}
+
+	const comments = await getCommentsByArticleId(article.id);
 
 	return (
 		<article className='min-h-screen bg-white'>
@@ -145,6 +150,22 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 							</div>
 						);
 					})}
+				</div>
+			</div>
+
+			{/* Comments Section */}
+			<div className='bg-gray-50 py-16'>
+				<div className='container mx-auto px-4 md:px-6'>
+					<div className='max-w-3xl mx-auto space-y-8'>
+						<CommentForm
+							articleId={article.id}
+							user={user}
+						/>
+						<CommentList
+							comments={comments}
+							currentUser={user}
+						/>
+					</div>
 				</div>
 			</div>
 
