@@ -1,23 +1,45 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Article } from '@/types/article';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-interface SavedArticlesProps {
-	initialData: Article[];
-}
 
 const ARTICLES_PER_PAGE = 6;
 
-export default function SavedArticles({ initialData }: SavedArticlesProps) {
+export default function SavedArticles() {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [articles] = useState<Article[]>(initialData);
+	const [articles, setArticles] = useState<Article[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 
-	// Pagination des articles
+	useEffect(() => {
+		const loadArticles = async () => {
+			try {
+				setIsLoading(true);
+				setError(null);
+
+				const response = await fetch('/api/user/saved-articles');
+
+				if (!response.ok) {
+					throw new Error('Erreur lors du chargement des articles');
+				}
+
+				const data = await response.json();
+				setArticles(data.articles || []);
+			} catch (err) {
+				console.error('Erreur lors du chargement des articles:', err);
+				setError('Impossible de charger les articles sauvegardés');
+			} finally {
+				setIsLoading(false);
+			}
+		};
+
+		loadArticles();
+	}, []);
+
 	const paginatedArticles = useMemo(() => {
 		const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
 		const endIndex = startIndex + ARTICLES_PER_PAGE;
@@ -28,9 +50,26 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 
 	const handlePageChange = (page: number) => {
 		setCurrentPage(page);
-		// Scroll vers le haut pour une meilleure UX
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
+
+	if (isLoading) {
+		return (
+			<div className='p-8 text-center'>
+				<Loader2 className='mx-auto h-8 w-8 animate-spin text-gray-400 mb-4' />
+				<p className='text-gray-500'>Chargement de vos articles sauvegardés...</p>
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className='p-8 text-center text-red-500'>
+				<p className='text-lg font-medium mb-2'>Erreur</p>
+				<p className='text-sm'>{error}</p>
+			</div>
+		);
+	}
 
 	if (articles.length === 0) {
 		return (
@@ -57,7 +96,7 @@ export default function SavedArticles({ initialData }: SavedArticlesProps) {
 	}
 
 	return (
-		<div className='space-y-6 md:p-6'>
+		<div className='max-h-[380px] lg:max-h-[300px] overflow-y-auto space-y-6 md:p-6'>
 			<div className='flex justify-between items-center'>
 				<h2 className='text-xl font-semibold text-gray-900'>Mes articles sauvegardés ({articles.length})</h2>
 				{totalPages > 1 && (

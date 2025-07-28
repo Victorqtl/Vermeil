@@ -8,5 +8,4 @@ export interface Article {
 	readTime: number;
 	category: string;
 	createdAt: Date;
-	updatedAt: Date;
 }

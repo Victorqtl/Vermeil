@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { authActionClient, SafeError } from '@/lib/safe-actions';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createArticleSchema } from '@/lib/schemas/article.schema';
 
@@ -70,7 +70,6 @@ export const createArticle = authActionClient
 			throw new SafeError("Erreur lors de la création de l'article");
 		}
 
-		revalidatePath('/admin/articles');
-		revalidatePath('/article', 'layout');
+		revalidateTag('articles');
 		redirect('/admin/articles');
 	});

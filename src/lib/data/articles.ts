@@ -9,11 +9,8 @@ export async function getArticles() {
 			},
 			select: {
 				id: true,
-				title: true,
 				slug: true,
-				metaTitle: true,
-				metaDescription: true,
-				description: true,
+				title: true,
 				excerpt: true,
 				heroImage: true,
 				heroImageAlt: true,
@@ -21,8 +18,6 @@ export async function getArticles() {
 				featured: true,
 				category: true,
 				createdAt: true,
-				updatedAt: true,
-				sections: true,
 			},
 		});
 	} catch (error) {
@@ -31,7 +26,12 @@ export async function getArticles() {
 	}
 }
 
-export async function getUserSavedArticles(userId: string) {
+export const getCachedArticles = unstable_cache(getArticles, ['articles'], {
+	revalidate: 60,
+	tags: ['articles'],
+});
+
+async function getUserSavedArticles(userId: string) {
 	try {
 		return await prisma.article.findMany({
 			where: {
@@ -55,7 +55,6 @@ export async function getUserSavedArticles(userId: string) {
 				readTime: true,
 				category: true,
 				createdAt: true,
-				updatedAt: true,
 			},
 		});
 	} catch (error) {
@@ -63,6 +62,15 @@ export async function getUserSavedArticles(userId: string) {
 		throw new Error('Impossible de récupérer les articles sauvegardés');
 	}
 }
+
+export const getCachedUserSavedArticles = unstable_cache(
+	async (userId: string) => getUserSavedArticles(userId),
+	['user-saved-articles'],
+	{
+		revalidate: 60,
+		tags: ['user-saved-articles'],
+	}
+);
 
 async function getArticleBySlug(slug: string) {
 	try {
@@ -99,6 +107,6 @@ export const getCachedArticleBySlug = unstable_cache(
 	['article-by-slug'],
 	{
 		revalidate: 60,
-		tags: ['articles'],
+		tags: ['articles-by-slug'],
 	}
 );

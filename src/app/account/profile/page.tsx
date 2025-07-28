@@ -1,5 +1,4 @@
 import { getUser } from '@/lib/auth-session';
-import { getUserSavedArticles } from '@/lib/data/articles';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -10,7 +9,6 @@ import { Button } from '@/components/ui/button';
 
 export default async function page() {
 	const user = await getUser();
-	const savedArticles = await getUserSavedArticles(user!.id);
 
 	return (
 		<div className='flex flex-col relative w-full h-fit max-w-4xl lg:mt-18 shadow-sm'>
@@ -38,10 +36,7 @@ export default async function page() {
 			</div>
 			<div className='p-8 pt-20 bg-white'>
 				<div className='flex flex-col gap-4'>
-					<UserProfile
-						initialSavedArticles={savedArticles}
-						user={user!}
-					/>
+					<UserProfile user={user!} />
 				</div>
 			</div>
 		</div>

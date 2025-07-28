@@ -7,7 +7,7 @@ import { getUser } from '@/lib/auth-session';
 import SaveArticle from '@/app/(main)/article/components/save-article/SaveArticle';
 import { getSavedArticlesById } from '@/lib/data/saved-articles';
 import CommentsList from '@/app/(main)/article/components/comment/CommentsList';
-import CommentsSkeleton from '@/app/(main)/article/components/CommentsSkeleton';
+import CommentsSkeleton from '@/app/(main)/article/components/comment/CommentsSkeleton';
 import { Suspense } from 'react';
 
 function parseTitle(title: string) {

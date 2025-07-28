@@ -7,14 +7,21 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfile } from '../actions/updateProfile.action';
 import { useAction } from 'next-safe-action/hooks';
 import { Loader2 } from 'lucide-react';
-import SavedArticles from './SavedArticles';
-import { Article } from '@/types/article';
+import dynamic from 'next/dynamic';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
+const SavedArticles = dynamic(() => import('./SavedArticles'), {
+	loading: () => (
+		<div className='p-8 text-center'>
+			<Loader2 className='mx-auto h-8 w-8 animate-spin text-gray-400 mb-4' />
+			<p className='text-gray-500'>Chargement...</p>
+		</div>
+	),
+});
+
 interface UserProfileProps {
-	initialSavedArticles: Article[];
 	user: {
 		id: string;
 		name: string;
@@ -23,7 +30,7 @@ interface UserProfileProps {
 	};
 }
 
-export default function UserProfile({ initialSavedArticles, user }: UserProfileProps) {
+export default function UserProfile({ user }: UserProfileProps) {
 	const { executeAsync, hasErrored, result, isExecuting } = useAction(updateProfile);
 
 	const [activeTab, setActiveTab] = useState('profile');
@@ -69,7 +76,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 			</div>
 
 			{activeTab === 'profile' && (
-				<div className='space-y-6'>
+				<div className='flex flex-col justify-center gap-6 h-[300px]'>
 					<form
 						onSubmit={handleSubmit(onSubmit)}
 						className='space-y-6'>
@@ -138,7 +145,7 @@ export default function UserProfile({ initialSavedArticles, user }: UserProfileP
 				</div>
 			)}
 
-			{activeTab === 'saved-articles' && <SavedArticles initialData={initialSavedArticles} />}
+			{activeTab === 'saved-articles' && <SavedArticles />}
 		</>
 	);
 }

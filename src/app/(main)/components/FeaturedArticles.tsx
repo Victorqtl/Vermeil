@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 export default async function FeaturedArticles() {
 	const articles = await getArticles();
-	console.log(articles);
 	// Get first 3 featured articles for main grid
 	const featuredArticles = articles.filter(article => article.featured).slice(0, 3);
 	// Get next 3 articles for secondary section
