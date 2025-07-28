@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { getArticleBySlug } from '@/lib/data/articles';
+import { getCachedArticleBySlug } from '@/lib/data/articles';
 import { notFound } from 'next/navigation';
 import { getUser } from '@/lib/auth-session';
 import SaveArticle from '@/app/(main)/article/components/save-article/SaveArticle';
 import { getSavedArticlesById } from '@/lib/data/saved-articles';
-import { getCommentsByArticleId } from '@/lib/data/comments';
-import CommentList from '@/app/(main)/article/components/comment/CommentList';
+import CommentsList from '@/app/(main)/article/components/comment/CommentsList';
+import CommentsSkeleton from '@/app/(main)/article/components/CommentsSkeleton';
+import { Suspense } from 'react';
 
 function parseTitle(title: string) {
 	if (title.startsWith('### ')) {
@@ -40,15 +41,14 @@ function renderParagraph(text: string, index: number) {
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
-	const article = await getArticleBySlug(resolvedParams.slug);
-	const user = await getUser();
-	const savedArticle = user?.id ? await getSavedArticlesById(user.id, article!.id) : null;
+	const article = await getCachedArticleBySlug(resolvedParams.slug);
 
 	if (!article) {
 		notFound();
 	}
 
-	const comments = await getCommentsByArticleId(article.id);
+	const user = await getUser();
+	const savedArticle = user?.id ? await getSavedArticlesById(user.id, article.id) : null;
 
 	return (
 		<article className='min-h-screen bg-white'>
@@ -71,7 +71,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 							{article.title}
 						</h1>
 						<div className='mt-6 text-white/90'>
-							<span>{article.createdAt.toLocaleDateString('fr-FR')}</span>
+							<span>{new Date(article.createdAt).toLocaleDateString('fr-FR')}</span>
 							<span className='mx-3'>•</span>
 							<span>{article.readTime} min de lecture</span>
 						</div>
@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 			</div>
 
 			{/* Products Section */}
-			<div className='container mx-auto px-4 md:px-6 py-16'>
+			<div className='px-4 md:px-6 py-16'>
 				<SaveArticle
 					articleId={article.id}
 					savedArticle={savedArticle}
@@ -121,6 +121,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 											alt={section.imageAlt!}
 											fill
 											className='object-cover transition-transform duration-500 group-hover:scale-105'
+											loading='lazy'
+											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 										/>
 									</Link>
 								) : (
@@ -131,6 +133,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 												alt={section.imageAlt!}
 												fill
 												className='object-cover'
+												loading='lazy'
+												sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 											/>
 										</div>
 									)
@@ -153,17 +157,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 			</div>
 
 			{/* Comments Section */}
-			<div className='bg-gray-50 py-16'>
-				<div className='container mx-auto px-4 md:px-6'>
-					<div className='max-w-3xl mx-auto'>
-						<CommentList
-							comments={comments}
-							articleId={article.id}
-							currentUser={user}
-						/>
-					</div>
-				</div>
-			</div>
+			<Suspense fallback={<CommentsSkeleton />}>
+				<CommentsList
+					articleId={article.id}
+					currentUser={user || null}
+				/>
+			</Suspense>
 
 			{/* Related Articles Section
 			<div className='bg-gray-50 py-16'>

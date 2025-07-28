@@ -12,8 +12,8 @@ interface CommentItemProps {
 	comment: {
 		id: string;
 		text: string;
-		createdAt: Date;
-		updatedAt: Date;
+		createdAt: Date | string;
+		updatedAt: Date | string;
 		user: {
 			id: string;
 			name: string;
@@ -53,7 +53,7 @@ export default function CommentItem({ comment, currentUser }: CommentItemProps) 
 	};
 
 	const isOwner = currentUser?.id === comment.user.id;
-	const wasEdited = comment.updatedAt.getTime() !== comment.createdAt.getTime();
+	const wasEdited = new Date(comment.updatedAt).getTime() !== new Date(comment.createdAt).getTime();
 
 	return (
 		<div className='bg-white p-6 border border-gray-200'>
@@ -79,7 +79,7 @@ export default function CommentItem({ comment, currentUser }: CommentItemProps) 
 					<div>
 						<h4 className='font-semibold text-gray-900'>{comment.user.name}</h4>
 						<p className='text-sm text-gray-500'>
-							{comment.createdAt.toLocaleDateString('fr-FR', {
+							{new Date(comment.createdAt).toLocaleDateString('fr-FR', {
 								day: 'numeric',
 								month: 'long',
 								year: 'numeric',

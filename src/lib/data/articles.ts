@@ -1,4 +1,5 @@
 import { prisma } from '../prisma';
+import { unstable_cache } from 'next/cache';
 
 export async function getArticles() {
 	try {
@@ -63,7 +64,7 @@ export async function getUserSavedArticles(userId: string) {
 	}
 }
 
-export async function getArticleBySlug(slug: string) {
+async function getArticleBySlug(slug: string) {
 	try {
 		return await prisma.article.findUnique({
 			where: {
@@ -92,3 +93,12 @@ export async function getArticleBySlug(slug: string) {
 		throw new Error("Impossible de récupérer l'article");
 	}
 }
+
+export const getCachedArticleBySlug = unstable_cache(
+	async (slug: string) => getArticleBySlug(slug),
+	['article-by-slug'],
+	{
+		revalidate: 60,
+		tags: ['articles'],
+	}
+);

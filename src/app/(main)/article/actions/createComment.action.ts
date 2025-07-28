@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { authActionClient, SafeError } from '@/lib/safe-actions';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { z } from 'zod';
 
 const createCommentSchema = z.object({
@@ -36,8 +36,7 @@ export const createComment = authActionClient
 				},
 			});
 
-			revalidatePath(`/article/${article.slug}`);
-
+			revalidateTag('comments');
 			return { success: true };
 		} catch (error) {
 			console.error('Erreur lors de la création du commentaire:', error);

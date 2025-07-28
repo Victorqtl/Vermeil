@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
-import { getArticleBySlug } from '@/lib/data/articles';
+import { getCachedArticleBySlug } from '@/lib/data/articles';
 import EditArticlePage from './components/EditArticleClient';
 
 export default async function EditArticle({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
-	const article = await getArticleBySlug(resolvedParams.slug);
+	const article = await getCachedArticleBySlug(resolvedParams.slug);
 
 	if (!article) {
 		notFound();

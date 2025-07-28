@@ -1,6 +1,7 @@
 import { prisma } from '../prisma';
+import { unstable_cache } from 'next/cache';
 
-export async function getCommentsByArticleId(articleId: string) {
+async function getCommentsByArticleId(articleId: string) {
 	try {
 		return await prisma.comment.findMany({
 			where: {
@@ -28,6 +29,15 @@ export async function getCommentsByArticleId(articleId: string) {
 		throw new Error('Impossible de récupérer les commentaires');
 	}
 }
+
+export const getCachedCommentsByArticleId = unstable_cache(
+	async (articleId: string) => getCommentsByArticleId(articleId),
+	['comments-by-article'],
+	{
+		revalidate: 60,
+		tags: ['comments'],
+	}
+);
 
 export async function getCommentById(commentId: string) {
 	try {
