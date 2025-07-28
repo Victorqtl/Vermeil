@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useOptimisticAction } from 'next-safe-action/hooks';
+import { useAction } from 'next-safe-action/hooks';
 import { updateComment } from '@/app/(main)/article/actions/updateComment.action';
 import { deleteComment } from '@/app/(main)/article/actions/deleteComment.action';
 import { Button } from '@/components/ui/button';
@@ -23,34 +23,20 @@ interface CommentItemProps {
 	currentUser?: {
 		id: string;
 	} | null;
-	onCommentUpdated?: () => void;
 }
 
-export default function CommentItem({ comment, currentUser, onCommentUpdated }: CommentItemProps) {
+export default function CommentItem({ comment, currentUser }: CommentItemProps) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editText, setEditText] = useState(comment.text);
 	const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-	const { execute: executeUpdate, isExecuting: isUpdating } = useOptimisticAction(updateComment, {
-		currentState: comment,
-		updateFn: (state, input) => ({
-			...state,
-			text: input.text,
-			updatedAt: new Date(),
-		}),
+	const { execute: executeUpdate, isExecuting: isUpdating } = useAction(updateComment, {
 		onSuccess: () => {
 			setIsEditing(false);
-			onCommentUpdated?.();
 		},
 	});
 
-	const { execute: executeDelete, isExecuting: isDeleting } = useOptimisticAction(deleteComment, {
-		currentState: null,
-		updateFn: () => null,
-		onSuccess: () => {
-			onCommentUpdated?.();
-		},
-	});
+	const { execute: executeDelete, isExecuting: isDeleting } = useAction(deleteComment);
 
 	const handleUpdate = () => {
 		if (!editText.trim()) return;

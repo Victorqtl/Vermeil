@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 export default async function FeaturedArticles() {
 	const articles = await getArticles();
+	console.log(articles);
 	// Get first 3 featured articles for main grid
 	const featuredArticles = articles.filter(article => article.featured).slice(0, 3);
 	// Get next 3 articles for secondary section
@@ -35,7 +36,10 @@ export default async function FeaturedArticles() {
 										<span className='inline-block bg-white px-3 py-1 mb-3 text-xs font-medium text-black uppercase tracking-wider'>
 											{article.category}
 										</span>
-										<h3 className='text-xl md:text-2xl lg:text-xl xl:text-3xl font-serif font-bold text-white mb-2'>
+										<h3
+											className={`text-xl md:text-2xl lg:text-xl ${
+												index === 0 ? 'xl:text-3xl' : 'xl:text-xl'
+											} font-serif font-bold text-white mb-2`}>
 											{article.title}
 										</h3>
 										<p className='text-white text-sm md:text-lg leading-relaxed mb-2 md:mb-6 line-clamp-2'>

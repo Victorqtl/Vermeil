@@ -21,6 +21,21 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(main)/layout.js"
     ],
+    "/(main)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(main)/page.js"
+    ],
+    "/api/auth/[...all]/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/auth/[...all]/route.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ],
     "/(main)/article/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -36,20 +51,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(main)/article/[slug]/page.js"
     ],
-    "/api/auth/[...all]/route": [
+    "/auth/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/auth/[...all]/route.js"
+      "static/chunks/app/auth/layout.js"
     ],
-    "/_not-found/page": [
+    "/auth/sign-in/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
-    ],
-    "/(main)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(main)/page.js"
+      "static/chunks/app/auth/sign-in/page.js"
     ],
     "/account/layout": [
       "static/chunks/webpack.js",

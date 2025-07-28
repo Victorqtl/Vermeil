@@ -1,6 +1,6 @@
 'use client';
 
-import { useOptimisticAction } from 'next-safe-action/hooks';
+import { useAction } from 'next-safe-action/hooks';
 import { createComment } from '@/app/(main)/article/actions/createComment.action';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -16,22 +16,15 @@ interface CommentFormProps {
 		name: string;
 		image?: string;
 	} | null;
-	onCommentAdded?: () => void;
 }
 
-export default function CommentForm({ articleId, user, onCommentAdded }: CommentFormProps) {
+export default function CommentForm({ articleId, user }: CommentFormProps) {
 	const [text, setText] = useState('');
 	const [openModal, setOpenModal] = useState(false);
 
-	const { execute, isExecuting } = useOptimisticAction(createComment, {
-		currentState: { articleId, text: '' },
-		updateFn: (state, input) => ({
-			...state,
-			...input,
-		}),
+	const { execute, isExecuting } = useAction(createComment, {
 		onSuccess: () => {
 			setText('');
-			onCommentAdded?.();
 		},
 	});
 
