@@ -30,14 +30,15 @@ async function getCommentsByArticleId(articleId: string) {
 	}
 }
 
-export const getCachedCommentsByArticleId = unstable_cache(
-	async (articleId: string) => getCommentsByArticleId(articleId),
-	['comments-by-article'],
-	{
-		revalidate: 60,
-		tags: ['comments'],
-	}
-);
+export const getCachedCommentsByArticleId = (articleId: string) =>
+	unstable_cache(
+		async () => getCommentsByArticleId(articleId),
+		[`comments-by-article-${articleId}`],
+		{
+			revalidate: 300, // 5 minutes - cache plus long pour de meilleures performances
+			tags: [`comments-${articleId}`], // Tag spécifique par article pour invalidation précise
+		}
+	)();
 
 export async function getCommentById(commentId: string) {
 	try {

@@ -107,7 +107,7 @@ export default function AddArticleSection({
 					type='button'
 					className='w-12 h-12 border border-gray-200 cursor-pointer hover:bg-gray-100 flex items-center justify-center'
 					onClick={() => {
-						append({ name: '', description: '', image: '', imageAlt: '', link: '' });
+						append({ name: '', description: '', image: undefined, imageAlt: undefined, link: '' });
 					}}>
 					<svg
 						width='24'

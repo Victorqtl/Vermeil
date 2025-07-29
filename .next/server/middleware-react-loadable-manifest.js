@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app/account/profile/components/UserProfile.tsx -> ./SavedArticles\":{\"id\":\"app/account/profile/components/UserProfile.tsx -> ./SavedArticles\",\"files\":[\"static/chunks/_app-pages-browser_src_app_account_profile_components_SavedArticles_tsx.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"

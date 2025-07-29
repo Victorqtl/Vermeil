@@ -1,7 +1,3 @@
 {
-  "/api/user/saved-articles/route": "app/api/user/saved-articles/route.js",
-  "/admin/articles/page": "app/admin/articles/page.js",
-  "/(main)/page": "app/(main)/page.js",
-  "/account/profile/page": "app/account/profile/page.js",
   "/(main)/article/[slug]/page": "app/(main)/article/[slug]/page.js"
 }

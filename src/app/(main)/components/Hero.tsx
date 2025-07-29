@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import HeroImage from '@/assets/images/hero-background-image.jpeg';
 import ArrowLinkButton from '../../../components/ui/arrow-link-button';
 
@@ -17,29 +18,33 @@ const Hero: React.FC = () => {
 	}, []);
 
 	return (
-		<section className='relative h-[60vh] min-h-[500px] md:h-screen flex items-center justify-center overflow-hidden'>
-			<div
-				className='absolute inset-0 bg-cover'
-				style={{
-					backgroundImage: `url(${HeroImage.src})`,
-					backgroundPosition: 'center 20%',
-				}}>
-				<div className='absolute inset-0 bg-black opacity-40'></div>
-			</div>
-
+		<section className='relative h-[60vh] min-h-[500px] md:h-screen overflow-hidden'>
+			<Image
+				src={HeroImage}
+				alt="Hero background"
+				fill
+				className='object-cover object-center'
+				style={{ objectPosition: 'center 20%' }}
+				priority
+				quality={90}
+			/>
+			<div className='absolute inset-0 bg-black opacity-40'></div>
+			
 			{/* Content */}
-			<div className='container mx-auto px-8 md:px-6 relative z-10 text-center'>
-				<div className='max-w-3xl mx-auto'>
-					<h1 className='font-serif text-4xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight'>
-						L’excellence n’est pas un hasard.
-					</h1>
-					<p className='text-lg md:text-2xl text-white/90 mb-8 leading-relaxed'>
-						Vermeil vous accompagne dans votre quête de raffinement et de distinction au quotidien.
-					</p>
-					<ArrowLinkButton
-						href='/articles'
-						text='Découvrir nos articles'
-					/>
+			<div className='absolute inset-0 flex items-center justify-center'>
+				<div className='container mx-auto px-8 md:px-6 text-center'>
+					<div className='max-w-3xl mx-auto'>
+						<h1 className='font-serif text-4xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight'>
+							L'excellence n'est pas un hasard.
+						</h1>
+						<p className='text-lg md:text-2xl text-white/90 mb-8 leading-relaxed'>
+							Vermeil vous accompagne dans votre quête de raffinement et de distinction au quotidien.
+						</p>
+						<ArrowLinkButton
+							href='/articles'
+							text='Découvrir nos articles'
+						/>
+					</div>
 				</div>
 			</div>
 

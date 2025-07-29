@@ -1,25 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { updateProfileSchema, UserProfileFormValues } from '@/lib/schemas/updateProfile.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfile } from '../actions/updateProfile.action';
 import { useAction } from 'next-safe-action/hooks';
 import { Loader2 } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-const SavedArticles = dynamic(() => import('./SavedArticles'), {
-	loading: () => (
-		<div className='p-8 text-center'>
-			<Loader2 className='mx-auto h-8 w-8 animate-spin text-gray-400 mb-4' />
-			<p className='text-gray-500'>Chargement...</p>
-		</div>
-	),
-});
+const SavedArticles = lazy(() => import('./SavedArticles'));
+
+const SavedArticlesSkeleton = () => (
+	<div className='p-8 text-center'>
+		<Loader2 className='mx-auto h-8 w-8 animate-spin text-gray-400 mb-4' />
+		<p className='text-gray-500'>Chargement de vos articles sauvegardés...</p>
+	</div>
+);
 
 interface UserProfileProps {
 	user: {
@@ -75,77 +74,79 @@ export default function UserProfile({ user }: UserProfileProps) {
 				</button>
 			</div>
 
-			{activeTab === 'profile' && (
-				<div className='flex flex-col justify-center gap-6 h-[300px]'>
-					<form
-						onSubmit={handleSubmit(onSubmit)}
-						className='space-y-6'>
-						<div>
-							<Label htmlFor='name'>Nom complet</Label>
-							<Input
-								id='name'
-								type='text'
-								{...register('name')}
-								aria-invalid={!!errors.name}
-								className={errors.name && 'border-red-500 focus:border-red-500'}
-							/>
-							{errors.name && (
-								<p
-									className='text-red-500 text-sm mt-1'
-									role='alert'>
-									{errors.name.message}
-								</p>
+			<div className={`flex flex-col justify-center gap-6 h-[300px] ${activeTab !== 'profile' ? 'hidden' : ''}`}>
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className='space-y-6'>
+					<div>
+						<Label htmlFor='name'>Nom complet</Label>
+						<Input
+							id='name'
+							type='text'
+							{...register('name')}
+							aria-invalid={!!errors.name}
+							className={errors.name && 'border-red-500 focus:border-red-500'}
+						/>
+						{errors.name && (
+							<p
+								className='text-red-500 text-sm mt-1'
+								role='alert'>
+								{errors.name.message}
+							</p>
+						)}
+					</div>
+
+					<div>
+						<Label htmlFor='email'>Email</Label>
+						<Input
+							id='email'
+							type='email'
+							{...register('email')}
+							aria-invalid={!!errors.email}
+							className={errors.email && 'border-red-500 focus:border-red-500'}
+						/>
+						{errors.email && (
+							<p
+								className='text-red-500 text-sm mt-1'
+								role='alert'>
+								{errors.email.message}
+							</p>
+						)}
+					</div>
+					{/* 
+					<div className='inline-flex flex-col gap-1'>
+						<Label htmlFor='password'>Mot de passe</Label>
+						<Link
+							href='/auth/forget-password'
+							className='text-sm font-medium underline'>
+							Changer de mot de passe
+						</Link>
+					</div> */}
+
+					<div className='flex items-center justify-between w-full pt-4'>
+						{hasErrored && <p className='text-red-500 text-sm'>{result.serverError}</p>}
+
+						<Button
+							type='submit'
+							className='ml-auto w-36 h-12'
+							disabled={isExecuting || !isDirty || !isValid}>
+							{isExecuting ? (
+								<>
+									<Loader2 className='animate-spin mr-2 h-4 w-4' />
+								</>
+							) : (
+								'Sauvegarder'
 							)}
-						</div>
+						</Button>
+					</div>
+				</form>
+			</div>
 
-						<div>
-							<Label htmlFor='email'>Email</Label>
-							<Input
-								id='email'
-								type='email'
-								{...register('email')}
-								aria-invalid={!!errors.email}
-								className={errors.email && 'border-red-500 focus:border-red-500'}
-							/>
-							{errors.email && (
-								<p
-									className='text-red-500 text-sm mt-1'
-									role='alert'>
-									{errors.email.message}
-								</p>
-							)}
-						</div>
-						{/* 
-						<div className='inline-flex flex-col gap-1'>
-							<Label htmlFor='password'>Mot de passe</Label>
-							<Link
-								href='/auth/forget-password'
-								className='text-sm font-medium underline'>
-								Changer de mot de passe
-							</Link>
-						</div> */}
-
-						<div className='flex items-center justify-between w-full pt-4'>
-							{hasErrored && <p className='text-red-500 text-sm'>{result.serverError}</p>}
-
-							<Button
-								type='submit'
-								className='ml-auto w-36 h-12'
-								disabled={isExecuting || !isDirty || !isValid}>
-								{isExecuting ? (
-									<>
-										<Loader2 className='animate-spin mr-2 h-4 w-4' />
-									</>
-								) : (
-									'Sauvegarder'
-								)}
-							</Button>
-						</div>
-					</form>
-				</div>
-			)}
-
-			{activeTab === 'saved-articles' && <SavedArticles />}
+			<div className={`${activeTab !== 'saved-articles' ? 'hidden' : ''}`}>
+				<Suspense fallback={<SavedArticlesSkeleton />}>
+					<SavedArticles />
+				</Suspense>
+			</div>
 		</>
 	);
 }

@@ -71,6 +71,7 @@ export default function EditArticlePage({ initialData }: EditArticlePageProps) {
 				name: section.name,
 				description: section.description,
 				image: section.image || '',
+				imageAlt: section.imageAlt || '',
 				link: section.link || '',
 			})),
 		},

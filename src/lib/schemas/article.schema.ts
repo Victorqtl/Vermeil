@@ -67,11 +67,7 @@ export const createArticleSchema = z.object({
 						"L'URL de l'image doit être une URL valide"
 					)
 					.optional(),
-				imageAlt: z
-					.string()
-					.trim()
-					.min(1, "L'alt de l'image de section est requis quand une image est présente")
-					.optional(),
+				imageAlt: z.string().trim().optional(),
 				link: z
 					.string()
 					.trim()
@@ -84,7 +80,11 @@ export const createArticleSchema = z.object({
 		)
 		.min(1, 'Au moins une section est requise')
 		.refine(
-			sections => sections.every(section => !section.image || (section.image && section.imageAlt)),
+			sections =>
+				sections.every(section => {
+					if (!section.image || section.image.trim() === '') return true;
+					return section.imageAlt && section.imageAlt.trim() !== '';
+				}),
 			'Le texte alt est requis pour toutes les images de sections'
 		),
 });

@@ -27,7 +27,7 @@ export async function getArticles() {
 }
 
 export const getCachedArticles = unstable_cache(getArticles, ['articles'], {
-	revalidate: 60,
+	revalidate: 300,
 	tags: ['articles'],
 });
 
@@ -67,7 +67,7 @@ export const getCachedUserSavedArticles = unstable_cache(
 	async (userId: string) => getUserSavedArticles(userId),
 	['user-saved-articles'],
 	{
-		revalidate: 60,
+		revalidate: 300,
 		tags: ['user-saved-articles'],
 	}
 );
@@ -106,7 +106,7 @@ export const getCachedArticleBySlug = unstable_cache(
 	async (slug: string) => getArticleBySlug(slug),
 	['article-by-slug'],
 	{
-		revalidate: 60,
+		revalidate: 300,
 		tags: ['articles-by-slug'],
 	}
 );

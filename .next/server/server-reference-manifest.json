@@ -43,50 +43,6 @@
       "layer": {
         "app/(main)/article/[slug]/page": "action-browser"
       }
-    },
-    "007aa94fbd898d6c41ff93f02cd15dab9970a5a232": {
-      "workers": {
-        "app/account/profile/page": {
-          "moduleId": "(rsc)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Fpage.tsx%22%2C%5B%7B%22id%22%3A%22007aa94fbd898d6c41ff93f02cd15dab9970a5a232%22%2C%22exportedName%22%3A%22%24%24RSC_SERVER_ACTION_0%22%7D%5D%5D%5D&__client_imported__=!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/account/profile/page": "rsc"
-      }
-    },
-    "7fa1d1515a370a5f749516484d1c34a3266d6295db": {
-      "workers": {
-        "app/account/profile/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FuploadAvatar.action.ts%22%2C%5B%7B%22id%22%3A%227fa1d1515a370a5f749516484d1c34a3266d6295db%22%2C%22exportedName%22%3A%22uploadAvatar%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FupdateProfile.action.ts%22%2C%5B%7B%22id%22%3A%227f671689ce879b8f7c411578af81286c783eee7fd2%22%2C%22exportedName%22%3A%22updateProfile%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/account/profile/page": "action-browser"
-      }
-    },
-    "7f671689ce879b8f7c411578af81286c783eee7fd2": {
-      "workers": {
-        "app/account/profile/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FuploadAvatar.action.ts%22%2C%5B%7B%22id%22%3A%227fa1d1515a370a5f749516484d1c34a3266d6295db%22%2C%22exportedName%22%3A%22uploadAvatar%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FupdateProfile.action.ts%22%2C%5B%7B%22id%22%3A%227f671689ce879b8f7c411578af81286c783eee7fd2%22%2C%22exportedName%22%3A%22updateProfile%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/account/profile/page": "action-browser"
-      }
-    },
-    "7f9b53909d8ef80b922c5ed843b8fee3c40b82aa4c": {
-      "workers": {
-        "app/account/profile/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FuploadAvatar.action.ts%22%2C%5B%7B%22id%22%3A%227fa1d1515a370a5f749516484d1c34a3266d6295db%22%2C%22exportedName%22%3A%22uploadAvatar%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2Faccount%2Fprofile%2Factions%2FupdateProfile.action.ts%22%2C%5B%7B%22id%22%3A%227f671689ce879b8f7c411578af81286c783eee7fd2%22%2C%22exportedName%22%3A%22updateProfile%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/account/profile/page": "action-browser"
-      }
     }
   },
   "edge": {},

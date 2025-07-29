@@ -36,12 +36,15 @@ export default async function FeaturedArticles() {
 											{article.category}
 										</span>
 										<h3
-											className={`text-xl md:text-2xl lg:text-xl ${
-												index === 0 ? 'xl:text-3xl' : 'xl:text-xl'
+											className={`text-xl ${
+												index === 0 ? 'md:text-3xl' : 'md:text-lg lg:text-base xl:text-lg'
 											} font-serif font-bold text-white mb-2`}>
 											{article.title}
 										</h3>
-										<p className='text-white text-sm md:text-lg leading-relaxed mb-2 md:mb-6 line-clamp-2'>
+										<p
+											className={`text-white text-sm ${
+												index === 0 ? 'md:text-lg' : 'md:text-sm'
+											} leading-relaxed mb-2 md:mb-6 line-clamp-2`}>
 											{article.excerpt}
 										</p>
 										<div className='flex items-center text-white/80 text-sm'>

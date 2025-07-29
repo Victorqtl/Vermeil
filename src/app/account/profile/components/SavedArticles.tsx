@@ -1,16 +1,12 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Article } from '@/types/article';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
-const ARTICLES_PER_PAGE = 6;
+import { Loader2 } from 'lucide-react';
 
 export default function SavedArticles() {
-	const [currentPage, setCurrentPage] = useState(1);
 	const [articles, setArticles] = useState<Article[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
@@ -39,19 +35,6 @@ export default function SavedArticles() {
 
 		loadArticles();
 	}, []);
-
-	const paginatedArticles = useMemo(() => {
-		const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
-		const endIndex = startIndex + ARTICLES_PER_PAGE;
-		return articles.slice(startIndex, endIndex);
-	}, [articles, currentPage]);
-
-	const totalPages = Math.ceil(articles.length / ARTICLES_PER_PAGE);
-
-	const handlePageChange = (page: number) => {
-		setCurrentPage(page);
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-	};
 
 	if (isLoading) {
 		return (
@@ -99,29 +82,10 @@ export default function SavedArticles() {
 		<div className='max-h-[380px] lg:max-h-[300px] overflow-y-auto space-y-6 md:p-6'>
 			<div className='flex justify-between items-center'>
 				<h2 className='text-xl font-semibold text-gray-900'>Mes articles sauvegardés ({articles.length})</h2>
-				{totalPages > 1 && (
-					<div className='flex items-center gap-2'>
-						<Button
-							variant='outlined'
-							onClick={() => handlePageChange(currentPage - 1)}
-							disabled={currentPage === 1}>
-							<ChevronLeft className='h-4 w-4' />
-						</Button>
-						<span className='text-sm text-gray-600'>
-							Page {currentPage} sur {totalPages}
-						</span>
-						<Button
-							variant='outlined'
-							onClick={() => handlePageChange(currentPage + 1)}
-							disabled={currentPage === totalPages}>
-							<ChevronRight className='h-4 w-4' />
-						</Button>
-					</div>
-				)}
 			</div>
 
 			<div className='grid gap-6'>
-				{paginatedArticles.map(article => (
+				{articles.map(article => (
 					<article
 						key={article.id}
 						className='bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200'>
@@ -174,39 +138,6 @@ export default function SavedArticles() {
 					</article>
 				))}
 			</div>
-
-			{/* Pagination en bas */}
-			{totalPages > 1 && (
-				<div className='flex justify-center items-center gap-2 mt-8'>
-					<Button
-						variant='outlined'
-						onClick={() => handlePageChange(currentPage - 1)}
-						disabled={currentPage === 1}>
-						<ChevronLeft className='h-4 w-4 mr-2' />
-						Précédent
-					</Button>
-
-					<div className='flex items-center gap-1'>
-						{Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-							<Button
-								key={page}
-								variant={currentPage === page ? 'default' : 'outlined'}
-								onClick={() => handlePageChange(page)}
-								className='min-w-[40px]'>
-								{page}
-							</Button>
-						))}
-					</div>
-
-					<Button
-						variant='outlined'
-						onClick={() => handlePageChange(currentPage + 1)}
-						disabled={currentPage === totalPages}>
-						Suivant
-						<ChevronRight className='h-4 w-4 ml-2' />
-					</Button>
-				</div>
-			)}
 		</div>
 	);
 }

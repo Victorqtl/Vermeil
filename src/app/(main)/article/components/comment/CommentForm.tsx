@@ -26,6 +26,10 @@ export default function CommentForm({ articleId, user }: CommentFormProps) {
 		onSuccess: () => {
 			setText('');
 		},
+		onError: () => {
+			// En cas d'erreur, on pourrait afficher un toast ou une notification
+			console.error('Erreur lors de la création du commentaire');
+		},
 	});
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -154,7 +158,7 @@ export default function CommentForm({ articleId, user }: CommentFormProps) {
 						type='submit'
 						disabled={!text.trim() || isExecuting}
 						className='flex items-center'>
-						{isExecuting ? 'Publication...' : 'Publier le commentaire'}
+						{isExecuting ? 'Publication...' : 'Publier'}
 					</Button>
 				</div>
 			</form>

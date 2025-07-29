@@ -10,19 +10,6 @@ import CommentsList from '@/app/(main)/article/components/comment/CommentsList';
 import CommentsSkeleton from '@/app/(main)/article/components/comment/CommentsSkeleton';
 import { Suspense } from 'react';
 
-function parseTitle(title: string) {
-	if (title.startsWith('### ')) {
-		return {
-			isH3: true,
-			content: title.replace('### ', '').trim(),
-		};
-	}
-	return {
-		isH3: false,
-		content: title,
-	};
-}
-
 function parseBoldText(text: string) {
 	return text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>');
 }
@@ -59,7 +46,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 					alt={article.heroImageAlt}
 					fill
 					className='object-cover'
-					priority
+					loading='lazy'
 				/>
 				<div className='absolute inset-0 bg-black/40' />
 				<div className='absolute inset-0 flex items-center justify-center'>
@@ -92,21 +79,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 						{article.description.split('\n').map((paragraph, index) => renderParagraph(paragraph, index))}
 					</div>
 					{article.sections.map(section => {
-						const parsedTitle = parseTitle(section.name);
-
 						return (
 							<div
 								key={section.id}
 								className='mt-16'>
-								{parsedTitle.isH3 ? (
-									<h3 className='text-xl md:text-2xl font-serif font-bold mb-4'>
-										{parsedTitle.content}
-									</h3>
-								) : (
-									<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>
-										{parsedTitle.content}
-									</h2>
-								)}
+								<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>{section.name}</h2>
 								<div className='text-gray-900 text-lg leading-relaxed mb-6'>
 									{section.description
 										.split('\n')
@@ -120,8 +97,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 											src={section.image}
 											alt={section.imageAlt!}
 											fill
-											className='object-cover transition-transform duration-500 group-hover:scale-105'
 											loading='lazy'
+											className='object-cover bg-gray-200 transition-transform duration-500 group-hover:scale-105'
 											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 										/>
 									</Link>
@@ -132,8 +109,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 												src={section.image}
 												alt={section.imageAlt!}
 												fill
-												className='object-cover'
 												loading='lazy'
+												className='object-cover bg-gray-200'
 												sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 											/>
 										</div>

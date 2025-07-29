@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { authActionClient, SafeError } from '@/lib/safe-actions';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { z } from 'zod';
 
 const saveArticleSchema = z.object({
@@ -33,8 +33,7 @@ export const saveArticle = authActionClient.schema(saveArticleSchema).action(asy
 			});
 		}
 
-		revalidatePath(`/article/${input.articleId}`);
-		revalidatePath('/account/profile');
+		revalidateTag('user-saved-articles');
 
 		return { success: true };
 	} catch (error) {
