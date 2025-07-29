@@ -201,10 +201,10 @@ export default function NewArticle() {
 								disabled>
 								Sélectionner une catégorie
 							</option>
-							<option value='Mode'>Mode</option>
-							<option value='Soins'>Soins</option>
-							<option value='Lifestyle'>Lifestyle</option>
-							<option value='Culture'>Culture</option>
+							<option value='mode'>Mode</option>
+							<option value='soins'>Soins</option>
+							<option value='lifestyle'>Lifestyle</option>
+							<option value='culture'>Culture</option>
 						</select>
 						{errors.category && <p className='mt-1 text-xs text-red-500'>{errors.category.message}</p>}
 					</div>

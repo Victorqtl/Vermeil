@@ -101,7 +101,7 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 
 					<div className='hidden md:flex items-center gap-4'>
 						<Link
-							href='/search'
+							href='/articles'
 							aria-label='Rechercher'
 							className={`hover:opacity-70 transition-opacity cursor-pointer ${
 								isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
@@ -114,7 +114,7 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 						<div className={`group relative ${isScrolled || whiteHeader ? 'text-gray-900' : 'text-white'}`}>
 							<div className='flex items-center hover:opacity-70 transition-opacity cursor-pointer'>
 								<Link
-									href={session?.user ? '/account/profile' : '/auth/sign-in'}
+									href={session?.user ? '/profile' : '/auth/sign-in'}
 									aria-label={session?.user ? 'Mon compte' : 'Se connecter'}
 									className={`hover:opacity-70 transition-opacity ${
 										isScrolled || whiteHeader || isMenuOpen ? 'text-gray-900' : 'text-white'
@@ -137,7 +137,7 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 										role='menu'
 										aria-label='Menu utilisateur'>
 										<Link
-											href='/account/profile'
+											href='/profile'
 											role='menuitem'
 											className='hover:bg-gray-100 w-full py-3 px-8 transition-colors whitespace-nowrap block'>
 											Mon compte
@@ -223,7 +223,7 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 									Culture
 								</Link>
 								<Link
-									href='/search'
+									href='/articles'
 									onClick={closeMobileMenu}
 									role='menuitem'
 									aria-label='Rechercher'
@@ -237,7 +237,7 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 							<div className='flex flex-col gap-4'>
 								{session?.user ? (
 									<Link
-										href='/account/profile'
+										href='/profile'
 										onClick={closeMobileMenu}
 										role='menuitem'
 										className='flex items-center gap-2'>

@@ -3,8 +3,8 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { LogOut } from 'lucide-react';
-import UserProfile from './components/UserProfile';
-import { UserAvatarUploader } from './components/ui/user-avatar-uploader';
+import UserProfile from '@/app/profile/components/UserProfile';
+import { UserAvatarUploader } from '@/app/profile/components/ui/user-avatar-uploader';
 import { Button } from '@/components/ui/button';
 
 export default async function page() {

@@ -4,6 +4,7 @@ import ModeImage from '@/assets/images/mode-categorie-image.jpeg';
 import SoinsImage from '@/assets/images/soins-categorie-image.jpeg';
 import LifestyleImage from '@/assets/images/lifestyle-categorie-image.jpeg';
 import CultureImage from '@/assets/images/culture-categorie-image.jpeg';
+import Link from 'next/link';
 
 const categories = [
 	{
@@ -46,7 +47,7 @@ export default function Categories() {
 
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 					{categories.map((category, index) => (
-						<a
+						<Link
 							key={category.id}
 							href={`/${category.slug}`}
 							className='relative overflow-hidden group h-64 md:h-80'>
@@ -71,7 +72,7 @@ export default function Categories() {
 									/>
 								</div>
 							</div>
-						</a>
+						</Link>
 					))}
 				</div>
 			</div>

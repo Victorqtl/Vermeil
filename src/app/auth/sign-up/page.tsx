@@ -79,7 +79,7 @@ function SignUpPage() {
 			email: data.email,
 			password: data.password,
 			name: `${data.firstName} ${data.lastName}`,
-			callbackURL: '/account/profile',
+			callbackURL: '/profile',
 			fetchOptions: {
 				onRequest: () => {
 					setLoading(true);
@@ -93,7 +93,7 @@ function SignUpPage() {
 					setLoading(false);
 				},
 				onSuccess: async () => {
-					router.push('/account/profile');
+					router.push('/profile');
 					setLoading(false);
 				},
 			},

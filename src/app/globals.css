@@ -68,6 +68,20 @@
 			opacity: 1;
 		}
 	}
+
+	.animate-loading-fill {
+		animation: loadingFill 2s ease-in-out infinite;
+		clip-path: inset(0 100% 0 0);
+	}
+
+	@keyframes loadingFill {
+		0% {
+			clip-path: inset(0 100% 0 0);
+		}
+		100% {
+			clip-path: inset(0 0 0 0);
+		}
+	}
 }
 
 .line-clamp-2 {

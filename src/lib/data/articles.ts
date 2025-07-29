@@ -110,3 +110,37 @@ export const getCachedArticleBySlug = unstable_cache(
 		tags: ['articles-by-slug'],
 	}
 );
+
+async function getArticlesByCategory(category: string) {
+	try {
+		return await prisma.article.findMany({
+			where: {
+				category: category,
+			},
+			orderBy: {
+				createdAt: 'desc',
+			},
+			select: {
+				id: true,
+				slug: true,
+				title: true,
+				excerpt: true,
+				heroImage: true,
+				heroImageAlt: true,
+				readTime: true,
+				featured: true,
+				category: true,
+				createdAt: true,
+			},
+		});
+	} catch (error) {
+		console.error('Erreur lors de la récupération des articles par catégorie:', error);
+		throw new Error('Impossible de récupérer les articles de cette catégorie');
+	}
+}
+
+export const getCachedArticlesByCategory = (category: string) =>
+	unstable_cache(async () => getArticlesByCategory(category), [`articles-category-${category}`], {
+		revalidate: 300,
+		tags: [`articles-category-${category}`],
+	});

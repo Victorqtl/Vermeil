@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { authActionClient, SafeError } from '@/lib/safe-actions';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -23,7 +23,7 @@ export const deleteArticle = authActionClient
 
 		const existingArticle = await prisma.article.findUnique({
 			where: { id },
-			select: { id: true, title: true },
+			select: { id: true, title: true, category: true },
 		});
 
 		if (!existingArticle) {
@@ -39,7 +39,7 @@ export const deleteArticle = authActionClient
 			throw new SafeError("Erreur lors de la suppression de l'article");
 		}
 
-		revalidatePath('/admin/articles');
-		revalidatePath('/article', 'layout');
+		revalidateTag('articles');
+		revalidateTag(`articles-category-${existingArticle.category}`);
 		redirect('/admin/articles');
 	});

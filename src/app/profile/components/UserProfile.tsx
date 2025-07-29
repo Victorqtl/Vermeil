@@ -4,7 +4,7 @@ import { useState, lazy, Suspense } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { updateProfileSchema, UserProfileFormValues } from '@/lib/schemas/updateProfile.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { updateProfile } from '../actions/updateProfile.action';
+import { updateProfile } from '@/app/profile/actions/updateProfile.action';
 import { useAction } from 'next-safe-action/hooks';
 import { Loader2 } from 'lucide-react';
 import { Label } from '@/components/ui/label';

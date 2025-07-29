@@ -53,7 +53,7 @@ function SignInPage() {
 					setLoading(false);
 				},
 				onSuccess: () => {
-					router.push('/account/profile');
+					router.push('/profile');
 				},
 			}
 		);
@@ -150,7 +150,7 @@ function SignInPage() {
 									await signIn.social(
 										{
 											provider: 'google',
-											callbackURL: '/account/profile',
+											callbackURL: '/profile',
 										},
 										{
 											onRequest: () => {

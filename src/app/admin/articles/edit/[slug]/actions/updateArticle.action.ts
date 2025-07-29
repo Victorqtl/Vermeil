@@ -2,7 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { authActionClient, SafeError } from '@/lib/safe-actions';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { updateArticleSchema } from '@/lib/schemas/article.schema';
 
@@ -88,8 +88,7 @@ export const updateArticle = authActionClient
 			throw new SafeError("Erreur lors de la modification de l'article");
 		}
 
-		revalidatePath('/admin/articles');
-		revalidatePath('/article', 'layout');
-		revalidatePath(`/article/${slug}`, 'page');
+		revalidateTag('articles');
+		revalidateTag(`articles-category-${category}`);
 		redirect('/admin/articles');
 	});
