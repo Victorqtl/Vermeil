@@ -9,6 +9,7 @@ import { getSavedArticlesById } from '@/lib/data/saved-articles';
 import CommentsList from '@/app/(main)/article/components/comment/CommentsList';
 import CommentsSkeleton from '@/app/(main)/article/components/comment/CommentsSkeleton';
 import { Suspense } from 'react';
+import { getCachedCommentsByArticleId } from '@/lib/data/comments';
 
 function parseBoldText(text: string) {
 	return text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>');
@@ -36,7 +37,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
 	const user = await getUser();
 	const savedArticle = user?.id ? await getSavedArticlesById(user.id, article.id) : null;
-
+	const comments = await getCachedCommentsByArticleId(article.id);
 	return (
 		<article className='min-h-screen bg-white'>
 			{/* Hero Section */}
@@ -138,6 +139,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 				<CommentsList
 					articleId={article.id}
 					currentUser={user || null}
+					comments={comments}
 				/>
 			</Suspense>
 

@@ -16,6 +16,12 @@ interface CommentFormProps {
 		name: string;
 		image?: string | null;
 	} | null;
+	initialComments: {
+		id: string;
+		text: string;
+		createdAt: Date;
+		updatedAt: Date;
+	}[];
 }
 
 export default function CommentForm({ articleId, user }: CommentFormProps) {
@@ -25,10 +31,6 @@ export default function CommentForm({ articleId, user }: CommentFormProps) {
 	const { execute, isExecuting } = useAction(createComment, {
 		onSuccess: () => {
 			setText('');
-		},
-		onError: () => {
-			// En cas d'erreur, on pourrait afficher un toast ou une notification
-			console.error('Erreur lors de la création du commentaire');
 		},
 	});
 

@@ -36,7 +36,7 @@ export const createComment = authActionClient
 				},
 			});
 
-			revalidateTag('comments');
+			revalidateTag(`comments-${article.id}`);
 			return { success: true };
 		} catch (error) {
 			console.error('Erreur lors de la création du commentaire:', error);

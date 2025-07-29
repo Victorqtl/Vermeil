@@ -25,7 +25,7 @@ export const updateComment = authActionClient
 					id: true,
 					userId: true,
 					article: {
-						select: { slug: true },
+						select: { id: true },
 					},
 				},
 			});
@@ -46,7 +46,7 @@ export const updateComment = authActionClient
 				},
 			});
 
-			revalidateTag('comments');
+			revalidateTag(`comments-${comment.article.id}`);
 
 			return { success: true };
 		} catch (error) {

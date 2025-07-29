@@ -21,7 +21,7 @@ export const deleteComment = authActionClient
 					id: true,
 					userId: true,
 					article: {
-						select: { slug: true },
+						select: { id: true },
 					},
 				},
 			});
@@ -38,7 +38,7 @@ export const deleteComment = authActionClient
 				where: { id: input.commentId },
 			});
 
-			revalidateTag('comments');
+			revalidateTag(`comments-${comment.article.id}`);
 
 			return { success: true };
 		} catch (error) {

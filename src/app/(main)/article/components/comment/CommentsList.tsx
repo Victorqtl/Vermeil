@@ -1,7 +1,6 @@
 import { MessageCircle } from 'lucide-react';
 import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
-import { getCachedCommentsByArticleId } from '@/lib/data/comments';
 
 interface CommentsListProps {
 	articleId: string;
@@ -10,10 +9,20 @@ interface CommentsListProps {
 		name: string;
 		image?: string | null;
 	} | null;
+	comments: {
+		id: string;
+		text: string;
+		createdAt: Date;
+		updatedAt: Date;
+		user: {
+			id: string;
+			name: string;
+			image?: string | null;
+		};
+	}[];
 }
 
-export default async function CommentsList({ articleId, currentUser }: CommentsListProps) {
-	const comments = await getCachedCommentsByArticleId(articleId);
+export default async function CommentsList({ articleId, comments, currentUser }: CommentsListProps) {
 	if (comments.length === 0) {
 		return (
 			<div className='bg-gray-50 py-16'>
@@ -21,6 +30,7 @@ export default async function CommentsList({ articleId, currentUser }: CommentsL
 					<div className='space-y-8'>
 						<CommentForm
 							articleId={articleId}
+							initialComments={comments}
 							user={currentUser}
 						/>
 						<div className='text-center py-12'>
@@ -46,6 +56,7 @@ export default async function CommentsList({ articleId, currentUser }: CommentsL
 					<CommentForm
 						articleId={articleId}
 						user={currentUser}
+						initialComments={comments}
 					/>
 					<div className='space-y-6'>
 						<div className='flex items-center mb-6'>
