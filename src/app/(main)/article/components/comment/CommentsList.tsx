@@ -1,6 +1,6 @@
 'use client';
 
-import { useOptimisticAction } from 'next-safe-action/hooks';
+import { useOptimistic, startTransition } from 'react';
 import { createComment } from '@/app/(main)/article/actions/createComment.action';
 import { updateComment } from '@/app/(main)/article/actions/updateComment.action';
 import { deleteComment } from '@/app/(main)/article/actions/deleteComment.action';
@@ -30,45 +30,68 @@ interface CommentsListProps {
 	comments: Comment[];
 }
 
+type CommentAction = 
+	| { type: 'CREATE'; comment: Comment }
+	| { type: 'UPDATE'; commentId: string; text: string }
+	| { type: 'DELETE'; commentId: string };
+
 export default function CommentsList({ articleId, comments, currentUser }: CommentsListProps) {
-	const { execute: executeCreate, optimisticState: createOptimisticState } = useOptimisticAction(createComment, {
-		currentState: { comments },
-		updateFn: (state, newComment) => {
-			if (!currentUser) return state;
-			const optimisticComment: Comment = {
-				id: `temp-${Date.now()}`,
-				text: newComment.text,
-				createdAt: new Date(),
-				updatedAt: new Date(),
-				user: {
-					id: currentUser.id,
-					name: currentUser.name,
-					image: currentUser.image || null,
-				},
-			};
-			return {
-				comments: [...state.comments, optimisticComment],
-			};
-		},
-	});
+	const [optimisticComments, addOptimisticComment] = useOptimistic(
+		comments,
+		(state: Comment[], action: CommentAction) => {
+			switch (action.type) {
+				case 'CREATE':
+					return [...state, action.comment];
+				case 'UPDATE':
+					return state.map(comment =>
+						comment.id === action.commentId 
+							? { ...comment, text: action.text, updatedAt: new Date() }
+							: comment
+					);
+				case 'DELETE':
+					return state.filter(comment => comment.id !== action.commentId);
+				default:
+					return state;
+			}
+		}
+	);
 
-	const { execute: executeUpdate } = useOptimisticAction(updateComment, {
-		currentState: createOptimisticState || { comments },
-		updateFn: (state, { commentId, text }) => ({
-			comments: state.comments.map(comment =>
-				comment.id === commentId ? { ...comment, text, updatedAt: new Date() } : comment
-			),
-		}),
-	});
+	const handleCreateComment = async (text: string) => {
+		if (!currentUser) return;
+		
+		const optimisticComment: Comment = {
+			id: `temp-${Date.now()}`,
+			text,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+			user: {
+				id: currentUser.id,
+				name: currentUser.name,
+				image: currentUser.image || null,
+			},
+		};
 
-	const { execute: executeDelete } = useOptimisticAction(deleteComment, {
-		currentState: createOptimisticState || { comments },
-		updateFn: (state, { commentId }) => ({
-			comments: state.comments.filter(comment => comment.id !== commentId),
-		}),
-	});
+		startTransition(() => {
+			addOptimisticComment({ type: 'CREATE', comment: optimisticComment });
+		});
+		await createComment({ articleId, text });
+	};
 
-	const currentComments = createOptimisticState?.comments || comments;
+	const handleUpdateComment = async (commentId: string, text: string) => {
+		startTransition(() => {
+			addOptimisticComment({ type: 'UPDATE', commentId, text });
+		});
+		await updateComment({ commentId, text });
+	};
+
+	const handleDeleteComment = async (commentId: string) => {
+		startTransition(() => {
+			addOptimisticComment({ type: 'DELETE', commentId });
+		});
+		await deleteComment({ commentId });
+	};
+
+	const currentComments = optimisticComments;
 
 	if (currentComments.length === 0) {
 		return (
@@ -77,7 +100,7 @@ export default function CommentsList({ articleId, comments, currentUser }: Comme
 					<div className='space-y-8'>
 						<CommentForm
 							user={currentUser}
-							onCreateComment={(text: string) => executeCreate({ articleId, text })}
+							onCreateComment={handleCreateComment}
 						/>
 						<div className='text-center py-12'>
 							<MessageCircle
@@ -101,7 +124,7 @@ export default function CommentsList({ articleId, comments, currentUser }: Comme
 				<div className='space-y-8'>
 					<CommentForm
 						user={currentUser}
-						onCreateComment={(text: string) => executeCreate({ articleId, text })}
+						onCreateComment={handleCreateComment}
 					/>
 					<div className='space-y-6'>
 						<div className='flex items-center mb-6'>
@@ -119,10 +142,8 @@ export default function CommentsList({ articleId, comments, currentUser }: Comme
 								key={comment.id}
 								comment={comment}
 								currentUser={currentUser}
-								onUpdateComment={(commentId: string, text: string) =>
-									executeUpdate({ commentId, text })
-								}
-								onDeleteComment={(commentId: string) => executeDelete({ commentId })}
+								onUpdateComment={handleUpdateComment}
+								onDeleteComment={handleDeleteComment}
 							/>
 						))}
 					</div>
