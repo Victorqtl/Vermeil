@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app/profile/components/UserProfile.tsx -> ./SavedArticles\":{\"id\":\"app/profile/components/UserProfile.tsx -> ./SavedArticles\",\"files\":[\"static/chunks/_app-pages-browser_src_app_profile_components_SavedArticles_tsx.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST='{"app/profile/components/UserProfile.tsx -> ./SavedArticles":{"id":8290,"files":["static/chunks/685-d48a535f5b56087b.js","static/chunks/290.a315783e76c738e6.js"]}}';

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='fr'>
 			<body className={`min-h-screen flex flex-col justify-between font-sans text-gray-900 ${inter.className}`}>
