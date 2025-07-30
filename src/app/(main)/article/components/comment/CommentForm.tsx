@@ -1,7 +1,5 @@
 'use client';
 
-import { useAction } from 'next-safe-action/hooks';
-import { createComment } from '@/app/(main)/article/actions/createComment.action';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -10,29 +8,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface CommentFormProps {
-	articleId: string;
 	user?: {
 		id: string;
 		name: string;
 		image?: string | null;
 	} | null;
-	initialComments: {
-		id: string;
-		text: string;
-		createdAt: Date;
-		updatedAt: Date;
-	}[];
+	onCreateComment: (text: string) => void;
 }
 
-export default function CommentForm({ articleId, user }: CommentFormProps) {
+export default function CommentForm({ user, onCreateComment }: CommentFormProps) {
 	const [text, setText] = useState('');
 	const [openModal, setOpenModal] = useState(false);
-
-	const { execute, isExecuting } = useAction(createComment, {
-		onSuccess: () => {
-			setText('');
-		},
-	});
+	const [isExecuting, setIsExecuting] = useState(false);
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -44,7 +31,13 @@ export default function CommentForm({ articleId, user }: CommentFormProps) {
 
 		if (!text.trim()) return;
 
-		execute({ articleId, text: text.trim() });
+		setIsExecuting(true);
+		try {
+			onCreateComment(text.trim());
+			setText('');
+		} finally {
+			setIsExecuting(false);
+		}
 	};
 
 	if (!user) {

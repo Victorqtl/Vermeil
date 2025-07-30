@@ -1,9 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useAction } from 'next-safe-action/hooks';
-import { updateComment } from '@/app/(main)/article/actions/updateComment.action';
-import { deleteComment } from '@/app/(main)/article/actions/deleteComment.action';
 import { Button } from '@/components/ui/button';
 import { Edit, Trash2, Check, X } from 'lucide-react';
 import Image from 'next/image';
@@ -23,28 +20,35 @@ interface CommentItemProps {
 	currentUser?: {
 		id: string;
 	} | null;
+	onUpdateComment: (commentId: string, text: string) => void;
+	onDeleteComment: (commentId: string) => void;
 }
 
-export default function CommentItem({ comment, currentUser }: CommentItemProps) {
+export default function CommentItem({ comment, currentUser, onUpdateComment, onDeleteComment }: CommentItemProps) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editText, setEditText] = useState(comment.text);
 	const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+	const [isUpdating, setIsUpdating] = useState(false);
+	const [isDeleting, setIsDeleting] = useState(false);
 
-	const { execute: executeUpdate, isExecuting: isUpdating } = useAction(updateComment, {
-		onSuccess: () => {
-			setIsEditing(false);
-		},
-	});
-
-	const { execute: executeDelete, isExecuting: isDeleting } = useAction(deleteComment);
-
-	const handleUpdate = () => {
+	const handleUpdate = async () => {
 		if (!editText.trim()) return;
-		executeUpdate({ commentId: comment.id, text: editText.trim() });
+		setIsUpdating(true);
+		try {
+			onUpdateComment(comment.id, editText.trim());
+			setIsEditing(false);
+		} finally {
+			setIsUpdating(false);
+		}
 	};
 
-	const handleDelete = () => {
-		executeDelete({ commentId: comment.id });
+	const handleDelete = async () => {
+		setIsDeleting(true);
+		try {
+			onDeleteComment(comment.id);
+		} finally {
+			setIsDeleting(false);
+		}
 	};
 
 	const handleCancelEdit = () => {
