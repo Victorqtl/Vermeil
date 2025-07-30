@@ -2,14 +2,14 @@
   "/api/user/saved-articles/route": "app/api/user/saved-articles/route.js",
   "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/[category]/page": "app/[category]/page.js",
   "/(main)/page": "app/(main)/page.js",
   "/admin/articles/new/page": "app/admin/articles/new/page.js",
+  "/[category]/page": "app/[category]/page.js",
   "/admin/articles/edit/[slug]/page": "app/admin/articles/edit/[slug]/page.js",
-  "/auth/sign-up/page": "app/auth/sign-up/page.js",
   "/admin/articles/page": "app/admin/articles/page.js",
-  "/auth/sign-in/page": "app/auth/sign-in/page.js",
   "/profile/page": "app/profile/page.js",
-  "/(main)/article/[slug]/page": "app/(main)/article/[slug]/page.js",
-  "/articles/page": "app/articles/page.js"
+  "/auth/sign-up/page": "app/auth/sign-up/page.js",
+  "/auth/sign-in/page": "app/auth/sign-in/page.js",
+  "/articles/page": "app/articles/page.js",
+  "/(main)/article/[slug]/page": "app/(main)/article/[slug]/page.js"
 }

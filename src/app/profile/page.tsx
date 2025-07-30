@@ -6,9 +6,13 @@ import { LogOut } from 'lucide-react';
 import UserProfile from '@/app/profile/components/UserProfile';
 import { UserAvatarUploader } from '@/app/profile/components/ui/user-avatar-uploader';
 import { Button } from '@/components/ui/button';
+import { unauthorized } from 'next/navigation';
 
 export default async function page() {
 	const user = await getUser();
+	if (!user) {
+		unauthorized();
+	}
 
 	return (
 		<div className='flex flex-col relative w-full h-fit max-w-4xl lg:mt-18 shadow-sm'>

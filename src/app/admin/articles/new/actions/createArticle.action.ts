@@ -72,5 +72,6 @@ export const createArticle = authActionClient
 
 		revalidateTag('articles');
 		revalidateTag(`articles-category-${category}`);
+		revalidateTag(`article-${slug}`);
 		redirect('/admin/articles');
 	});

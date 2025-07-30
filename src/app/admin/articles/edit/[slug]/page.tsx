@@ -4,7 +4,7 @@ import EditArticlePage from './components/EditArticleClient';
 
 export default async function EditArticle({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
-	const article = await getCachedArticleBySlug(resolvedParams.slug);
+	const article = await getCachedArticleBySlug(resolvedParams.slug)();
 
 	if (!article) {
 		notFound();

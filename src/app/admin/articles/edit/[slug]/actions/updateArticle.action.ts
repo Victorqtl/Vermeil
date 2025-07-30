@@ -90,5 +90,9 @@ export const updateArticle = authActionClient
 
 		revalidateTag('articles');
 		revalidateTag(`articles-category-${category}`);
+		revalidateTag(`article-${existingArticle.slug}`);
+		if (existingArticle.slug !== slug) {
+			revalidateTag(`article-${slug}`);
+		}
 		redirect('/admin/articles');
 	});

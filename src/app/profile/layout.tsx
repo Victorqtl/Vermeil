@@ -1,14 +1,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { getUser } from '@/lib/auth-session';
-import { unauthorized } from 'next/navigation';
 
 export default async function AccountLayout({ children }: { children: React.ReactNode }) {
-	const session = await getUser();
-
-	if (!session) {
-		unauthorized();
-	}
 	return (
 		<>
 			<Header whiteHeader={true} />

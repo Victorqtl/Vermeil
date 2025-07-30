@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getCachedArticleBySlug } from '@/lib/data/articles';
+import { getCachedArticleBySlugWithoutSections } from '@/lib/data/articles';
 
 interface ArticleLayoutProps {
 	children: React.ReactNode;
@@ -8,7 +8,7 @@ interface ArticleLayoutProps {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const resolvedParams = await params;
-	const article = await getCachedArticleBySlug(resolvedParams.slug);
+	const article = await getCachedArticleBySlugWithoutSections(resolvedParams.slug)();
 
 	if (!article) {
 		return {

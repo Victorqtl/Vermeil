@@ -34,7 +34,7 @@ export const getCachedCommentsByArticleId = (articleId: string) =>
 	unstable_cache(async () => getCommentsByArticleId(articleId), [`comments-${articleId}`], {
 		revalidate: 300,
 		tags: [`comments-${articleId}`],
-	})();
+	});
 
 export async function getCommentById(commentId: string) {
 	try {

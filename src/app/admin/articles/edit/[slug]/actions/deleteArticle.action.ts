@@ -23,7 +23,7 @@ export const deleteArticle = authActionClient
 
 		const existingArticle = await prisma.article.findUnique({
 			where: { id },
-			select: { id: true, title: true, category: true },
+			select: { id: true, title: true, category: true, slug: true },
 		});
 
 		if (!existingArticle) {
@@ -41,5 +41,6 @@ export const deleteArticle = authActionClient
 
 		revalidateTag('articles');
 		revalidateTag(`articles-category-${existingArticle.category}`);
+		revalidateTag(`article-${existingArticle.slug}`);
 		redirect('/admin/articles');
 	});

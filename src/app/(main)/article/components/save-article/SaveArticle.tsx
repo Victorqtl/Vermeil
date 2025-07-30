@@ -139,7 +139,7 @@ export default function SaveArticleButton({ articleId, savedArticle, user }: Sav
 				className='w-full flex justify-center items-center mb-16'>
 				<button
 					type='submit'
-					className={`flex items-center overflow-hidden group p-4 border border-gray-300 hover:bg-gray-100 transition-all duration-300 ease-in-out cursor-pointer xl:fixed xl:z-10 xl:left-8 xl:w-[58px] xl:hover:w-[158px]`}>
+					className={`flex items-center overflow-hidden group p-4 bg-white border border-gray-300 hover:bg-gray-100 transition-all duration-300 ease-in-out cursor-pointer xl:fixed xl:z-10 xl:left-8 xl:w-[58px] xl:hover:w-[158px]`}>
 					<Bookmark
 						size={24}
 						className={`flex-shrink-0 transition-all duration-200 ${

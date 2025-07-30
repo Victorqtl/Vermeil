@@ -1,43 +1,30 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { getCachedArticleBySlug } from '@/lib/data/articles';
+import { getCachedArticleBySlugWithoutSections } from '@/lib/data/articles';
 import { notFound } from 'next/navigation';
 import { getUser } from '@/lib/auth-session';
 import SaveArticle from '@/app/(main)/article/components/save-article/SaveArticle';
 import { getSavedArticlesById } from '@/lib/data/saved-articles';
-import CommentsList from '@/app/(main)/article/components/comment/CommentsList';
-import CommentsSkeleton from '@/app/(main)/article/components/comment/CommentsSkeleton';
+import ArticleSections from '@/app/(main)/article/components/article-sections/ArticleSections';
+import ArticleSectionsSkeleton from '@/app/(main)/article/components/article-sections/ArticleSectionsSkeleton';
+import CommentsSection from '@/app/(main)/article/components/CommentsSection';
+import CommentsSkeleton from '@/app/(main)/article/components/comments/CommentsSkeleton';
+import RelatedArticles from '@/app/(main)/article/components/RelatedArticles';
+import RelatedArticlesSkeleton from '@/app/(main)/article/components/RelatedArticlesSkeleton';
 import { Suspense } from 'react';
-import { getCachedCommentsByArticleId } from '@/lib/data/comments';
-
-function parseBoldText(text: string) {
-	return text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>');
-}
-
-function renderParagraph(text: string, index: number) {
-	const parsedText = parseBoldText(text);
-
-	return (
-		<p
-			key={index}
-			className={index > 0 ? 'mt-4' : ''}
-			dangerouslySetInnerHTML={{ __html: parsedText }}
-		/>
-	);
-}
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
-	const article = await getCachedArticleBySlug(resolvedParams.slug);
+
+	const [article, user] = await Promise.all([
+		getCachedArticleBySlugWithoutSections(resolvedParams.slug)(),
+		getUser(),
+	]);
 
 	if (!article) {
 		notFound();
 	}
 
-	const user = await getUser();
 	const savedArticle = user?.id ? await getSavedArticlesById(user.id, article.id) : null;
-	const comments = await getCachedCommentsByArticleId(article.id);
 	return (
 		<article className='min-h-screen bg-white'>
 			{/* Hero Section */}
@@ -47,7 +34,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 					alt={article.heroImageAlt}
 					fill
 					className='object-cover'
-					loading='lazy'
+					priority
 				/>
 				<div className='absolute inset-0 bg-black/40' />
 				<div className='absolute inset-0 flex items-center justify-center'>
@@ -67,111 +54,33 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 				</div>
 			</div>
 
-			{/* Products Section */}
 			<div className='px-4 md:px-6 py-16'>
 				<SaveArticle
 					articleId={article.id}
 					savedArticle={savedArticle}
 					user={user}
 				/>
-
-				<div className='max-w-3xl mx-auto'>
-					<div className='text-gray-900 text-lg leading-relaxed mb-6'>
-						{article.description.split('\n').map((paragraph, index) => renderParagraph(paragraph, index))}
-					</div>
-					{article.sections.map(section => {
-						return (
-							<div
-								key={section.id}
-								className='mt-16'>
-								<h2 className='text-2xl md:text-3xl font-serif font-bold mb-4'>{section.name}</h2>
-								<div className='text-gray-900 text-lg leading-relaxed mb-6'>
-									{section.description
-										.split('\n')
-										.map((paragraph, index) => renderParagraph(paragraph, index))}
-								</div>
-								{section.image && section.link ? (
-									<Link
-										href={section.link}
-										className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
-										<Image
-											src={section.image}
-											alt={section.imageAlt!}
-											fill
-											loading='lazy'
-											className='object-cover bg-gray-200 transition-transform duration-500 group-hover:scale-105'
-											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-										/>
-									</Link>
-								) : (
-									section.image && (
-										<div className='group block relative aspect-[16/9] mb-6 overflow-hidden'>
-											<Image
-												src={section.image}
-												alt={section.imageAlt!}
-												fill
-												loading='lazy'
-												className='object-cover bg-gray-200'
-												sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-											/>
-										</div>
-									)
-								)}
-								{section.link && (
-									<Link
-										href={section.link}
-										className='inline-flex items-center bg-black text-white px-6 py-3 font-medium hover:bg-gray-900 transition-colors group'>
-										Voir le produit
-										<ArrowRight
-											size={18}
-											className='ml-2 transition-transform group-hover:translate-x-1'
-										/>
-									</Link>
-								)}
-							</div>
-						);
-					})}
-				</div>
+				{/* Article Sections */}
+				<Suspense fallback={<ArticleSectionsSkeleton />}>
+					<ArticleSections
+						slug={resolvedParams.slug}
+						articleDescription={article.description}
+					/>
+				</Suspense>
 			</div>
+
+			{/* Related Articles Section */}
+			<Suspense fallback={<RelatedArticlesSkeleton />}>
+				<RelatedArticles currentArticleId={article.id} />
+			</Suspense>
 
 			{/* Comments Section */}
 			<Suspense fallback={<CommentsSkeleton />}>
-				<CommentsList
+				<CommentsSection
 					articleId={article.id}
-					currentUser={user || null}
-					comments={comments}
+					user={user || null}
 				/>
 			</Suspense>
-
-			{/* Related Articles Section
-			<div className='bg-gray-50 py-16'>
-				<div className='container mx-auto px-4 md:px-6'>
-					<h2 className='text-3xl font-serif font-bold mb-12 text-center'>Vermeil recommande</h2>
-					<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-						{relatedArticles.map(article => (
-							<Link
-								key={article.id}
-								href={`/article/${article.id}`}
-								className='group'>
-								<div className='relative aspect-[4/3] mb-4 overflow-hidden'>
-									<Image
-										src={article.imageUrl}
-										alt={article.title}
-										fill
-										className='object-cover transition-transform duration-500 group-hover:scale-105'
-									/>
-								</div>
-								<span className='inline-block text-sm font-medium uppercase tracking-wider text-gray-500 mb-2'>
-									{article.category}
-								</span>
-								<h3 className='text-xl font-serif font-medium group-hover:text-gray-900 transition-colors'>
-									{article.title}
-								</h3>
-							</Link>
-						))}
-					</div>
-				</div>
-			</div> */}
 		</article>
 	);
 }

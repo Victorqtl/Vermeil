@@ -82,8 +82,7 @@ export const uploadAvatar = authActionClient.schema(formSchema).action(async ({ 
 		});
 
 		revalidatePath('/account/profile');
-		revalidatePath('/account');
-		revalidatePath('/', 'layout');
+		revalidatePath('/article/[slug]');
 		return {
 			url: cacheBustedUrl,
 		};
