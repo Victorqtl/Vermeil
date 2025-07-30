@@ -20,7 +20,7 @@ export default async function page() {
 							await auth.api.signOut({
 								headers: await headers(),
 							});
-							redirect('/auth/sign-in');
+							redirect('/');
 						}}
 						variant='outlined'>
 						<LogOut

@@ -16,6 +16,16 @@
       "static/chunks/main-app.js",
       "static/chunks/app/unauthorized.js"
     ],
+    "/auth/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/auth/layout.js"
+    ],
+    "/auth/sign-in/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/auth/sign-in/page.js"
+    ],
     "/(main)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -36,21 +46,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
     ],
-    "/(main)/article/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(main)/article/not-found.js"
-    ],
-    "/(main)/article/[slug]/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(main)/article/[slug]/layout.js"
-    ],
-    "/(main)/article/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(main)/article/[slug]/page.js"
-    ],
     "/profile/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -65,36 +60,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/user/saved-articles/route.js"
-    ],
-    "/articles/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/articles/layout.js"
-    ],
-    "/articles/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/articles/loading.js"
-    ],
-    "/articles/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/articles/page.js"
-    ],
-    "/[category]/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[category]/layout.js"
-    ],
-    "/[category]/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[category]/loading.js"
-    ],
-    "/[category]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[category]/page.js"
     ]
   }
 }

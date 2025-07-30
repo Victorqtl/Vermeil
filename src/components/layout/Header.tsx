@@ -146,9 +146,9 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 											className='h-px bg-gray-200 w-4/5 mx-auto'
 											aria-hidden='true'></div>
 										<button
-											onClick={() => {
-												authClient.signOut();
-												router.push('/auth/sign-in');
+											onClick={async () => {
+												await authClient.signOut();
+												router.push('/');
 											}}
 											role='menuitem'
 											className='hover:bg-gray-100 py-3 px-8 w-full transition-colors whitespace-nowrap cursor-pointer text-left'>
@@ -247,10 +247,10 @@ export default function Header({ whiteHeader = false }: HeaderProps) {
 								) : null}
 								{session?.user ? (
 									<button
-										onClick={() => {
-											authClient.signOut();
+										onClick={async () => {
+											await authClient.signOut();
 											closeMobileMenu();
-											router.push('/auth/sign-in');
+											router.push('/');
 										}}
 										role='menuitem'
 										className='flex items-center gap-2 hover:text-gray-700 transition-colors'>

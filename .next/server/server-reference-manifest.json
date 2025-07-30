@@ -1,49 +1,5 @@
 {
   "node": {
-    "7fe4a371e01403c86f448a84b0ed2a9dbb8863e7c5": {
-      "workers": {
-        "app/(main)/article/[slug]/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227fe4a371e01403c86f448a84b0ed2a9dbb8863e7c5%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f2ded6156b1ba49436e120ec84a85ec03f1b67d3a%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa45dc9af3cca44234acc9c5ba74f7d80ed653713%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227fa4f5e75de13d47bc645bd66d1d086f766f21c2ad%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/(main)/article/[slug]/page": "action-browser"
-      }
-    },
-    "7f2ded6156b1ba49436e120ec84a85ec03f1b67d3a": {
-      "workers": {
-        "app/(main)/article/[slug]/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227fe4a371e01403c86f448a84b0ed2a9dbb8863e7c5%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f2ded6156b1ba49436e120ec84a85ec03f1b67d3a%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa45dc9af3cca44234acc9c5ba74f7d80ed653713%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227fa4f5e75de13d47bc645bd66d1d086f766f21c2ad%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/(main)/article/[slug]/page": "action-browser"
-      }
-    },
-    "7fa45dc9af3cca44234acc9c5ba74f7d80ed653713": {
-      "workers": {
-        "app/(main)/article/[slug]/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227fe4a371e01403c86f448a84b0ed2a9dbb8863e7c5%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f2ded6156b1ba49436e120ec84a85ec03f1b67d3a%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa45dc9af3cca44234acc9c5ba74f7d80ed653713%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227fa4f5e75de13d47bc645bd66d1d086f766f21c2ad%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/(main)/article/[slug]/page": "action-browser"
-      }
-    },
-    "7fa4f5e75de13d47bc645bd66d1d086f766f21c2ad": {
-      "workers": {
-        "app/(main)/article/[slug]/page": {
-          "moduleId": "(action-browser)/./node_modules/.pnpm/next@15.3.2_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FcreateComment.action.ts%22%2C%5B%7B%22id%22%3A%227fe4a371e01403c86f448a84b0ed2a9dbb8863e7c5%22%2C%22exportedName%22%3A%22createComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FupdateComment.action.ts%22%2C%5B%7B%22id%22%3A%227f2ded6156b1ba49436e120ec84a85ec03f1b67d3a%22%2C%22exportedName%22%3A%22updateComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FdeleteComment.action.ts%22%2C%5B%7B%22id%22%3A%227fa45dc9af3cca44234acc9c5ba74f7d80ed653713%22%2C%22exportedName%22%3A%22deleteComment%22%7D%5D%5D%2C%5B%22%2FUsers%2Fvictor%2FDocuments%2FProjets%2Fvermeil%2Fsrc%2Fapp%2F(main)%2Farticle%2Factions%2FsaveArticle.action.ts%22%2C%5B%7B%22id%22%3A%227fa4f5e75de13d47bc645bd66d1d086f766f21c2ad%22%2C%22exportedName%22%3A%22saveArticle%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/(main)/article/[slug]/page": "action-browser"
-      }
-    },
     "00d30cf40c7be439f26b5574bee2d3c27e71fadedb": {
       "workers": {
         "app/profile/page": {
