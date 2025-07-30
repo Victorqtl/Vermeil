@@ -1,30 +1,24 @@
 import Image from 'next/image';
 import { getCachedArticleBySlugWithoutSections } from '@/lib/data/articles';
 import { notFound } from 'next/navigation';
-import { getUser } from '@/lib/auth-session';
-import SaveArticle from '@/app/(main)/article/components/save-article/SaveArticle';
-import { getSavedArticlesById } from '@/lib/data/saved-articles';
+import SaveArticleWrapper from '@/app/(main)/article/components/save-article/SaveArticleWrapper';
+import SaveArticleSkeleton from '@/app/(main)/article/components/save-article/SaveArticleSkeleton';
 import ArticleSections from '@/app/(main)/article/components/article-sections/ArticleSections';
 import ArticleSectionsSkeleton from '@/app/(main)/article/components/article-sections/ArticleSectionsSkeleton';
-import CommentsSection from '@/app/(main)/article/components/CommentsSection';
+import CommentsSectionWrapper from '@/app/(main)/article/components/comments/CommentsSectionWrapper';
 import CommentsSkeleton from '@/app/(main)/article/components/comments/CommentsSkeleton';
-import RelatedArticles from '@/app/(main)/article/components/RelatedArticles';
-import RelatedArticlesSkeleton from '@/app/(main)/article/components/RelatedArticlesSkeleton';
+import RelatedArticles from '@/app/(main)/article/components/related-articles/RelatedArticles';
+import RelatedArticlesSkeleton from '@/app/(main)/article/components/related-articles/RelatedArticlesSkeleton';
 import { Suspense } from 'react';
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
 
-	const [article, user] = await Promise.all([
-		getCachedArticleBySlugWithoutSections(resolvedParams.slug)(),
-		getUser(),
-	]);
+	const article = await getCachedArticleBySlugWithoutSections(resolvedParams.slug)();
 
 	if (!article) {
 		notFound();
 	}
-
-	const savedArticle = user?.id ? await getSavedArticlesById(user.id, article.id) : null;
 	return (
 		<article className='min-h-screen bg-white'>
 			{/* Hero Section */}
@@ -55,11 +49,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 			</div>
 
 			<div className='px-4 md:px-6 py-16'>
-				<SaveArticle
-					articleId={article.id}
-					savedArticle={savedArticle}
-					user={user}
-				/>
+				<Suspense fallback={<SaveArticleSkeleton />}>
+					<SaveArticleWrapper articleId={article.id} />
+				</Suspense>
 				{/* Article Sections */}
 				<Suspense fallback={<ArticleSectionsSkeleton />}>
 					<ArticleSections
@@ -76,10 +68,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
 			{/* Comments Section */}
 			<Suspense fallback={<CommentsSkeleton />}>
-				<CommentsSection
-					articleId={article.id}
-					user={user || null}
-				/>
+				<CommentsSectionWrapper articleId={article.id} />
 			</Suspense>
 		</article>
 	);

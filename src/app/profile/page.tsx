@@ -1,19 +1,15 @@
-import { getUser } from '@/lib/auth-session';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { LogOut } from 'lucide-react';
-import UserProfile from '@/app/profile/components/UserProfile';
-import { UserAvatarUploader } from '@/app/profile/components/ui/user-avatar-uploader';
+import UserProfileWrapper from '@/app/profile/components/UserProfileWrapper';
+import UserAvatarUploaderWrapper from '@/app/profile/components/UserAvatarUploaderWrapper';
+import UserProfileSkeleton from '@/app/profile/components/ui/UserProfileSkeleton';
+import UserAvatarUploaderSkeleton from '@/app/profile/components/ui/UserAvatarUploaderSkeleton';
 import { Button } from '@/components/ui/button';
-import { unauthorized } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default async function page() {
-	const user = await getUser();
-	if (!user) {
-		unauthorized();
-	}
-
 	return (
 		<div className='flex flex-col relative w-full h-fit max-w-4xl lg:mt-18 shadow-sm'>
 			<div className='relative bg-gray-100 h-48'>
@@ -35,12 +31,16 @@ export default async function page() {
 					</Button>
 				</form>
 				<div className='absolute -bottom-22 left-8'>
-					<UserAvatarUploader user={user!} />
+					<Suspense fallback={<UserAvatarUploaderSkeleton />}>
+						<UserAvatarUploaderWrapper />
+					</Suspense>
 				</div>
 			</div>
 			<div className='p-8 pt-20 bg-white'>
 				<div className='flex flex-col gap-4'>
-					<UserProfile user={user!} />
+					<Suspense fallback={<UserProfileSkeleton />}>
+						<UserProfileWrapper />
+					</Suspense>
 				</div>
 			</div>
 		</div>
