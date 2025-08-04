@@ -40,7 +40,7 @@ export const createArticleSchema = z.object({
 		.trim()
 		.min(1, 'La catégorie est requise')
 		.refine(
-			category => ['Mode', 'Soins', 'Lifestyle', 'Culture'].includes(category),
+			category => ['mode', 'soins', 'lifestyle', 'culture'].includes(category),
 			'Veuillez sélectionner une catégorie valide'
 		),
 	excerpt: z
