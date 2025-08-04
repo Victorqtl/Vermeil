@@ -1,10 +1,10 @@
 import React from 'react';
 import { Clock } from 'lucide-react';
-import { getArticles } from '@/lib/data/articles';
+import { getCachedArticles } from '@/lib/data/articles';
 import Link from 'next/link';
 
 export default async function FeaturedArticles() {
-	const articles = await getArticles();
+	const articles = await getCachedArticles();
 	// Get first 3 featured articles for main grid
 	const featuredArticles = articles.filter(article => article.featured).slice(0, 3);
 	// Get next 3 articles for secondary section
@@ -48,7 +48,7 @@ export default async function FeaturedArticles() {
 											{article.excerpt}
 										</p>
 										<div className='flex items-center text-white/80 text-sm'>
-											<span>{article.createdAt.toLocaleDateString()}</span>
+											<span>{new Date(article.createdAt).toLocaleDateString()}</span>
 											<span className='mx-2'>•</span>
 											<Clock
 												size={14}

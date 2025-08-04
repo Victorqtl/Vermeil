@@ -31,55 +31,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/auth/[...all]/route.js"
     ],
-    "/_not-found/page": [
+    "/[category]/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/[category]/layout.js"
     ],
-    "/auth/layout": [
+    "/[category]/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/auth/layout.js"
+      "static/chunks/app/[category]/loading.js"
     ],
-    "/auth/sign-in/page": [
+    "/[category]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/auth/sign-in/page.js"
+      "static/chunks/app/[category]/page.js"
     ],
-    "/profile/layout": [
+    "/(main)/article/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/profile/layout.js"
+      "static/chunks/app/(main)/article/not-found.js"
     ],
-    "/profile/page": [
+    "/(main)/article/[slug]/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/profile/page.js"
+      "static/chunks/app/(main)/article/[slug]/layout.js"
     ],
-    "/api/user/saved-articles/route": [
+    "/(main)/article/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/user/saved-articles/route.js"
-    ],
-    "/admin/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/layout.js"
-    ],
-    "/admin/articles/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/articles/page.js"
-    ],
-    "/admin/articles/new/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/articles/new/page.js"
-    ],
-    "/admin/articles/edit/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/articles/edit/[slug]/page.js"
+      "static/chunks/app/(main)/article/[slug]/page.js"
     ]
   }
 }

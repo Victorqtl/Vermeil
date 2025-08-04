@@ -68,7 +68,7 @@ export const getCachedUserSavedArticles = unstable_cache(
 	['user-saved-articles'],
 	{
 		revalidate: 300,
-		tags: ['user-saved-articles'],
+		tags: ['user-saved-articles', 'articles'],
 	}
 );
 
@@ -237,6 +237,6 @@ export const getCachedFeaturedArticlesExcluding = (excludeId: string, limit: num
 		[`featured-articles-excluding-${excludeId}-${limit}`],
 		{
 			revalidate: 300,
-			tags: ['articles'],
+			tags: ['articles', 'featured-articles'],
 		}
 	);
