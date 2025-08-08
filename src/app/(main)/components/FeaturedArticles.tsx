@@ -86,7 +86,7 @@ export default async function FeaturedArticles() {
 								</h3>
 								<p className='text-gray-600 text-sm mb-3 line-clamp-2'>{article.excerpt}</p>
 								<div className='flex items-center text-gray-500 text-sm'>
-									<span>{article.createdAt.toLocaleDateString()}</span>
+									<span>{new Date(article.createdAt).toLocaleDateString()}</span>
 									<span className='mx-2'>•</span>
 									<Clock
 										size={14}

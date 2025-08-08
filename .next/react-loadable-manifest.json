@@ -1,1 +1,9 @@
-{}
+{
+  "app/profile/components/UserProfile.tsx -> ./SavedArticles": {
+    "id": 1646,
+    "files": [
+      "static/chunks/858-24ebe89d900b2894.js",
+      "static/chunks/646.90aa1180bdd3fcaa.js"
+    ]
+  }
+}
