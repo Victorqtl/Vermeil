@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
+import type Metadata from 'next';
 import { Inter } from 'next/font/google';
-import Script from 'next/script';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,25 +34,12 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='fr'>
-			<head>
-				{/* Google tag (gtag.js) */}
-				<Script
-					src="https://www.googletagmanager.com/gtag/js?id=G-G31JH48C4J"
-					strategy="afterInteractive"
-				/>
-				<Script id="google-analytics" strategy="afterInteractive">
-					{`
-					window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
-					gtag('config', 'G-G31JH48C4J');
-					`}
-				</Script>
-			</head>
 			<body className={`min-h-screen flex flex-col justify-between font-sans text-gray-900 ${inter.className}`}>
 				{children}
 				<Analytics />
 				<SpeedInsights />
+				<GoogleAnalytics gaId='G-G31JH48C4J' />
+				<GoogleTagManager gtmId='GT-M3LVXR76' />
 			</body>
 		</html>
 	);
