@@ -10,6 +10,15 @@ import CommentsSkeleton from '@/app/(main)/article/components/comments/CommentsS
 import RelatedArticles from '@/app/(main)/article/components/related-articles/RelatedArticles';
 import RelatedArticlesSkeleton from '@/app/(main)/article/components/related-articles/RelatedArticlesSkeleton';
 import { Suspense } from 'react';
+import { getCachedArticles } from '@/lib/data/articles';
+
+export async function generateStaticParams() {
+	const articles = await getCachedArticles();
+	
+	return articles.map((article) => ({
+		slug: article.slug,
+	}));
+}
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 	const resolvedParams = await params;
