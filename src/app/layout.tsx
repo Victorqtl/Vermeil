@@ -34,9 +34,13 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='fr'>
-			<body className={`min-h-screen flex flex-col justify-between font-sans text-gray-900 ${inter.className}`}>
-				<Script src="https://www.googletagmanager.com/gtag/js?id=G-G31JH48C4J" />
-				<Script id="google-analytics">
+			<head>
+				{/* Google tag (gtag.js) */}
+				<Script
+					src="https://www.googletagmanager.com/gtag/js?id=G-G31JH48C4J"
+					strategy="afterInteractive"
+				/>
+				<Script id="google-analytics" strategy="afterInteractive">
 					{`
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
@@ -44,6 +48,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 					gtag('config', 'G-G31JH48C4J');
 					`}
 				</Script>
+			</head>
+			<body className={`min-h-screen flex flex-col justify-between font-sans text-gray-900 ${inter.className}`}>
 				{children}
 				<Analytics />
 				<SpeedInsights />
